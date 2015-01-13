@@ -1,0 +1,175 @@
+<!doctype html>
+<html class="no-js" lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chesapeake Bay Program - Field Guide</title>
+    <!-- build:css css/libraries.min.css -->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" href="/vendor/fonts/foundation-icons/foundation-icons.css" />
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/vendor/slick.js/slick/slick.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css css/app.min.css -->
+    <link rel="stylesheet" href="{stylesheet='site/style'}">
+    <!-- endbuild -->
+    <!-- build:js js/vendor/modernizr.min.js -->
+    <script src="/vendor/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+<header>
+      <div class="row">
+        <a href="/"><img class="small-12 columns" src="/images/cbp-logo.png" /></a>
+      </div>
+      <div class="row">
+        <div class="small-12 columns">
+          <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+              <li class="has-form small-10 hide-for-medium-up columns" style="padding-top: 10px;">
+                <div class="row">
+                  <div class="small-10 columns">
+                    <input type="text" placeholder="search chesapeakebay.net">
+                  </div>
+                  <div class="small-2 columns">
+                    <a href="#" class="" style="color: black; font-size: 24px; line-height: 24px;">
+                      <i class="fi-magnifying-glass"></i>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="name">
+                <h1><a href="#"></a></h1>
+              </li> <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone --> 
+              <li class="toggle-topbar menu-icon">
+                <a href="#"><span></span></a>
+              </li>
+            </ul>
+            <section class="top-bar-section"> 
+            <!-- Right Nav Section -->
+              <ul class="right hide-for-medium-up">
+								{top_nav}
+              </ul> 
+              <!-- Left Nav Section --> 
+              <ul class="left">
+                <li class="has-form show-for-medium-up">
+                  <div class="row collapse">
+                    <div class="medium-10 columns">
+                      <input type="text" placeholder="Find Stuff">
+                    </div>
+                    <div class="medium-2 show-for-medium-up columns">
+                      <a href="#" class="button expand">
+                        <i class="fi-magnifying-glass"></i>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </section>
+          </nav>
+      </div>
+    </header>
+		
+		{layout:contents}
+		
+		
+      <div class="panel footer" style="margin-bottom: 0px; border: none; background: #333;">
+			<div class="row" >
+        <h5>About the Chesapeake Bay Program</h5>
+        <p>The Chesapeake Bay Program is a unique regional partnership that has led and directed the restoration of the Chesapeake Bay since 1983.</p>
+			</div>
+			<div class="row">
+        <p>410 Severn Avenue, Suite 112<br />
+        Annapolis, MD 21403<br />
+        Tel: (800) YOUR-BAY<br />
+        Fax: (410) 267-5777</p>
+		  </div>
+			<div class="row collapse">
+        <h5>Keep in Touch</h5>
+        <p>Get the latest updates on our work delivered to your inbox.</p>
+        <form class="small-12 medium-8 large-4 columns">
+          <div class="row collapse"> 
+            <div class="small-9 columns"> 
+              <input type="text" placeholder="email">
+            </div> 
+            <div class="small-3 columns">
+              <a href="#" class="button postfix">Subscribe</a>
+            </div>
+          </div> 
+        </form>
+			</div>
+			<div class="row collapse">
+        <a href="" class="small-3 columns left">View all newsletters</a>
+			</div>
+			<div class="row collapse">
+				<div class="small-12 columns">
+					<h5>Find Us On</h5>
+					<ul class="inline-list">
+						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-facebook" ></i></a></li>
+						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-twitter" ></i></a></li>
+						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-flickr" ></i></a></li>
+						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-tumblr" ></i></a></li>
+						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-vimeo" ></i></a></li>
+					</ul>
+				</div>
+      </div>
+			<div class="row">
+        <h5>Navigation</h5>
+        <ul style="list-style: none; margin-left: 0px;">
+          <li><a href="#">Discover the Chesapeake</a></li>
+          <li><a href="#">Learn the Issues</a></li>
+          <li><a href="#">Track the Progress</a></li>
+          <li><a href="#">Take Action</a></li>
+          <li><a href="#">In the News</a></li>
+          <li><a href="#">Bay Resource Library</a></li>
+          <li><a href="#">About the Bay Program</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel" id="subFooter" style="border: none; background: #000;">
+			<p>Copyright 2014 Chesapeake Bay Program. All rights reserved.</p>
+			<a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+		</div>
+
+    <!-- build:js js/vendor/libraries.min.js -->
+    <!-- bower:js -->
+    <script src="/vendor/jquery/dist/jquery.js"></script>
+    <script src="/vendor/fastclick/lib/fastclick.js"></script>
+    <script src="/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+	
+    <script type="text/javascript" src="/vendor/slick.js/slick/slick.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.slider').slick({
+          dots: true
+        });
+      });
+    </script>
+
+    <!-- build:js js/vendor/foundation.min.js -->
+    <script src="/vendor/foundation/js/foundation/foundation.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.abide.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.accordion.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.alert.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.clearing.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.dropdown.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.equalizer.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.interchange.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.joyride.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.magellan.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.offcanvas.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.orbit.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.reveal.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.slider.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.tab.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.tooltip.js"></script>
+    <script src="/vendor/foundation/js/foundation/foundation.topbar.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/app.min.js -->
+    <script src="{path='site/app'}"></script>
+    <!-- endbuild -->
+  </body>
+</html>

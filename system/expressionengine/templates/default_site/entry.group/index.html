@@ -1,0 +1,124 @@
+{layout='site/wrapper'}
+{exp:channel:entries channel="field_guide_entries"}
+<div class="row">
+	<div class="small-12 columns">
+		<h1>{title}</br><i>{scientific_name}</i></h1>
+	</div> <!-- end columns -->
+</div> <!-- end row -->
+
+<div class="row">
+
+	<div class="small-12 medium-8 columns">
+
+		<div class="row">
+		{media}
+			<div class="small-12 columns">
+				<a href="#"><img data-interchange="[{media:image}, (default)]"></a>
+			</div> <!-- end columns -->
+		{/media}
+		</div> <!-- end row -->
+
+		<div class="row">
+			<div class="small-12 columns hide-for-medium-up">
+				<div class="sort">
+				{quick_facts}
+					<h2>Quick Facts</h2>
+					<h3>{quick_facts:native_or_invasive}</h3>
+
+					<h3>Size</h3>
+					{quick_facts:size}
+
+					<h3>Habitat</h3>
+					{quick_facts:habitat}
+
+					<h3>Range</h3>
+					{quick_facts:range}
+
+					<h3>Diet</h3>
+					{quick_facts:diet}
+
+					<h3>Lifespan</h3>
+					{quick_facts:lifespan}
+
+					<h3>Status</h3>
+					{quick_facts:status}
+					<p>Stable</p>
+				{/quick_facts}
+				</div>
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+
+		<div class="row">
+			<div class="small-12 columns">
+			<p class="lead">{short_description}</p>
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+
+		<div class="row">
+			<div class="small-12 columns">
+				<h2>Appearance</h2>
+				{appearance}
+
+				<h2>Feeding</h2>
+				<p>Forage on the ground by scratching with feet to uncover food; feed two to three hours after dawn and before dusk.</p>
+
+				<h2>Predators</h2>
+				<p>Humans are the largest predator of wild turkeys. Bobcats, raccoons, eagles and owls also prey upon adult turkeys. Many types of birds, snakes and mammals feed on turkey eggs.</p>
+
+				<h2>Flight</h2>
+				<p>Turkeys can fly very swiftly; some have been recorded flying at speeds up to 55 miles per hour.</p>
+
+				<h2>Voice</h2>
+				<p>Males make a loud gobbling sound during courtship. Known to make at least 15 different types of calls, including yelps and clucks.</p>
+				 <audio controls>
+					<source src="/audio/wild-turkey-cluck.mp3" type="audio/mpeg">
+					Your browser does not support the audio element. Please consider <a href="http://browsehappy.com/">upgrading</a> your browser. 
+				</audio> 
+				<small>Audio courtesy of South Carolina Department of Natural Resources</small>
+
+				<h2>Reproduction and Life Cycle</h2>
+				<p>Turkeys mate in early spring. Males perform an elaborate courtship ritual to attract females. The ritual includes gobbling loudly, fanning out their tail, strutting around the females, and dragging their wing tips on the ground. Males can change the color of their head during breeding season to attract a mate and show dominance over other males. Wild turkeys often locate their nest at the base of a tree that offers overhanging cover. Females begin laying one egg per day in mid-April. They lay a total of approximately 12 eggs, which they incubate for about four weeks. Eggs usually hatch around the first week of June. Males do not help care for the young. Young chicks follow their mother out of the nest within one day of hatching. They quickly learn to feed themselves, and can fly by the time they are eight days old. Young males stay with the female through autumn, and young females stay until the following spring.</p>
+
+				<h2>Did you know?</h2>
+				{did_you_know}
+
+				<h2>Sources and Additional Information</h2>
+				{sources_and_additional_informati}
+
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+
+	</div> <!-- end left columns -->
+
+	<div class="hide-for-small-only medium-4 columns">
+		<div class="sort">
+				{quick_facts}
+					<h2>Quick Facts</h2>
+					<h3>{quick_facts:native_or_invasive}</h3>
+
+					<h3>Size</h3>
+					{quick_facts:size}
+
+					<h3>Habitat</h3>
+					{quick_facts:habitat}
+
+					<h3>Range</h3>
+					{quick_facts:range}
+
+					<h3>Diet</h3>
+					{quick_facts:diet}
+
+					<h3>Lifespan</h3>
+					{quick_facts:lifespan}
+
+					<h3>Status</h3>
+					{quick_facts:status}
+					
+					<h3>Stable</h3>
+					{quick_facts:stable}
+				{/quick_facts}
+				</div>
+	</div> <!-- end right columns -->
+
+</div> <!-- end row -->
+{/exp:channel:entries}
