@@ -43,3 +43,5 @@ Now, you should only need to install Node and Bower by hand. Subsequently, typin
 - Implement select filter for Category page
 
 - Develop AJAX functionality
+
+- Critter of the Month logic
