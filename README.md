@@ -30,3 +30,16 @@ at the command prompt.
 
 Now, you should only need to install Node and Bower by hand. Subsequently, typing "npm install" and "bower install" will automatically grab all the other stuff you need without your having to do anything, which is, of course, the point. If that goes haywire, which it very well may, let me know and I'll help.
 
+## To Do (1/13)
+
+- Clean up directory structure
+
+- Add test data
+
+- Edit gruntfile to more closely match project structure
+
+- Implement search functionality
+
+- Implement select filter for Category page
+
+- Develop AJAX functionality
