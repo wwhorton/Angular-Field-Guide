@@ -1,5 +1,5 @@
 {
-  "name": "zf5_project",
+  "name": "Field_Guide",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
     "font-awesome": "~4.2.0",
