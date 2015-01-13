@@ -5,12 +5,10 @@
 	 <li><a href="/">Home</a></li>
 	 <li class="current"><a href="{site_url}category/{url_title}">{title}</a></li>
 	</ul>
-	<div class="small-12 columns">
-		<h1>{title}</h1>
-	</div> <!-- end columns -->
 </div> <!-- end row -->
 <div class="row">
 	<div class="small-12 medium-8 columns">
+	<h1>{title}</h1>
 		<div class="row">
 			<div class="small-12 columns">
 			{type_description}
@@ -40,7 +38,7 @@
 						<li class="accent-white">
 						{subtypes:parents field="type"}
 							<img src="{subtypes:parents:media}{subtypes:media:image}{/subtypes:parents:media}" height="500" width="750">
-							<h3><a href="{site_url}entry/{parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
+							<h3><a href="{site_url}entry/{subtypes:parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
 						{/subtypes:parents}
 						</li>
 					{/subtypes}
@@ -50,6 +48,14 @@
 		</div> <!-- end row -->
 	</div> <!-- end left columns -->
 	<div class="small-12 medium-4 columns hide-for-small-down">
+		<div class="medium-10 columns">
+			<input type="text" placeholder="search chesapeakebay.net">
+		</div>
+		<div class="medium-2 columns">
+			<a href="#" class="" style="color: black; font-size: 24px;">
+				<i class="fi-magnifying-glass"></i>
+			</a>
+		</div>
 		{sort_menu}
 	</div> <!-- end right columns -->
 </div> <!-- end row -->
