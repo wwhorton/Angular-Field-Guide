@@ -5,55 +5,47 @@
 		<h1>{title}</h1>
 	</div> <!-- end columns -->
 </div> <!-- end row -->
-
 <div class="row">
-
 	<div class="small-12 medium-8 columns">
-
 		<div class="row">
 			<div class="small-12 columns">
 			{type_description}
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-
 		<div class="row accent-gray">
 			<div class="small-12 columns">
 				<form>
 					<div class="row">
 						<div class="small-12 columns">
-							<label><h3><strong>Browse by:</strong></h3>
+							<label><h3><strong>Browse by type:</strong></h3>
 								<select>
-									<option value="type">Type</option>
-									<option value="starbuck">Starbuck</option>
-									<option value="hotdog">Hot Dog</option>
-									<option value="apollo">Apollo</option>
+									<option value="all" selected>All</option>
+									{exp:channel:entries channel="field_guide_types"}
+										{subtypes}
+											<option value="{subtypes:title}">{subtypes:title}</option>
+										{/subtypes}
+									{/exp:channel:entries}
 								</select>
 							</label>
 						</div>
 					</div>
 				</form>
-
-				<div class="row">
+				<ul class="small-block-grid-1 medium-block-grid-2">
 				{exp:channel:entries channel="field_guide_types"}
-					<div class="small-12 medium-6 columns">
-						<div class="accent-white">
-						{parents field="type"}
-							<img src="{parents:media}{media:image}{/parents:media}" height="500" width="750">
-							<h3><a href="{site_url}entry/{parents:url_title}">{parents:title} </br><i>{parents:scientific_name}</i></a></h3>
-							<p>{parents:short_description}</p>
-						{/parents}
-						</div>
-					</div>
+					{subtypes}
+						<li class="accent-white">
+						{subtypes:parents field="type"}
+							<img src="{subtypes:parents:media}{subtypes:media:image}{/subtypes:parents:media}" height="500" width="750">
+							<h3><a href="{site_url}entry/{parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
+						{/subtypes:parents}
+						</li>
+					{/subtypes}
 				{/exp:channel:entries}
-				</div> <!-- end row -->
-
+				</ul>
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-
 	</div> <!-- end left columns -->
-
-	<div class="small-12 medium-4 columns">
+	<div class="small-12 medium-4 columns hide-for-small-down">
 		{sort_menu}
 	</div> <!-- end right columns -->
-
 </div> <!-- end row -->
