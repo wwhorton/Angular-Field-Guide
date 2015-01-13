@@ -1,6 +1,15 @@
 {layout='site/wrapper'}
 {exp:channel:entries channel="field_guide_entries"}
 <div class="row">
+	<ul class="breadcrumbs">
+	 <li><a href="/">Home</a></li>
+	 {type}
+	 {type:parent_type}
+	 <li><a href="{site_url}category/{type:parent_type:url_title}">{type:parent_type:title}</a></li>
+	 {/type:parent_type}
+	 {/type}
+	 <li class="current"><a href="{site_url}entry/{url_title}">{title}</a></li>
+	</ul>
 	<div class="small-12 columns">
 		<h1>{title}</br><i>{scientific_name}</i></h1>
 	</div> <!-- end columns -->
