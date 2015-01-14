@@ -2,7 +2,7 @@
 
 The standalone, responsive, mobile-first Field Guide site. 
 
-Currently (1/13) the Master branch contains a fully-working albeit unpolished version of the site. If you want to see the site, **clone** it into a "www" or equivalent directory in a WAMP install or webserver. To work on the site, you'll need to install some Javascript tools, which I'll list below.
+Currently (1/13) the Master branch contains a fully-working albeit unpolished version of the site. If you want to see the site, **clone** it into a "www" or equivalent directory in a WAMP install or webserver. You'll need to set up a database using the included script (which I have yet to upload...). To work on the site, you'll need to install some Javascript tools, which I'll list below.
 
 In order to keep from borking the working copy or overwriting each other's work, I'd request that you create your own local branch before making any changes. **Commit** any changes as you make them so they don't get lost. When you're ready to **push** to the repo, first **checkout** the master branch from the repo then **merge** your local development branch. That way, if more than one person happens to be working on the same thing (unlikely, I know) at the same time, git will merge the changes (or yell at you to resolve conflicts) and nobody's work gets lost. It's good practice anyway, and it's really easy once you get in the habit of doing it. 
 
