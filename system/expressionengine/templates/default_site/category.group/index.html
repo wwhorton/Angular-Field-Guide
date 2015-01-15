@@ -21,20 +21,27 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label><h3><strong>Browse by type:</strong></h3>
-								<select>
-									<option value="all" selected>All</option>
-									{exp:channel:entries channel="field_guide_types"}
+								<select ng-model="subtype">
+									<option value="" selected>All</option>
+									<option ng-repeat="option in options" value="{{option}}">{{option}}</option>
+									<!--<option value="all" selected>All</option>
+									{!--{exp:channel:entries channel="field_guide_types"}
 										{subtypes}
 											<option value="{subtypes:title}">{subtypes:title}</option>
 										{/subtypes}
-									{/exp:channel:entries}
+									{/exp:channel:entries}--}-->
 								</select>
 							</label>
 						</div>
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-				{exp:channel:entries channel="field_guide_types"}
+					<li class="accent-white" ng-repeat="entry in entries | filter:subtype">
+						<img src="{{entry.image}}" />
+						<h3><a href="#">{{entry.name}}</a></h3>
+						<h3><em>{{entry.scientificName}}</em></h3>
+					</li>
+				{!--<!--{exp:channel:entries channel="field_guide_types"}
 					{subtypes}
 						<li class="accent-white">
 						{subtypes:parents field="type"}
@@ -43,7 +50,7 @@
 						{/subtypes:parents}
 						</li>
 					{/subtypes}
-				{/exp:channel:entries}
+				{/exp:channel:entries}-->--}
 				</ul>
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
