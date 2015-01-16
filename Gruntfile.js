@@ -24,6 +24,13 @@ module.exports = function(grunt) {
 			}
 		},
 
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        background: true,
+        singleRun: false
+      }
+    },
 		
 
 		jshint: {
@@ -105,7 +112,11 @@ module.exports = function(grunt) {
 				options: {
 					livereload: true
 				}
-			}
+			},
+      karma: {
+        files: ['js/*.js', 'test/*Spec.js'],
+        tasks: ['karma:unit:run']
+      }
 		},
 
 		connect: {
@@ -156,4 +167,5 @@ module.exports = function(grunt) {
 	
 	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'newer:imagemin', 'concat', 'cssmin', 'uglify', 'usemin']);
 
+  grunt.loadNpmTasks('grunt-karma');
 };
