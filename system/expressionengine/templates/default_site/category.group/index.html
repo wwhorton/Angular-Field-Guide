@@ -21,9 +21,9 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label><h3><strong>Browse by type:</strong></h3>
-								<select ng-model="subtype">
+								<select ng-model="type">
 									<option value="" selected>All</option>
-									<option ng-repeat="option in options" value="{{option}}">{{option}}</option>
+									<option ng-repeat="option in options" value="{{option.id}}">{{option.name}}</option>
 									<!--<option value="all" selected>All</option>
 									{!--{exp:channel:entries channel="field_guide_types"}
 										{subtypes}
@@ -36,7 +36,7 @@
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-					<li class="accent-white" ng-repeat="entry in entries | filter:subtype">
+					<li class="accent-white" ng-repeat="entry in entries | filter:type">
 						<img ng-src="{{entry.media[0].image}}" />
 						<h3><a href="#">{{entry.title}}</a></h3>
 						<h3><em>{{entry.scientific_name}}</em></h3>
