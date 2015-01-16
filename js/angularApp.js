@@ -1,5 +1,5 @@
 (function(){
-	var app = angular.module('app', []);
+	var category = angular.module('category', []);
 	
 	var options = [ "Raptors", "Other", "Sea & Shorebirds", "Wading", "Waterfowl" ];
 	
@@ -13,12 +13,12 @@
 	{"image": "http://placehold.it/300x200", "name": "Sand Dollar", "scientificName": "Diomedea exulans", "subtype": "other"}
 	];*/
 	
-	app.controller('CategoryFilter', ['$scope', '$http', function( $scope, $http ){
+	category.controller('CategoryFilter', ['$scope', '$http', function( $scope, $http ){
 		$scope.options = options;
-    $http.get('http://localhost/API/field_guide_entries').success( function( data ){
+    $http.get('http://localhost/API/entries').success( function( data ){
+
       $scope.entries = data;
-    });
-    
+    });    
 	}]);
 
 })();

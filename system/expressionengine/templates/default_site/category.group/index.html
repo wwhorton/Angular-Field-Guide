@@ -37,9 +37,9 @@
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
 					<li class="accent-white" ng-repeat="entry in entries | filter:subtype">
-						<img src="{{entry.image}}" />
-						<h3><a href="#">{{entry.name}}</a></h3>
-						<h3><em>{{entry.scientificName}}</em></h3>
+						<img ng-src="{{entry.media[0].image}}" />
+						<h3><a href="#">{{entry.title}}</a></h3>
+						<h3><em>{{entry.scientific_name}}</em></h3>
 					</li>
 				{!--<!--{exp:channel:entries channel="field_guide_types"}
 					{subtypes}
