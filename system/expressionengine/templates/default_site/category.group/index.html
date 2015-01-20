@@ -20,11 +20,11 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label><h3><strong>Browse by type:</strong></h3>
-								<select>
-									<option value="all" selected>All</option>
+								<select onchange="window.location.href=this.value">
+									<option value="{site_url}{segment_1}/{segment_2}" selected>All</option>
 									{exp:channel:entries channel="field_guide_types"}
 										{subtypes}
-											<option value="{subtypes:title}">{subtypes:title}</option>
+											<option value="{site_url}{segment_1}/{segment_2}/{subtypes:url_title}" {if subtypes:url_title == segment_3} selected="true"{/if}>{subtypes:title}</option>
 										{/subtypes}
 									{/exp:channel:entries}
 								</select>
@@ -33,14 +33,16 @@
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-				{exp:channel:entries channel="field_guide_types"}
+				{exp:channel:entries channel="field_guide_types" }
 					{subtypes}
+					{if subtypes:url_title == segment_3 || segment_3 == "" }
 						<li class="accent-white">
-						{subtypes:parents field="type"}
+						{subtypes:parents field="type" }
 							<img src="{subtypes:parents:media}{subtypes:media:image}{/subtypes:parents:media}" height="500" width="750">
 							<h3><a href="{site_url}entry/{subtypes:parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
 						{/subtypes:parents}
 						</li>
+					{/if}
 					{/subtypes}
 				{/exp:channel:entries}
 				</ul>
