@@ -24,12 +24,6 @@
 								<select ng-model="type">
 									<option value="" selected>All</option>
 									<option ng-repeat="option in options" value="{{option.id}}">{{option.name}}</option>
-									<!--<option value="all" selected>All</option>
-									{!--{exp:channel:entries channel="field_guide_types"}
-										{subtypes}
-											<option value="{subtypes:title}">{subtypes:title}</option>
-										{/subtypes}
-									{/exp:channel:entries}--}-->
 								</select>
 							</label>
 						</div>
@@ -37,20 +31,10 @@
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
 					<li class="accent-white" ng-repeat="entry in entries | filter:type">
-						<img ng-src="{{entry.media[0].image}}" />
-						<h3><a href="#">{{entry.title}}</a></h3>
+						<img ng-src="{{entry.image}}" src="http://placehold.it/320x200" />
+						<h3><a href="{site_url}entry/{{entry.url}}">{{entry.title}}</a></h3>
 						<h3><em>{{entry.scientific_name}}</em></h3>
 					</li>
-				{!--<!--{exp:channel:entries channel="field_guide_types"}
-					{subtypes}
-						<li class="accent-white">
-						{subtypes:parents field="type"}
-							<img src="{subtypes:parents:media}{subtypes:media:image}{/subtypes:parents:media}" height="500" width="750">
-							<h3><a href="{site_url}entry/{subtypes:parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
-						{/subtypes:parents}
-						</li>
-					{/subtypes}
-				{/exp:channel:entries}-->--}
 				</ul>
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
