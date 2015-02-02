@@ -1,0 +1,55 @@
+{layout="site/wrapper"}
+<div class="row">
+{exp:channel:entries channel="field_guide_types"}
+	<ul class="breadcrumbs">
+	 <li><a href="/">Home</a></li>
+	 <li class="current"><a href="{site_url}category/{url_title}">{title}</a></li>
+	</ul>
+	<div class="small-12 columns">
+		<h1>{title}</h1>
+	</div> <!-- end columns -->
+</div> <!-- end row -->
+<div class="row">
+	<div class="small-12 medium-8 columns">
+		<div class="row">
+			<div class="small-12 columns">
+			{type_description}
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+		<div class="row accent-gray">
+			<div class="small-12 columns">
+				<form>
+					<div class="row">
+						<div class="small-12 columns">
+							<label><h3><strong>Browse by type:</strong></h3>
+								<select>
+									<option value="all" selected>All</option>
+									{exp:channel:entries channel="field_guide_types"}
+										{subtypes}
+											<option value="{subtypes:title}">{subtypes:title}</option>
+										{/subtypes}
+									{/exp:channel:entries}
+								</select>
+							</label>
+						</div>
+					</div>
+				</form>
+				<ul class="small-block-grid-1 medium-block-grid-2">
+				{exp:channel:entries channel="field_guide_types"}
+					{subtypes}
+						<li class="accent-white">
+						{subtypes:parents field="type"}
+							<img src="{subtypes:parents:media}{subtypes:media:image}{/subtypes:parents:media}" height="500" width="750">
+							<h3><a href="{site_url}entry/{parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
+						{/subtypes:parents}
+						</li>
+					{/subtypes}
+				{/exp:channel:entries}
+				</ul>
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+	</div> <!-- end left columns -->
+	<div class="small-12 medium-4 columns hide-for-small-down">
+		{sort_menu}
+	</div> <!-- end right columns -->
+</div> <!-- end row -->

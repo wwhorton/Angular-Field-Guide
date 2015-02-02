@@ -99,41 +99,43 @@
 	</div> <!-- end left columns -->
 
 	<div class="hide-for-small-only medium-4 columns">
-		<div class="medium-10 columns">
-			<input type="text" placeholder="search chesapeakebay.net">
-		</div>
-		<div class="medium-2 columns">
-			<a href="#" class="" style="color: black; font-size: 24px;">
-				<i class="fi-magnifying-glass"></i>
-			</a>
-		</div>
-		<div class="sort">
-				{quick_facts}
-					<h2>Quick Facts</h2>
-					<h3>{quick_facts:native_or_invasive}</h3>
+    <div id="search" class="row">
+      <div class="medium-10 columns">
+        <input type="text" placeholder="search chesapeakebay.net">
+      </div>
+      <div class="medium-2 columns">
+        <a href="#" class="" style="color: black; font-size: 24px;">
+          <i class="fi-magnifying-glass"></i>
+        </a>
+      </div>
+    </div>
+		<div class="panel">
+    {quick_facts}
+      <h2>Quick Facts</h2>
+      <h3>{quick_facts:native_or_invasive}</h3>
 
-					<h3>Size</h3>
-					{quick_facts:size}
+      <h3>Size</h3>
+      {quick_facts:size}
 
-					<h3>Habitat</h3>
-					{quick_facts:habitat}
+      <h3>Habitat</h3>
+      {quick_facts:habitat}
 
-					<h3>Range</h3>
-					{quick_facts:range}
+      <h3>Range</h3>
+      {quick_facts:range}
 
-					<h3>Diet</h3>
-					{quick_facts:diet}
+      <h3>Diet</h3>
+      {quick_facts:diet}
 
-					<h3>Lifespan</h3>
-					{quick_facts:lifespan}
+      <h3>Lifespan</h3>
+      {quick_facts:lifespan}
 
-					<h3>Status</h3>
-					{quick_facts:status}
-					
-					<h3>Stable</h3>
-					{quick_facts:stable}
-				{/quick_facts}
-				</div>
+      <h3>Status</h3>
+      {quick_facts:status}
+      
+      <h3>Stable</h3>
+      {quick_facts:stable}
+    {/quick_facts}
+    </div>
 	</div> <!-- end right columns -->
 
 </div> <!-- end row -->

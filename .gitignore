@@ -15,6 +15,7 @@ images/pm_attachments/
 # system/expressionengine/config/database.php
 # system/expressionengine/config/config.php
 # Caches
+system/expressionengine/cache/
 sized/
 thumbs/
 _thumbs/
