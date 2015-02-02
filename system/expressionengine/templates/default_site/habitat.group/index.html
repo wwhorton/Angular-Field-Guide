@@ -5,14 +5,15 @@
 	 <li><a href="/">Home</a></li>
 	 <li class="current"><a href="{site_url}category/{url_title}">{title}</a></li>
 	</ul>
+	<div class="small-12 columns">
+		<h1>{title}</h1>
+	</div> <!-- end columns -->
 </div> <!-- end row -->
 <div class="row">
 	<div class="small-12 medium-8 columns">
-	<h1>{title}</h1>
 		<div class="row">
 			<div class="small-12 columns">
 			{type_description}
-{/exp:channel:entries}
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
 		<div class="row accent-gray">
@@ -21,11 +22,11 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label><h3><strong>Browse by type:</strong></h3>
-								<select onchange="window.location.href=this.value">
-									<option value="{site_url}{segment_1}/{segment_2}" selected>All</option>
+								<select>
+									<option value="all" selected>All</option>
 									{exp:channel:entries channel="field_guide_types"}
 										{subtypes}
-											<option value="{site_url}{segment_1}/{segment_2}/{subtypes:url_title}" {if subtypes:url_title == segment_3} selected="true"{/if}>{subtypes:title}</option>
+											<option value="{subtypes:title}">{subtypes:title}</option>
 										{/subtypes}
 									{/exp:channel:entries}
 								</select>
@@ -34,16 +35,14 @@
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-				{exp:channel:entries channel="field_guide_types" }
+				{exp:channel:entries channel="field_guide_types"}
 					{subtypes}
-					{if subtypes:url_title == segment_3 || segment_3 == "" }
 						<li class="accent-white">
-						{subtypes:parents field="type" }
+						{subtypes:parents field="type"}
 							<img src="{subtypes:parents:media}{subtypes:media:image}{/subtypes:parents:media}" height="500" width="750">
-							<h3><a href="{site_url}entry/{subtypes:parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
+							<h3><a href="{site_url}entry/{parents:url_title}">{subtypes:parents:title} </br><i>{subtypes:parents:scientific_name}</i></a></h3>
 						{/subtypes:parents}
 						</li>
-					{/if}
 					{/subtypes}
 				{/exp:channel:entries}
 				</ul>
@@ -51,18 +50,6 @@
 		</div> <!-- end row -->
 	</div> <!-- end left columns -->
 	<div class="small-12 medium-4 columns hide-for-small-down">
-
-	{exp:search:simple_form channel="field_guide_entries" search_in="everywhere"}
-	<div class="row collapse">
-		<div class="medium-10 columns">
-			<input type="text" name="keywords" id="keywords" placeholder="search field guide">
-		</div>
-		<div class="medium-2 columns">
-			<button class="button tiny secondary postfix" style="color: black; font-size: 24px; border: none;"><i class="fi-magnifying-glass"></i></button>
-		</div>
-	</div>
-	{/exp:search:simple_form}
-	
-	{sort_menu}
+		{sort_menu}
 	</div> <!-- end right columns -->
 </div> <!-- end row -->
