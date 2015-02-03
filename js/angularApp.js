@@ -21,7 +21,6 @@
     
     FilterOptions.getOptions().then( function( data ){
       $.each( data, function( key, value ){
-        console.log( value.title );
         if( value.parentType == $scope.type ){
           $scope.options.push( { "title" : value.title, "parentType" : value.parentType } )
         }
