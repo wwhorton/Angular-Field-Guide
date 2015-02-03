@@ -21,16 +21,15 @@
 					<div class="row">
 						<div class="small-12 columns">
 							<label><h3><strong>Browse by type:</strong></h3>
-								<select ng-model="type">
+								<select ng-model="subtype" ng-options="option.title as option.title for option in options">
 									<option value="" selected>All</option>
-									<option ng-repeat="option in options" value="{{option.name}}">{{option.name}}</option>
 								</select>
 							</label>
 						</div>
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-					<li class="accent-white" ng-repeat="entry in entries | filter:type">
+					<li class="accent-white" ng-repeat="entry in entries | filter:subtype">
 						<img ng-src="{{entry.image}}" src="http://placehold.it/320x200" />
 						<h3><a href="{site_url}entry/{{entry.url}}">{{entry.title}}</a></h3>
 						<h3><em>{{entry.scientific_name}}</em></h3>

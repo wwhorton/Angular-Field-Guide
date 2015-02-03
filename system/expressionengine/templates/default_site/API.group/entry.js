@@ -1,10 +1,11 @@
 [
-{exp:channel:entries channel="field_guide_entries" backspace="2"}
+{exp:channel:entries channel="field_guide_types" backspace="2" }{subtypes}{subtypes:parents field="type"}
   {
-  "title": "{title}",
-  "url": "{url_title}",
-  "image": "{media}{media:image}{/media}",
-  "scientific_name": "{scientific_name}"
+  "title": "{subtypes:parents:title}",
+  "type": "{title}",
+  "subtype": "{subtypes:title}",
+  "url": "{subtypes:parents:url_title}",
+  "scientific_name": "{subtypes:parents:scientific_name}"
   },
-{/exp:channel:entries}
+{/subtypes:parents}{/subtypes}{/exp:channel:entries}
 ]
