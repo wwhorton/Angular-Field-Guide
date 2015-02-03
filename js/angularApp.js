@@ -1,12 +1,34 @@
 (function(){
 	var category = angular.module('category', []);
+  
+  category.factory( 'FilterOptions', [ '$q', '$http', function( $q, $http ){
+    var _options = [];
+    var getOptions = function(){
+        var deferred = $q.defer();
+        $http.get( 'http://localhost/API/subtype' ).success( function( data ){
+          deferred.resolve( data );
+        });
+        return deferred.promise;
+      };
+    return {
+      getOptions: getOptions
+    };
+  }]);
 	
-	var options = [ {title: "Raptors", id: '22'}, {title: "Other", id: '19'}, {title: "Sea & Shorebirds", id: '20'}, {title: "Wading", id: '21'}, {title: "Waterfowl", id: '18'} ];
-	
-	category.controller('CategoryFilter', ['$scope', '$http', function( $scope, $http ){
-		$scope.options = options;
+	category.controller('CategoryFilter', ['$scope', '$http', 'FilterOptions', function( $scope, $http, FilterOptions ){
+    $scope.options = [];
+    $scope.type = $( "#type" ).text();
+    
+    FilterOptions.getOptions().then( function( data ){
+      $.each( data, function( key, value ){
+        console.log( value.title );
+        if( value.parentType == $scope.type ){
+          $scope.options.push( { "title" : value.title, "parentType" : value.parentType } )
+        }
+      });
+    });
+    
     $http.get('http://localhost/API/type').success( function( data ){
-
       $scope.entries = data;
     });    
 	}]);
