@@ -5,7 +5,7 @@
     var _options = [];
     var getOptions = function(){
         var deferred = $q.defer();
-        $http.get( 'http://localhost/API/subtype' ).success( function( data ){
+        $http.jsonp( 'http://localhost/API/subtype' ).success( function( data ){
           deferred.resolve( data );
         });
         return deferred.promise;
@@ -27,7 +27,7 @@
       });
     });
     
-    $http.get('http://localhost/API/type').success( function( data ){
+    $http.jsonp('http://localhost/API/type').success( function( data ){
       $scope.entries = data;
     });    
 	}]);
