@@ -5,7 +5,7 @@
     var _options = [];
     var getOptions = function(){
         var deferred = $q.defer();
-        $http.jsonp( 'http://localhost/API/subtype' ).success( function( data ){
+        $http.get( 'http://localhost/API/subtype' ).success( function( data ){
           deferred.resolve( data );
         });
         return deferred.promise;
@@ -22,12 +22,14 @@
     FilterOptions.getOptions().then( function( data ){
       $.each( data, function( key, value ){
         if( value.parentType == $scope.type ){
+          value.title = _.unescape( value.title );
+          value.parentType = _.unescape( value.parentType );
           $scope.options.push( { "title" : value.title, "parentType" : value.parentType } )
         }
       });
     });
     
-    $http.jsonp('http://localhost/API/type').success( function( data ){
+    $http.get('http://localhost/API/type').success( function( data ){
       $scope.entries = data;
     });    
 	}]);
