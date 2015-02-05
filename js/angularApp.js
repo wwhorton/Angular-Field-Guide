@@ -29,7 +29,8 @@
       });
     });
     
-    $http.get('http://localhost/API/type').success( function( data ){
+    $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK').success( function( data ){
+      console.log( data );
       $scope.entries = data;
     });    
 	}]);

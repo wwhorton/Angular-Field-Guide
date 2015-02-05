@@ -29,10 +29,11 @@
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-					<li class="accent-white" ng-repeat="entry in entries | filter:subtype | filter:type">
-						<img ng-src="{{entry.image}}" src="http://placehold.it/320x200" />
+					<li class="accent-white" ng-repeat="entry in entries"> <!-- | filter:subtype | filter:type -->
+						<img ng-src="{{entry.fieldguide_image_thumbnail}}" src="http://placehold.it/320x200" />
 						<h3><a href="{site_url}entry/{{entry.url}}">{{entry.title}}</a></h3>
 						<h3><em>{{entry.scientific_name}}</em></h3>
+            <h3 ng-repeat="category in entry.categories">Category: {{category.category_name}}</h3>
 					</li>
 				</ul>
 			</div> <!-- end columns -->
