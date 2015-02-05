@@ -1,6 +1,7 @@
 (function(){
 	var category = angular.module('category', []);
-  
+  //var options = [ "Fish", "Birds", "Algae", "Bay Grasses (SAV)", "Insects", "Invertebrates", "Mammals", "Plants & Trees", "Reptiles & Amphibians" ];
+  var options = [ "Raptors", "Wading", "Waterfowl", "Sea & Shorebirds", "Other" ];
   category.factory( 'FilterOptions', [ '$q', '$http', function( $q, $http ){
     var _options = [];
     var getOptions = function(){
@@ -14,12 +15,15 @@
       getOptions: getOptions
     };
   }]);
+  
+
 	
 	category.controller('CategoryFilter', ['$scope', '$http', 'FilterOptions', function( $scope, $http, FilterOptions ){
-    $scope.options = [];
+    $scope.options = options;
     $scope.type = $( "#type" ).text();
-    
-    FilterOptions.getOptions().then( function( data ){
+    $scope.subtype = "";
+
+   /* FilterOptions.getOptions().then( function( data ){
       $.each( data, function( key, value ){
         if( value.parentType == $scope.type ){
           value.title = _.unescape( value.title );
@@ -27,7 +31,7 @@
           $scope.options.push( { "title" : value.title, "parentType" : value.parentType } )
         }
       });
-    });
+    }); */
     
     $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK').success( function( data ){
       console.log( data );

@@ -16,24 +16,24 @@
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
 		<div class="row accent-gray">
-			<div class="small-12 columns" ng-controller="CategoryFilter as filter">
+			<div class="small-12 columns" ng-controller="CategoryFilter">
 				<form>
 					<div class="row">
 						<div class="small-12 columns">
 							<label><h3><strong>Browse by type:</strong></h3>
-								<select ng-model="subtype" ng-options="option.title as option.title for option in options">
+								<select ng-model="subtype" >
 									<option value="" selected>All</option>
+                  <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
 								</select>
 							</label>
 						</div>
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-					<li class="accent-white" ng-repeat="entry in entries"> <!-- | filter:subtype | filter:type -->
+					<li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}}| filter:{categories:{category_name:subtype}}"> <!-- | filter:subtype | filter:type -->
 						<img ng-src="{{entry.fieldguide_image_thumbnail}}" src="http://placehold.it/320x200" />
 						<h3><a href="{site_url}entry/{{entry.url}}">{{entry.title}}</a></h3>
 						<h3><em>{{entry.scientific_name}}</em></h3>
-            <h3 ng-repeat="category in entry.categories">Category: {{category.category_name}}</h3>
 					</li>
 				</ul>
 			</div> <!-- end columns -->
