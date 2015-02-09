@@ -128,6 +128,28 @@
         });
       });
     </script>
+    <script type="text/javascript">
+      $( document ).ready( function() {
+        $( '#browseMenu' ).val( "#panel1a" );
+      }); 
+      $( '#browseMenu' ).change( function() {
+        var target = $( this ).val();
+        $( "#browse" ).find( ".active" ).removeClass( 'active' );
+        $( target ).addClass( 'active' );
+      });
+    </script>
+    
+    <script type="text/javascript">
+      $( document ).ready( function() {
+        $( '#sortMenu' ).val( "#panel1" );
+      }); 
+      $( '#sortMenu' ).change( function() {
+        var target = $( this ).val();
+        $( "#sort" ).find( ".active" ).removeClass( 'active' );
+        $( target ).addClass( 'active' );
+      });
+      //$( '#sort' ).find( 'li.accordion-navigation' )
+    </script>
 
     <!-- build:js js/vendor/foundation.min.js -->
     <script src="/vendor/foundation/js/foundation/foundation.js"></script>

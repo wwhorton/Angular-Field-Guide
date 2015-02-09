@@ -1445,22 +1445,22 @@ select {
     display: block;
     margin-bottom: 0 !important; }
     .accordion .accordion-navigation.active > a, .accordion dd.active > a {
-      background: #e8e8e8; }
+      background: #e4e4e4; }
     .accordion .accordion-navigation > a, .accordion dd > a {
-      background: #EFEFEF;
-      color: #222222;
+      background: #EBEBEB;
+      color: #21578a;
       padding: 1rem;
       display: block;
       font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 1rem; }
       .accordion .accordion-navigation > a:hover, .accordion dd > a:hover {
-        background: #e3e3e3; }
+        background: #dfdfdf; }
     .accordion .accordion-navigation > .content, .accordion dd > .content {
       display: none;
       padding: 0.9375rem; }
       .accordion .accordion-navigation > .content.active, .accordion dd > .content.active {
         display: block;
-        background: #FFFFFF; }
+        background: #EBEBEB; }
 
 .alert-box {
   border-style: solid;
@@ -3899,10 +3899,10 @@ ul.pagination {
 .panel {
   border-style: solid;
   border-width: 1px;
-  border-color: #d8d8d8;
+  border-color: #cccccc;
   margin-bottom: 1.25rem;
   padding: 1.25rem;
-  background: #f2f2f2;
+  background: #e6e6e6;
   color: #333333; }
   .panel > :first-child {
     margin-top: 0; }
@@ -4516,18 +4516,18 @@ table {
     float: left; }
     .tabs dd > a, .tabs .tab-title > a {
       display: block;
-      background-color: #EFEFEF;
-      color: #222222;
+      background-color: #EBEBEB;
+      color: #21578a;
       padding: 1rem 2rem;
       font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 1rem; }
       .tabs dd > a:hover, .tabs .tab-title > a:hover {
-        background-color: #e1e1e1; }
+        background-color: #dddddd; }
       .tabs dd > a:focus, .tabs .tab-title > a:focus {
         outline: none; }
     .tabs dd.active a, .tabs .tab-title.active a {
       background-color: #FFFFFF;
-      color: #222222; }
+      color: #21578a; }
   .tabs.radius dd:first-child a, .tabs.radius .tab:first-child a {
     -webkit-border-bottom-left-radius: 3px;
     -webkit-border-top-left-radius: 3px;
@@ -6412,3 +6412,26 @@ th.hide-for-touch {
 
 audio {
   display: block; }
+
+.panelContentBox {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 10px 0px 10px;
+  padding: 10px !important; }
+  .panelContentBox div h3 {
+    padding-top: 10px;
+    vertical-align: middle; }
+
+#sort {
+  background-color: #EBEBEB;
+  padding: 10px; }
+  #sort ul {
+    margin-left: 0px; }
+    #sort ul li > a {
+      display: inline-block; }
+
+.accordion-navigation.active i {
+  visibility: hidden; }
+
+.accordion-navigation.active a:after {
+  content: '-'; }

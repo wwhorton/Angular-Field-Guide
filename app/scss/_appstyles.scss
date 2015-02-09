@@ -13,3 +13,32 @@
 audio {
   display: block;
 }
+.panelContentBox {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 10px 0px 10px;
+  padding: 10px !important;
+    div {
+      h3 {
+        padding-top: 10px;
+        vertical-align: middle;
+      }
+    }
+}
+#sort {
+  background-color: #EBEBEB;
+  padding: 10px;
+    ul {
+      margin-left: 0px;
+      li > a {
+        display: inline-block;
+      }
+    }
+}
+.accordion-navigation.active i {
+  visibility: hidden;
+}
+.accordion-navigation.active a:after {
+  content: '-';
+}
+
