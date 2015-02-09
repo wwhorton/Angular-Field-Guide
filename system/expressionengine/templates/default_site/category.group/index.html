@@ -30,9 +30,9 @@
 					</div>
 				</form>
 				<ul class="small-block-grid-1 medium-block-grid-2">
-					<li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}}| filter:{categories:{category_name:subtype}}"> <!-- | filter:subtype | filter:type -->
-						<img ng-src="{{entry.fieldguide_image_thumbnail}}" src="http://placehold.it/320x200" />
-						<h3><a href="{site_url}entry/{{entry.url}}">{{entry.title}}</a></h3>
+					<li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}}| filter:{categories:{category_name:subtype}}">
+						<img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" />
+						<h3><a href="{site_url}entry/{{entry.url_title}}">{{entry.title}}</a></h3>
 						<h3><em>{{entry.scientific_name}}</em></h3>
 					</li>
 				</ul>
