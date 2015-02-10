@@ -6434,3 +6434,5 @@ audio {
     margin-left: 0px; }
     #sort ul li > a {
       display: inline-block; }
+    #sort ul .sortLink {
+      margin-left: 16px; }
