@@ -39,15 +39,17 @@ audio {
 #sort {
   background-color: #EBEBEB;
   padding: 10px;
-    ul {
-      margin-left: 0px;
-      li > a {
-        display: inline-block;
-      }
-      .sortLink {
-        margin-left: 16px;
-      }
+  ul {
+    margin-left: 0px;
+    li > a > i {
+      float: right;
+      font-size: 1.5rem;
+      line-height: 1.4rem;
     }
+    .sortLink {
+      margin-left: 16px;
+    }
+  }
 }
 
 
