@@ -1878,7 +1878,7 @@ select {
 
 button, .button {
   border-style: solid;
-  border-width: 0;
+  border-width: 1px;
   cursor: pointer;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-weight: normal;
@@ -1897,11 +1897,11 @@ button, .button {
   padding-left: 2rem;
   font-size: 1rem;
   background-color: #ebebeb;
-  border-color: #bcbcbc;
+  border-color: #ebebeb;
   color: #666666;
   transition: background-color 300ms ease-out; }
   button:hover, button:focus, .button:hover, .button:focus {
-    background-color: #bcbcbc; }
+    background-color: #ebebeb; }
   button:hover, button:focus, .button:hover, .button:focus {
     color: #666666; }
   button.secondary, .button.secondary {
@@ -1957,11 +1957,11 @@ button, .button {
     padding-left: 1.75rem;
     font-size: 0.8125rem; }
   button.tiny, .button.tiny {
-    padding-top: 0.625rem;
-    padding-right: 1.25rem;
-    padding-bottom: 0.6875rem;
-    padding-left: 1.25rem;
-    font-size: 0.6875rem; }
+    padding-top: 0.375rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.4375rem;
+    padding-left: 0.75rem;
+    font-size: 0.875rem; }
   button.expand, .button.expand {
     padding-right: 0;
     padding-left: 0;
@@ -1978,13 +1978,13 @@ button, .button {
     border-radius: 1000px; }
   button.disabled, button[disabled], .button.disabled, .button[disabled] {
     background-color: #ebebeb;
-    border-color: #bcbcbc;
+    border-color: #ebebeb;
     color: #666666;
     cursor: default;
     opacity: 0.7;
     box-shadow: none; }
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
-      background-color: #bcbcbc; }
+      background-color: #ebebeb; }
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
       color: #666666; }
     button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[disabled]:focus, .button.disabled:hover, .button.disabled:focus, .button[disabled]:hover, .button[disabled]:focus {
@@ -6411,8 +6411,8 @@ th.hide-for-touch {
     color: #c2c2c2; }
 
 #headerLogo {
-  height: 250px;
-  margin: 15px;
+  height: 160px;
+  margin: 0px;
   fill: #666; }
 
 audio {
@@ -6447,3 +6447,6 @@ audio {
   -webkit-transform: rotateY(180deg);
   /* Chrome, Safari, Opera */
   transform: rotateY(180deg); }
+
+.button:hover {
+  border-color: #c6c6c6; }

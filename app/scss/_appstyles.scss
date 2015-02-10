@@ -17,8 +17,8 @@
 }
   
 #headerLogo {
-  height: 250px;
-  margin: 15px;
+  height: 160px;
+  margin: 0px;
   fill: #666;
 }
 audio {
@@ -58,4 +58,6 @@ audio {
   -webkit-transform: rotateY(180deg); /* Chrome, Safari, Opera */
   transform: rotateY(180deg);
 }
-
+.button:hover {
+  border-color: #c6c6c6;
+}
