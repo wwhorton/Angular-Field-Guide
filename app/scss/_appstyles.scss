@@ -51,5 +51,11 @@ audio {
     }
   }
 }
-
+#searchIcon {
+  display: inline-block;
+  font-size: 2.4rem;
+  -ms-transform: rotateY(180deg); /* IE 9 */
+  -webkit-transform: rotateY(180deg); /* Chrome, Safari, Opera */
+  transform: rotateY(180deg);
+}
 
