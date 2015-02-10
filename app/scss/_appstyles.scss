@@ -1,10 +1,21 @@
 /* all app scss styles here */
-.footer  p, #subFooter > p {
-  color: #d6d6d6; }
 
-.footer  h5, #subFooter > h5 {
-  color: #fff; }
-
+.footer, #subFooter {
+  color: #d6d6d6;
+  a  {
+    color: #c2c2c2;
+  }
+  h5 {
+    color: #fff;
+  }
+  p {
+    color: #d6d6d6;
+  }
+  [class*="fi-"] {
+    color: #c2c2c2;
+  }
+}
+  
 #headerLogo {
   height: 250px;
   margin: 15px;
@@ -35,10 +46,5 @@ audio {
       }
     }
 }
-.accordion-navigation.active i {
-  visibility: hidden;
-}
-.accordion-navigation.active a:after {
-  content: '-';
-}
+
 

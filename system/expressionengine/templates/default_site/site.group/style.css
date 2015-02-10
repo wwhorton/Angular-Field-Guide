@@ -6399,11 +6399,16 @@ th.hide-for-touch {
  }
 
 /* all app scss styles here */
-.footer p, #subFooter > p {
+.footer, #subFooter {
   color: #d6d6d6; }
-
-.footer h5, #subFooter > h5 {
-  color: #fff; }
+  .footer a, #subFooter a {
+    color: #c2c2c2; }
+  .footer h5, #subFooter h5 {
+    color: #fff; }
+  .footer p, #subFooter p {
+    color: #d6d6d6; }
+  .footer [class*="fi-"], #subFooter [class*="fi-"] {
+    color: #c2c2c2; }
 
 #headerLogo {
   height: 250px;
@@ -6429,9 +6434,3 @@ audio {
     margin-left: 0px; }
     #sort ul li > a {
       display: inline-block; }
-
-.accordion-navigation.active i {
-  visibility: hidden; }
-
-.accordion-navigation.active a:after {
-  content: '-'; }
