@@ -1,5 +1,5 @@
 (function(){
-	var category = angular.module('category', []);
+	var category = angular.module('category', [ 'ngRoute' ]);
   //var options = [ "Fish", "Birds", "Algae", "Bay Grasses (SAV)", "Insects", "Invertebrates", "Mammals", "Plants & Trees", "Reptiles & Amphibians" ];
   var options = [ "Raptors", "Wading", "Waterfowl", "Sea & Shorebirds", "Other" ];
   category.factory( 'FilterOptions', [ '$q', '$http', function( $q, $http ){
@@ -16,9 +16,23 @@
     };
   }]);
   
-
+  category.config(['$routeProvider', 
+    function($routeProvider) {
+      $routeProvider.
+        when( '/category/:category', {
+          templateUrl: '/app/partials/entryList.html',
+          controller: 'CategoryFilter'
+        }).
+        when( '/entry/:entryName', {
+          templateUrl: '/app/partials/entry.html',
+          controller: 'CategoryFilter'
+        }).
+        otherwise({
+          redirectTo: '/category/:category'
+        });
+  }]);
 	
-	category.controller('CategoryFilter', ['$scope', '$http', 'FilterOptions', function( $scope, $http, FilterOptions ){
+  category.controller('CategoryFilter', ['$scope', '$http', 'FilterOptions', function( $scope, $http, FilterOptions ){
     $scope.options = options;
     $scope.type = $( "#type" ).text();
     $scope.subtype = "";
