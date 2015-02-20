@@ -23,7 +23,7 @@
           templateUrl: '/app/partials/entryList.html',
           controller: 'CategoryFilter'
         }).
-        when( '/entry/:entryName', {
+        when( '/entry/:url_title', {
           templateUrl: '/app/partials/entry.html',
           controller: 'CategoryFilter'
         }).
@@ -32,10 +32,11 @@
         });
   }]);
 	
-  category.controller('CategoryFilter', ['$scope', '$http', 'FilterOptions', function( $scope, $http, FilterOptions ){
+  category.controller('CategoryFilter', ['$scope', '$http', 'FilterOptions', '$routeParams', function( $scope, $http, FilterOptions, $routeParams ){
     $scope.options = options;
     $scope.type = $( "#type" ).text();
     $scope.subtype = "";
+    $scope.url_title = $routeParams.url_title;
 
    /* FilterOptions.getOptions().then( function( data ){
       $.each( data, function( key, value ){
@@ -53,4 +54,7 @@
     });    
 	}]);
 
+  category.run(['$route', function( $route ){
+    $route.reload();
+  }]);
 })();
