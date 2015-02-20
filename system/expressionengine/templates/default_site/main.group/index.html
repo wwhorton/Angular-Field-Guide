@@ -39,9 +39,25 @@
                   <ul class="small-block-grid-1 medium-block-grid-2">
                   {exp:channel:entries channel="field_guide_types" sort="asc"}
                     <li class="panelContentBox">
-                      <div class="row">
-                        <img class="small-12 columns" src="http://placehold.it/230x153" src="{image}" height="153" width="230">
-                        <h3 class="small-12 columns"><a href="{site_url}category/{url_title}">{title}</a></h3>
+                      <div class="row collapse">
+                        <img class="small-12 columns" src="http://placehold.it/230x153" src="{image}" height="153" width="230"></img>
+                        <ul class="accordion" data-accordion>
+                          <li class="accordion-navigation">
+                            <a href="#panel_{url_title}">{title}</a>
+                            <div id="panel_{url_title}" class="content">
+                              <ul>
+                                <li>
+                                  <a class="small-12 columns" href="{site_url}category/{url_title}">All {title}</a>
+                                </li>
+                                {subtypes}
+                                <li>
+                                  <a class="small-12 columns" href="{site_url}category/{subtypes:url_title}">{subtypes:title}</a>
+                                </li>
+                                {/subtypes}
+                              </ul>
+                            </div>
+                          </li>
+                        </ul>
                       </div>
                     </li>
                   {/exp:channel:entries}
@@ -63,9 +79,5 @@
         </div> <!-- end row -->
 
       </div> <!-- end left columns -->
-      <div class="row collapse">
-        <div id="sort" class="small-11 small-centered medium-4 columns panel">
-          {sort_menu}
-        </div>
-      </div>
+
     </div>

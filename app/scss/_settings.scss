@@ -92,8 +92,8 @@ $include-html-global-classes: $include-html-classes;
  $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
-// $font-weight-normal: normal !default;
-// $font-weight-bold: bold !default;
+ $font-weight-normal: normal !default;
+ $font-weight-bold: bold !default;
 
  $white       : #FFFFFF;
 // $ghost       : #FAFAFA;
@@ -196,7 +196,7 @@ $include-html-global-classes: $include-html-classes;
 
 // We use these to control header font styles
 // $header-font-family: $body-font-family;
-// $header-font-weight: $font-weight-normal;
+ $header-font-weight: $font-weight-bold;
 // $header-font-style: normal;
  $header-font-color: $oil;
 // $header-line-height: 1.4;
@@ -317,12 +317,12 @@ $include-html-global-classes: $include-html-classes;
 
 // $include-html-accordion-classes: $include-html-classes;
 
-// $accordion-navigation-padding: rem-calc(16);
- $accordion-navigation-bg-color: #EBEBEB;
+ $accordion-navigation-padding: rem-calc(10);
+ $accordion-navigation-bg-color: #fff;
 // $accordion-navigation-hover-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -5%);
 // $accordion-navigation-active-bg-color: scale-color($accordion-navigation-bg-color, $lightness: -3%);
  $accordion-navigation-font-color: $anchor-font-color;
- $accordion-navigation-font-size: rem-calc(18);
+ $accordion-navigation-font-size: rem-calc(20);
 // $accordion-navigation-font-family: $body-font-family;
 
 // $accordion-content-padding: ($column-gutter/2);
@@ -1368,7 +1368,7 @@ $panel-border-color: #c2c2c2;
  $topbar-bg: $topbar-bg-color;
 
 // Height and margin
-// $topbar-height: rem-calc(45);
+ $topbar-height: rem-calc(160);
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
@@ -1386,12 +1386,12 @@ $panel-border-color: #c2c2c2;
 // $topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
- $topbar-link-color: $oil;
- $topbar-link-color-hover: $oil;
+ $topbar-link-color: #21578a;
+ $topbar-link-color-hover: #4A91D3;
  $topbar-link-color-active: $oil;
  $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;
-// $topbar-link-font-size: rem-calc(13);
+ $topbar-link-font-size: rem-calc(16);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
  $topbar-link-bg: $topbar-bg;
 // $topbar-link-bg-color-hover: $charcoal;

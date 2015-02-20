@@ -1,5 +1,13 @@
 /* all app scss styles here */
 
+.top-bar .toggle-topbar.menu-icon a {
+    margin-top: 30px;
+    span:after {
+      box-shadow: 0 0 0 3px #333333, 0 14px 0 3px #333333, 0 28px 0 3px #333333;
+      width: 30px;
+    }
+}
+
 .footer, #subFooter {
   color: #d6d6d6;
   a  {
@@ -19,7 +27,6 @@
 #headerLogo {
   height: 160px;
   margin: 0px;
-  fill: #666;
 }
 audio {
   display: block;
@@ -60,4 +67,19 @@ audio {
 }
 .button:hover {
   border-color: #c6c6c6;
+}
+.accordion a {
+    border-bottom: 1px solid #c6c6c6;
+}
+[id*="panel_"], [id*="panel_"] ul {
+  margin-left: 0px;
+  //padding-left: 0px !important;
+  padding-right: 0px !important;
+  list-style: none;
+}
+.accordion {
+  margin-left: 0px;
+}
+#quickFacts {
+  margin-top: 15px;
 }

@@ -15,28 +15,8 @@
 {/exp:channel:entries}      
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-		<div class="row accent-gray">
-			<div class="small-12 columns" ng-controller="CategoryFilter">
-				<form>
-					<div class="row">
-						<div class="small-12 columns">
-							<label><h3><strong>Browse by type:</strong></h3>
-								<select ng-model="subtype" >
-									<option value="" selected>All</option>
-                  <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
-								</select>
-							</label>
-						</div>
-					</div>
-				</form>
-				<ul class="small-block-grid-1 medium-block-grid-2">
-					<li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}}| filter:{categories:{category_name:subtype}}">
-						<img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" />
-						<h3><a href="{site_url}entry/{{entry.url_title}}">{{entry.title}}</a></h3>
-						<h3><em>{{entry.scientific_name}}</em></h3>
-					</li>
-				</ul>
-			</div> <!-- end columns -->
+		<div ng-view class="row accent-gray">
+
 		</div> <!-- end row -->
 	</div> <!-- end left columns -->
 	<div class="small-12 medium-4 columns hide-for-small-down">

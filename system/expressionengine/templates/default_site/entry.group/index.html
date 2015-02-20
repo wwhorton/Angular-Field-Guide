@@ -17,40 +17,42 @@
 
 	<div class="small-12 medium-8 columns">
 	<h1>{title}</br><i>{scientific_name}</i></h1>
-		<div class="row">
+		<div class="row collapse">
 		{media}
 			<div class="small-12 columns">
-				<a href="#"><img data-interchange="[{media:image}, (default)]"></a>
+        <a href="#"><img data-interchange="[{media:image}, (default)]"></a>
+        <div class="small-12 columns">
+         
+        </div>
 			</div> <!-- end columns -->
 		{/media}
 		</div> <!-- end row -->
 
-		<div class="row">
+		<div class="row" id="quickFacts">
 			<div class="small-12 columns hide-for-medium-up">
-			
-				<div class="sort">
+				<div class="panel callout">
 				{quick_facts}
 					<h2>Quick Facts</h2>
-					<h3>{quick_facts:native_or_invasive}</h3>
-
+          <br />
+					<h3>{quick_facts:native_or_invasive} species</h3>
+          <br />
 					<h3>Size</h3>
-					{quick_facts:size}
+					<p>{quick_facts:size}</p>
 
 					<h3>Habitat</h3>
-					{quick_facts:habitat}
+					<p>{quick_facts:habitat}</p>
 
 					<h3>Range</h3>
-					{quick_facts:range}
+					<p>{quick_facts:range}</p>
 
 					<h3>Diet</h3>
-					{quick_facts:diet}
+					<p>{quick_facts:diet}</p>
 
 					<h3>Lifespan</h3>
-					{quick_facts:lifespan}
+					<p>{quick_facts:lifespan}</p>
 
 					<h3>Status</h3>
-					{quick_facts:status}
-					<p>Stable</p>
+					<p>{quick_facts:status}</p>
 				{/quick_facts}
 				</div>
 			</div> <!-- end columns -->
@@ -95,7 +97,18 @@
 
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-
+    <div class="row">
+      <div class="panel callout small-12 columns">
+        <h2>Related Critters</h2>
+        {parent
+        <ul class="small-block-grid-1 medium-block-grid-2">
+          <li>
+            <img class="small-12 columns" src="http://placehold.it/230x153" src="{image}" height="153" width="230"></img>
+            <a class="small-12 columns" href="{site_url}category/{url_title}">{title}</a>  
+          </li>
+        </ul>
+      </div>
+    </div>
 	</div> <!-- end left columns -->
 
 	<div class="hide-for-small-only medium-4 columns">
@@ -109,7 +122,7 @@
         </a>
       </div>
     </div>
-		<div class="panel">
+		<div class="panel callout">
     {quick_facts}
       <h2>Quick Facts</h2>
       <h3>{quick_facts:native_or_invasive}</h3>
