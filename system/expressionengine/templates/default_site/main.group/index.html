@@ -1,5 +1,5 @@
 {layout="site/wrapper"}
-  <div class="row">
+  <div class="row" ng-view>
     <div class="small-12 small-centered medium-8 columns">
 			<h1>Bay Field Guide</h1>
         <div class="row">
@@ -47,11 +47,11 @@
                             <div id="panel_{url_title}" class="content">
                               <ul>
                                 <li>
-                                  <a class="small-12 columns" href="{site_url}category/{url_title}">All {title}</a>
+                                  <a class="small-12 columns" href="/category/{url_title}">All {title}</a>
                                 </li>
                                 {subtypes}
                                 <li>
-                                  <a class="small-12 columns" href="{site_url}category/{subtypes:url_title}">{subtypes:title}</a>
+                                  <a class="small-12 columns" href="/category/{url_title}/subcategory/{subtypes:url_title}">{subtypes:title}</a>
                                 </li>
                                 {/subtypes}
                               </ul>

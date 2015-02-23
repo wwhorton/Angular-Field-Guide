@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "angular-route": "~1.3.9",
-    "angular-mocks": "~1.3.9"
+    "angular-mocks": "~1.3.9",
+    "angular-foundation": "~0.5.1"
   }
 }

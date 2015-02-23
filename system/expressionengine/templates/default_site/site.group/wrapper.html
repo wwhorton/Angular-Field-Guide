@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en" ng-app="category">
+<html class="no-js" lang="en" ng-app="fieldGuide">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,12 +17,15 @@
     <!-- build:js js/vendor/modernizr.min.js -->
     <script src="/vendor/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+    <base href="/">
   </head>
   <body>
 			<script src="/app/bower_components/angular/angular.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 		<script src="/js/angularApp.js"></script>
     <script src="/app/bower_components/underscore/underscore-min.js"></script>
+    <script src="/app/bower_components/angular-foundation/mm-foundation.js"></script>
+    <script src="/app/bower_components/angular-foundation/mm-foundation-tpls.js"></script>
 <header>
       <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
@@ -35,24 +38,9 @@
         </ul>  
         <section class="top-bar-section">
           <!-- Right Nav Section --> 
-          <ul class="right">
-            <li>
-              <a href="#">Birds</a>
-            </li>
-            <li>
-              <a href="#">Fish</a>
-            </li>
-            <li>
-              <a href="#">Insects & Invertebrates</a>
-            </li>
-            <li>
-              <a href="#">Mammals</a>
-            </li>
-            <li>
-              <a href="#">Plants & Trees</a>
-            </li>
-            <li>
-              <a href="#">Reptiles & Amphibians</a>
+          <ul class="right" ng-controller="StartCtrl">
+            <li ng-repeat='type in types'>
+              <a href="#">{{type.name}}</a>
             </li>
           </ul>
           <!-- Left Nav Section --> 
@@ -78,11 +66,10 @@
         </div>
       </form>
     </header>
-		
-		{layout:contents}
-		
-		
-      <div class="panel footer" style="margin-bottom: 0px; border: none; background: #666;">
+
+    {layout:contents}
+
+		<div class="panel footer" style="margin-bottom: 0px; border: none; background: #666;">
 			<div class="row" >
         <h5>About the Chesapeake Bay Program</h5>
         <p>The Chesapeake Bay Program is a unique regional partnership that has led and directed the restoration of the Chesapeake Bay since 1983.</p>
@@ -105,12 +92,10 @@
 					</ul>
 				</div>
       </div>
-			<div class="row">
+			<div class="row" ng-controller="NavCtrl">
         <h5>Navigation</h5>
         <ul style="list-style: none; margin-left: 0px;">
-        {exp:channel:entries channel="field_guide_types|field_guide_habitats" sort="asc" dynamic="no"}
-          <li><a href="{site_url}category/{url_title}">{title}</a></li>
-        {/exp:channel:entries}
+          <li ng-repeat="title in navItems"><a ng-href="/category/{{title}}">{{title}}</a></li>
         </ul>
       </div>
     </div>
