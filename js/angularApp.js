@@ -33,8 +33,12 @@
         'subtypes' : [ 'All', 'Amphibians', 'Reptiles' ]
       }
     ];
+  types.url = '/app/partials/browseAccordion.html';
+    
   var habitats = [ {'name': 'Aquatic Reefs & Pilings'}, {'name': 'Beaches & Tidal Flats'}, {'name': 'Forests & Uplands'}, {'name': 'Marshes & Wetlands'}, {'name': 'Open Waters'}, {'name': 'Shallow Waters'}, {'name': 'Streams & Rivers' }];
-
+  habitats.url = '/app/partials/browseList.html';
+  
+  
 /***Filters***/
 
   fieldGuide.filter( 'category', function() {
@@ -73,12 +77,11 @@
 /***Controllers***/
  
   fieldGuide.controller( 'StartController', [ '$scope', '$timeout', function( $scope, $timeout ){
-    $scope.categories = { selected: 'types', options: types };
+    $scope.categories = { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' };
     $scope.updateCategories = function(){
       $scope.categories.options = eval( $scope.categories.selected );
     };
-    
-    
+
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
