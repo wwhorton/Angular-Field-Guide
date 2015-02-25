@@ -56,11 +56,15 @@
           templateUrl: '/app/partials/start.html',
           controller: 'StartController'
         }).
-        when( '/category/:category', {
+        when( '/habitat', {
+          templateUrl: '/app/partials/habitat.html',
+          controller: 'HabitatController'
+        }).
+        when( '/type/:category', {
           templateUrl: '/app/partials/entryList.html',
           controller: 'CategoryList'
         }).
-        when( '/category/:category/subcategory/:subcategory', {
+        when( '/type/:category/subtype/:subcategory', {
           templateUrl: '/app/partials/entryList.html',
           controller: 'CategoryList'
         }).
@@ -82,6 +86,10 @@
       $scope.categories.options = eval( $scope.categories.selected );
     };
 
+  }]);
+  
+  fieldGuide.controller( 'HabitatController', [ '$scope', function( $scope ){
+    
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
