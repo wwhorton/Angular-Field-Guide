@@ -1,4 +1,7 @@
 (function(){
+  
+/***Globals***/
+
 	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation' ]);
 
   var types = [ 
@@ -30,13 +33,17 @@
         'subtypes' : [ 'All', 'Amphibians', 'Reptiles' ]
       }
     ];
-  var habitats = [ 'Aquatic Reefs & Pilings', 'Beaches & Tidal Flats', 'Forests & Uplands', 'Marshes & Wetlands', 'Open Waters', 'Shallow Waters', 'Streams & Rivers' ];
+  var habitats = [ {'name': 'Aquatic Reefs & Pilings'}, {'name': 'Beaches & Tidal Flats'}, {'name': 'Forests & Uplands'}, {'name': 'Marshes & Wetlands'}, {'name': 'Open Waters'}, {'name': 'Shallow Waters'}, {'name': 'Streams & Rivers' }];
+
+/***Filters***/
 
   fieldGuide.filter( 'category', function() {
     return function( data, category ){
       
     };  
   });
+  
+/***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 
     function($routeProvider, $locationProvider) {
@@ -62,13 +69,19 @@
         });
       $locationProvider.html5Mode( true );
   }]);
-  
+ 
+/***Controllers***/
+ 
   fieldGuide.controller( 'StartController', [ '$scope', '$timeout', function( $scope, $timeout ){
-    $scope.categoryType = { selected: 'types'};
-
+    $scope.categories = { selected: 'types', options: types };
+    $scope.updateCategories = function(){
+      $scope.categories.options = eval( $scope.categories.selected );
+    };
+    
+    
   }]);
   
-  fieldGuide.controller( 'NavCtrl', [ '$scope', function( $scope ){
+  fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
     $scope.types = types;
     $scope.habitats = habitats;
     $scope.navItems = _.map( $scope.types, function( type ){
