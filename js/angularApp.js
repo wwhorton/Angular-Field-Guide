@@ -5,32 +5,30 @@
 	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation' ]);
 
   var types = [ 
-      { 'name' : 'Algae',
-        'subtypes' : [ 'All' ]
+      { 'name' : 'Algae'
       },
       { 'name' : 'Bay Grasses (SAV)',
-        'subtypes' : [ 'All', 'Low Salinity', 'Medium Salinity', 'High Salinity' ]
+        'subtypes' : [ 'Low Salinity', 'Medium Salinity', 'High Salinity' ]
       },
       { 'name' : 'Birds',
-        'subtypes' : [ 'All', 'Raptors', 'Other', 'Waterfowl', 'Wading', 'Sea & Shorebirds' ]
+        'subtypes' : [ 'Raptors', 'Other', 'Waterfowl', 'Wading', 'Sea & Shorebirds' ]
       },
       { 'name' : 'Fish',
-        'subtypes' : [ 'All', 'Freshwater Fish', 'Estuarine Fish', 'Saltwater Fish' ]
+        'subtypes' : [ 'Freshwater Fish', 'Estuarine Fish', 'Saltwater Fish' ]
       },
-      { 'name' : 'Insects',
-        'subtypes' : [ 'All' ]
+      { 'name' : 'Insects'
       },
       { 'name' : 'Invertebrates', 
-        'subtypes' : [ 'All', 'Arthropods', 'Mollusks', 'Other Invertebrates' ]
+        'subtypes' : [ 'Arthropods', 'Mollusks', 'Other Invertebrates' ]
       },
       { 'name' : 'Mammals',
-        'subtypes' : [ 'All', 'Aquatic', 'Semi-Aquatic', 'Land', 'Flying' ]
+        'subtypes' : [ 'Aquatic', 'Semi-Aquatic', 'Land', 'Flying' ]
       },
       { 'name' : 'Plants & Trees',
-        'subtypes' : [ 'All', 'Flowers', 'Trees & Shrubs', 'Aquatic & Wetland Plants' ]
+        'subtypes' : [ 'Flowers', 'Trees & Shrubs', 'Aquatic & Wetland Plants' ]
       },
       { 'name' : 'Reptiles & Amphibians',
-        'subtypes' : [ 'All', 'Amphibians', 'Reptiles' ]
+        'subtypes' : [ 'Amphibians', 'Reptiles' ]
       }
     ];
   types.url = '/app/partials/browseAccordion.html';
@@ -40,17 +38,15 @@
 
 /***Services***/
 
-  fieldGuide.factory( 'data', [ '$http', function( $http ){
-    var entries = {};
+  fieldGuide.factory( 'getEntries', [ '$http', function( $http ){
     var promise;
-    entries.getEntries = function(){
+    var getEntries = function(){
       if( !promise ){
-        alert( "Yay!" );
         promise = $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK');
       }
       return promise;
     }
-    return entries;
+    return getEntries;
   }]);
   
 /***Filters***/
@@ -74,17 +70,17 @@
           templateUrl: '/app/partials/habitat.html',
           controller: 'HabitatController'
         }).
-        when( '/type/:category', {
+        when( '/type/:type', {
           templateUrl: '/app/partials/entryList.html',
-          controller: 'CategoryList'
+          controller: 'TypeController'
         }).
-        when( '/type/:category/subtype/:subcategory', {
+        when( '/type/:type/subtype/:subtype', {
           templateUrl: '/app/partials/entryList.html',
-          controller: 'CategoryList'
+          controller: 'TypeController'
         }).
-        when( '/entry/:url_title', {
+        when( '/entry/:title', {
           templateUrl: '/app/partials/entry.html',
-          controller: 'CategoryList'
+          controller: 'EntryController'
         }).
         otherwise({
           redirectTo: '/'
@@ -102,12 +98,26 @@
 
   }]);
   
-  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'data', function( $scope, $http, $routeParams, $timeout, data ){
+  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', function( $scope, $http, $routeParams, $timeout, getEntries ){
     $scope.entries = {};
-    data.getEntries().then( function( result ){
+    getEntries().then( function( result ){
       $scope.entries = result.data;
     });
     $scope.habitat = $routeParams.habitat;
+  }]);
+  
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', function( $scope, $http, $routeParams, $timeout, getEntries ){
+    $scope.entries = {};
+    getEntries().then( function( result ){
+      $scope.entries = result.data;
+      console.log( $scope.entries );
+    });
+    $scope.type = $routeParams.type;
+    $scope.options = _.find( types, function( type ){
+     return type.name === $routeParams.type;
+    }).subtypes;
+    $scope.subtype = "";
+
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
@@ -118,11 +128,17 @@
     });
     $scope.navItems = $scope.navItems.concat( habitats );
   }]);
-	
+  
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', 'getEntries', function( $scope, $routeParams, getEntries ){
+    getEntries().then( function( result ){
+      $scope.entries = result.data;
+    });
+    $scope.title = $routeParams.title;
+	}]);
+  
   fieldGuide.controller('CategoryList', ['$scope', '$http', '$routeParams', function( $scope, $http, $routeParams ){
     $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK').success( function( data ){
       $scope.entries = data;
-      console.log( $scope.entries );
     });
     $scope.options = _.find( types, function( type ){
      return type.name === $routeParams.category;
