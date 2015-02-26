@@ -37,7 +37,21 @@
     
   var habitats = [ {'name': 'Aquatic Reefs & Pilings'}, {'name': 'Beaches & Tidal Flats'}, {'name': 'Forests & Uplands'}, {'name': 'Marshes & Wetlands'}, {'name': 'Open Waters'}, {'name': 'Shallow Waters'}, {'name': 'Streams & Rivers' }];
   habitats.url = '/app/partials/browseList.html';
-  
+
+/***Services***/
+
+  fieldGuide.factory( 'data', [ '$http', function( $http ){
+    var entries = {};
+    var promise;
+    entries.getEntries = function(){
+      if( !promise ){
+        alert( "Yay!" );
+        promise = $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK');
+      }
+      return promise;
+    }
+    return entries;
+  }]);
   
 /***Filters***/
 
@@ -56,7 +70,7 @@
           templateUrl: '/app/partials/start.html',
           controller: 'StartController'
         }).
-        when( '/habitat', {
+        when( '/habitats/:habitat', {
           templateUrl: '/app/partials/habitat.html',
           controller: 'HabitatController'
         }).
@@ -88,8 +102,12 @@
 
   }]);
   
-  fieldGuide.controller( 'HabitatController', [ '$scope', function( $scope ){
-    
+  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'data', function( $scope, $http, $routeParams, $timeout, data ){
+    $scope.entries = {};
+    data.getEntries().then( function( result ){
+      $scope.entries = result.data;
+    });
+    $scope.habitat = $routeParams.habitat;
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
