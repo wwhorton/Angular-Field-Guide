@@ -12,7 +12,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css css/app.min.css -->
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/app/css/style.css">
     <!-- endbuild -->
     <!-- build:js js/vendor/modernizr.min.js -->
     <script src="/vendor/modernizr/modernizr.js"></script>
@@ -26,33 +26,36 @@
     <script src="/app/bower_components/underscore/underscore-min.js"></script>
     <script src="/app/bower_components/angular-foundation/mm-foundation.js"></script>
     <script src="/app/bower_components/angular-foundation/mm-foundation-tpls.js"></script>
-    <header>
-      <nav class="top-bar" data-topbar role="navigation">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="/"><img id="headerLogo" src="/images/field-guide-logo.svg"></img></a></h1>
-          </li> <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone --> 
-          <li class="toggle-topbar menu-icon">
-            <a href="#"><span></span></a>
-          </li>
-        </ul>  
-        <section class="top-bar-section" ng-controller="NavController">
-          <!-- Right Nav Section --> 
-         <ul class="right">
-            <li ng-repeat='type in types'>
-              <a ng-href="/type/{{type.name}}">{{type.name}}</a>
+    <header class="row">
+      <div class="row">
+        <div>
+          <a href="/"><img id="headerLogo" src="/images/field-guide-logo.svg"></img></a>
+        </div>
+        <nav class="top-bar small-8 small-offset-4 columns" data-topbar role="navigation">
+          <ul class="title-area">
+            <li class="name">
+              <h1></h1>
+            </li> <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone --> 
+            <li class="toggle-topbar menu-icon">
+              <a href="#"><span></span></a>
             </li>
-         </ul>
-          <!-- Left Nav Section --> 
-          <ul class="left">
-            <li>
-            </li>
-          </ul>
-        </section>
-      </nav>
-      <div class="row collapse">
-        
+          </ul>  
+          <section class="top-bar-section" ng-controller="NavController">
+            <!-- Right Nav Section --> 
+           <ul class="right">
+              <li ng-repeat='type in types'>
+                <a ng-href="/type/{{type.name}}">{{type.name}}</a>
+              </li>
+           </ul>
+            <!-- Left Nav Section --> 
+            <ul class="left">
+              <li>
+              </li>
+            </ul>
+          </section>
+        </nav>
       </div>
+      <!--
       <form class="row">
         <div class="small-12 columns">
           <div class="row collapse">
@@ -65,9 +68,12 @@
           </div>
         </div>
       </form>
+      -->
     </header>
 
-<div class="row" ng-view></div>
+<div class="row">
+  <div ng-view class="small-12 columns"></div>
+</div>
  
 		<div class="panel footer" style="margin-bottom: 0px; border: none; background: #666;">
 			<div class="row" >

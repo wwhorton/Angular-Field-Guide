@@ -64,6 +64,15 @@
     return renderSrc;
   }]);
   
+  fieldGuide.factory( 'randomCritter', function(){
+    var getCritter = function( critters ) {
+      var max = critters.length;
+      var index = Math.random() * ( max );
+      return critters[ Math.round( index ) ];
+    }
+    return getCritter;
+  }); 
+  
 /***Filters***/
 
   fieldGuide.filter( 'category', function() {
@@ -123,12 +132,18 @@
  
 /***Controllers***/
  
-  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', function( $scope, $timeout ){
+  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', function( $scope, $timeout, getEntries, randomCritter, renderHtml ){
     $scope.categories = { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' };
     $scope.updateCategories = function(){
       $scope.categories.options = eval( $scope.categories.selected );
     };
-
+    $scope.renderHtml = renderHtml;
+    $scope.entries = {};
+    $scope.critter = {};
+    getEntries().then( function( result ){
+      $scope.entries = result.data;
+      $scope.critter = randomCritter( $scope.entries );
+    });
   }]);
   
   fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', function( $scope, $http, $routeParams, $timeout, getEntries ){

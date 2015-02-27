@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 					outputStyle: 'extended'
 				},
 				files: {
-					'<%= app %>/../system/expressionengine/templates/default_site/site.group/style.css': '<%= app %>/scss/app.scss'
+					'<%= app %>/css/style.css': '<%= app %>/scss/app.scss'
 				}
 			}
 		},

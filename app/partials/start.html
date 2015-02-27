@@ -11,9 +11,9 @@
     <div class="row">
       <div class="small-12 columns">
         <h2>Critter of the Month</h2>
-        <a href="#"><img src="http://placehold.it/3000x2000" height="500" width="750"></a>
-        <h3><a href="#">Wild Turkey </br><i>Meleagris gallopavo</i></a></h3>
-        <p>The wild turkey is a large, dark, ground-dwelling bird with a long neck and a fan-shaped tail. It lives in open, wooded areas throughout the Chesapeake Bay watershed.</p>
+        <a href="#"><img ng-src="{{critter.fieldguide_image}}" height="500" width="750"></a>
+        <h3><a href="#">{{critter.title}}</br><i>{{critter.fieldguide_scientific_name}}</i></a></h3>
+        <div ng-bind-html="renderHtml( critter.fieldguide_description )"></div>
           <ul class="inline-list">
             <li><a href="#" class="button tiny">Birds</a></li>
             <li><a href="#" class="button tiny">Other</a></li>
