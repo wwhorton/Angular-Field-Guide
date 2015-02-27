@@ -49,6 +49,21 @@
     return getEntries;
   }]);
   
+  fieldGuide.factory( 'renderHtml', [ '$sce', function( $sce ){
+    var renderHtml = function( raw_html ){
+      return $sce.trustAsHtml( raw_html );
+    }
+    return renderHtml;
+  }]);
+  
+  fieldGuide.factory( 'renderSrc', [ '$sce', function( $sce ){
+    
+    var renderSrc = function( raw_html ){
+      return $sce.trustAsResourceUrl( raw_html );
+    }
+    return renderSrc;
+  }]);
+  
 /***Filters***/
 
   fieldGuide.filter( 'category', function() {
@@ -57,6 +72,24 @@
     };  
   });
   
+/***Directives***/
+  
+  fieldGuide.directive( 'audio', function( $sce ) {
+    return {
+      restrict: 'A',
+      scope: { code:'=' },
+      replace: true,
+      template: '<audio ng-src="{{url}}" controls></audio>',
+      link: function( scope ){
+        scope.$watch( 'code', function( sourceUrl ){
+          if( sourceUrl !== undefined ){
+            scope.url = $sce.trustAsResourceUrl( sourceUrl );
+          }
+        });
+      }
+    };
+  });
+
 /***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 
@@ -128,11 +161,14 @@
     $scope.navItems = $scope.navItems.concat( habitats );
   }]);
   
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', 'getEntries', function( $scope, $routeParams, getEntries ){
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
+      console.log( $scope.entries );
     });
     $scope.title = $routeParams.title;
+    $scope.renderHtml = renderHtml;
+    $scope.renderSrc = renderSrc;
 	}]);
   
   fieldGuide.controller('CategoryList', ['$scope', '$http', '$routeParams', function( $scope, $http, $routeParams ){
