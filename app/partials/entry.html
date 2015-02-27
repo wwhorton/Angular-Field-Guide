@@ -1,0 +1,124 @@
+<div class="row" ng-repeat="entry in entries | filter:title | limitTo: 1">
+
+	<div class="small-12 medium-8 columns">
+	<h1>{{entry.title}}</br><i>{{entry.fieldguide_scientific_name}}</i></h1>
+		<div class="row collapse">
+			<div class="small-12 columns">
+        <a href="#"><img data-interchange="[{{entry.fieldguide_image}}, (default)]"></a>
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+
+		<div class="row" id="quickFacts">
+			<div class="small-12 columns hide-for-medium-up">
+				<div class="panel callout">
+					<h2>Quick Facts</h2>
+          <br />
+					<div ng-bind-html="renderHtml( entry.native_nonnative_or_invasive )"></div>
+          <br />
+					<h3>Size</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_size )"></div>
+
+					<h3>Habitat</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_habitat )"></div>
+
+					<h3>Range</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_range )"></div>
+
+					<h3>Diet</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_diet )"></div>
+
+					<h3>Lifespan</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_lifespan )"></div>
+
+					<h3>Status</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_conservation_status )"></div>
+				</div>
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+
+		<div class="row">
+			<div class="small-12 columns">
+        <div ng-bind-html="renderHtml( entry.fieldguide_description )"></div>
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+
+		<div class="row">
+			<div class="small-12 columns">
+				<h2>Appearance</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_appearance )"></div>
+
+				<h2>Feeding</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_feeding )"></div>
+
+				<h2>Predators</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_predators )"></div>
+
+				<h2>Flight</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_flight )"></div>
+
+				<h2>Voice</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_voice )"></div>
+        <div audio code="entry.fieldguide_voiceaudiofile"></div>
+				<small>{{entry.fieldguide_voicecredit}}</small>
+
+				<h2>Reproduction and Life Cycle</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_reproduction_and_life )"></div>
+
+				<h2>Did you know?</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_other_facts )"></div>
+
+				<h2>Sources and Additional Information</h2>
+				<div ng-bind-html="renderHtml( entry.fieldguide_sources_and_additiona )"></div>
+
+			</div> <!-- end columns -->
+		</div> <!-- end row -->
+    <div class="row">
+      <div class="panel callout small-12 columns">
+        <h2>Related Critters</h2>
+        <ul class="small-block-grid-1 medium-block-grid-2">
+          <li>
+            <!--<img class="small-12 columns" src="http://placehold.it/230x153" ng-src="{image}" height="153" width="230"></img>
+            <a class="small-12 columns" ng-href="entry/{{title}}">{{title}}</a>  -->
+          </li>
+        </ul>
+      </div>
+    </div>
+	</div> <!-- end left columns -->
+
+	<div class="hide-for-small-only medium-4 columns">
+    <div id="search" class="row">
+      <div class="medium-10 columns">
+        <input type="text" placeholder="search chesapeakebay.net">
+      </div>
+      <div class="medium-2 columns">
+        <a href="#" class="" style="color: black; font-size: 24px;">
+          <i class="fi-magnifying-glass"></i>
+        </a>
+      </div>
+    </div>
+		<div class="panel callout">
+      <h2>Quick Facts</h2>
+          <br />
+					<div ng-bind-html="renderHtml( entry.native_nonnative_or_invasive )"></div>
+          <br />
+					<h3>Size</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_size )"></div>
+
+					<h3>Habitat</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_habitat )"></div>
+
+					<h3>Range</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_range )"></div>
+
+					<h3>Diet</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_diet )"></div>
+
+					<h3>Lifespan</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_lifespan )"></div>
+
+					<h3>Status</h3>
+					<div ng-bind-html="renderHtml( entry.fieldguide_conservation_status )"></div>
+    </div>
+	</div> <!-- end right columns -->
+
+</div> <!-- end row -->

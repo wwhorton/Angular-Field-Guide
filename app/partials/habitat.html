@@ -1,0 +1,9 @@
+<div class="small-12 columns">
+  <ul class="small-block-grid-1 medium-block-grid-2">
+    <li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:habitat}}">
+      <img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" />
+      <h3><a ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
+      <h3><em>{{entry.scientific_name}}</em></h3>
+    </li>
+  </ul>
+</div> <!-- end columns -->

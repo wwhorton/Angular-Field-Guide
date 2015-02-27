@@ -1,0 +1,9 @@
+<accordion close-others="oneAtATime">
+  <accordion-group heading="{{category.name}}">
+    <ul>
+      <li ng-repeat="subtype in category.subtypes">
+        <a class="small-12 columns" ng-href="/category/{{category.name}}/subcategory/{{subtype}}">{{subtype}}</a>
+      </li>
+    </ul>
+  </accordion-group>
+</accordion>

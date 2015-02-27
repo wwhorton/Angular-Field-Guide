@@ -1,0 +1,43 @@
+
+  <div class="small-12 small-centered medium-8 columns">
+    <h1>Bay Field Guide</h1>
+    <div class="row">
+      <div class="small-12 columns">
+      <p class="lead">The Bay Field Guide profiles many of the plants and animals that live in the Chesapeake Bay watershed. Explore the Field Guide to learn about more than 200 species of <a href="#">algae</a>, <a href="#">bay grasses</a>, <a href="#">birds</a>, <a href="#">fish</a>, <a href="#">insects</a>, <a href="#">invertebrates</a>, <a href="#">mammals</a>, <a href="#">plants and trees</a>, and <a href="#">reptiles and amphibians</a>. Each month, the Field Guide grows as we add a new Critter of the Month.</p>
+      <p>You can browse the Field Guide by type of critter or by habitat. You can also click on the images below to explore some of the newest and most popular species in our Field Guide.</p>
+      </div> <!-- end columns -->
+    </div> <!-- end row -->
+
+    <div class="row">
+      <div class="small-12 columns">
+        <h2>Critter of the Month</h2>
+        <a href="#"><img src="http://placehold.it/3000x2000" height="500" width="750"></a>
+        <h3><a href="#">Wild Turkey </br><i>Meleagris gallopavo</i></a></h3>
+        <p>The wild turkey is a large, dark, ground-dwelling bird with a long neck and a fan-shaped tail. It lives in open, wooded areas throughout the Chesapeake Bay watershed.</p>
+          <ul class="inline-list">
+            <li><a href="#" class="button tiny">Birds</a></li>
+            <li><a href="#" class="button tiny">Other</a></li>
+            <li><a href="#" class="button tiny">Forests & Uplands</a></li>
+          </ul>
+      </div> <!-- end columns -->
+    </div> <!-- end row -->
+  
+    <div class="row">
+      <div id="browse" class="small-11 small-centered columns panel" ng-control="StartController">
+        <label><h3>Browse by:</h3>
+        <select ng-model="categories.selected" ng-change="updateCategories()">
+          <option value="types">Type</option>
+          <option value="habitats">Habitat</option>
+        </select>
+          <ul class="small-block-grid-1 medium-block-grid-2">
+            <li class="panelContentBox" ng-repeat="category in categories.options">
+              <div class="row collapse">
+                <img class="small-12 columns" src="http://placehold.it/230x153" ng-src="{{image}}" height="153" width="230"></img>
+                <ng-include src="categories.options.url"></ng-include>
+              </div>
+            </li>
+          </ul>
+      </div> <!-- end columns -->
+    </div> <!-- end row -->
+  </div> <!-- end left columns -->
+
