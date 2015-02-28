@@ -159,6 +159,7 @@
     $scope.entries = {};
     getEntries().then( function( result ){
       $scope.entries = result.data;
+      console.log( $scope.entries );
     });
     $scope.type = $routeParams.type;
     $scope.options = _.find( types, function( type ){

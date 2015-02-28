@@ -1,4 +1,4 @@
-<div class="row" ng-repeat="entry in entries | filter:title | limitTo: 1">
+<div class="row" ng-repeat="entry in entries | filter:{title:title} | limitTo: 1">
 
 	<div class="small-12 medium-8 columns">
 	<h1>{{entry.title}}</br><i>{{entry.fieldguide_scientific_name}}</i></h1>
