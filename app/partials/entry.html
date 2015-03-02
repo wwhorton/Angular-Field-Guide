@@ -87,39 +87,26 @@
 	</div> <!-- end left columns -->
 
 	<div class="hide-for-small-only medium-4 columns">
-    <div id="search" class="row">
-      <div class="medium-10 columns">
-        <input type="text" placeholder="search chesapeakebay.net">
-      </div>
-      <div class="medium-2 columns">
-        <a href="#" class="" style="color: black; font-size: 24px;">
-          <i class="fi-magnifying-glass"></i>
-        </a>
-      </div>
-    </div>
 		<div class="panel callout">
-      <h2>Quick Facts</h2>
-          <br />
-					<div ng-bind-html="renderHtml( entry.native_nonnative_or_invasive )"></div>
-          <br />
-					<h3>Size</h3>
-					<div ng-bind-html="renderHtml( entry.fieldguide_size )"></div>
+      <h2 ng-if="entry.native_nonnative_or_invasive">Quick Facts</h2>
+      <div ng-bind-html="renderHtml( entry.native_nonnative_or_invasive )"></div>
+      <h3 ng-if="entry.fieldguide_size">Size</h3>
+      <div ng-bind-html="renderHtml( entry.fieldguide_size )"></div>
 
-					<h3>Habitat</h3>
-					<div ng-bind-html="renderHtml( entry.fieldguide_habitat )"></div>
+      <h3 ng-if="entry.fieldguide_habitat">Habitat</h3>
+      <div ng-bind-html="renderHtml( entry.fieldguide_habitat )"></div>
 
-					<h3>Range</h3>
-					<div ng-bind-html="renderHtml( entry.fieldguide_range )"></div>
+      <h3 ng-if="entry.fieldguide_habitat">Range</h3>
+      <div ng-bind-html="renderHtml( entry.fieldguide_range )"></div>
 
-					<h3>Diet</h3>
-					<div ng-bind-html="renderHtml( entry.fieldguide_diet )"></div>
+      <h3 ng-if="entry.fieldguide_diet">Diet</h3>
+      <div ng-bind-html="renderHtml( entry.fieldguide_diet )"></div>
 
-					<h3>Lifespan</h3>
-					<div ng-bind-html="renderHtml( entry.fieldguide_lifespan )"></div>
+      <h3 ng-if="entry.fieldguide_lifespan">Lifespan</h3>
+      <div ng-bind-html="renderHtml( entry.fieldguide_lifespan )"></div>
 
-					<h3>Status</h3>
-					<div ng-bind-html="renderHtml( entry.fieldguide_conservation_status )"></div>
+      <h3 ng-if="entry.fieldguide_conservation_status">Status</h3>
+      <div ng-bind-html="renderHtml( entry.fieldguide_conservation_status )"></div>
     </div>
 	</div> <!-- end right columns -->
-
 </div> <!-- end row -->
