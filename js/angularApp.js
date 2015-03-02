@@ -83,6 +83,14 @@
     };  
   });
   
+  fieldGuide.filter( 'arrayByArray', function() {
+    return function( array1, criteria ){
+      _.each( array1, function( array1Item ){
+        return array1Item.category_name === criteria ;
+      });
+    };
+  });
+  
 /***Directives***/
   
   fieldGuide.directive( 'audio', function( $sce ) {
@@ -180,15 +188,24 @@
     $scope.navItems = $scope.navItems.concat( habitats );
   }]);
   
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter ){
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
-      console.log( $scope.entry.fieldguide_image );
+      $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
+        return category.category_name;
+      });
+      $scope.relatedEntries = _.filter( $scope.entries, function( entry ){
+        _.each( $scope.relatedCategories, function( category ){
+          return arrayByArrayFilter( entry.categories, category );
+        });
+      });
+      console.log( $scope.relatedEntries.length );
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
+    
     
 	}]);
   

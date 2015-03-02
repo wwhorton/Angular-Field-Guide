@@ -72,14 +72,14 @@
 
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-    <div class="row">
+    <div class="row" ng-if="entry.related">
       <div class="panel callout small-12 columns">
         <h2>Related Critters</h2>
         <ul class="small-block-grid-1 medium-block-grid-2">
-          <li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
-            <img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" />
-            <h3><a ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
-            <h3><em>{{entry.scientific_name}}</em></h3>
+          <li class="accent-white" ng-repeat="relatedEntry in relatedEntries">
+            <img ng-src="{{relatedEntry.fieldguide_image}}" src="http://placehold.it/320x200" />
+            <h3><a ng-href="/entry/{{relatedEntry.title}}">{{relatedEntry.title}}</a></h3>
+            <h3><em>{{relatedEntry.scientific_name}}</em></h3>
           </li>
         </ul>
       </div>
