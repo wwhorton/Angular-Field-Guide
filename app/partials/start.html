@@ -15,9 +15,7 @@
         <h3><a href="#">{{critter.title}}</br><i>{{critter.fieldguide_scientific_name}}</i></a></h3>
         <div ng-bind-html="renderHtml( critter.fieldguide_description )"></div>
           <ul class="inline-list">
-            <li><a href="#" class="button tiny">Birds</a></li>
-            <li><a href="#" class="button tiny">Other</a></li>
-            <li><a href="#" class="button tiny">Forests & Uplands</a></li>
+            <li ng-repeat="category in critter.categories"><a href="#" class="button tiny">{{category.category_name}}</a></li>
           </ul>
       </div> <!-- end columns -->
     </div> <!-- end row -->

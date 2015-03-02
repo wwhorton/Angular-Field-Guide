@@ -75,9 +75,11 @@
   
 /***Filters***/
 
-  fieldGuide.filter( 'category', function() {
-    return function( data, category ){
-      
+  fieldGuide.filter( 'entryByTitle', function() {
+    return function( array, title ){
+      return _.find( array, function( entry ){
+        return entry.title === title;
+      });  
     };  
   });
   
@@ -144,6 +146,8 @@
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
     });
+    $scope.critter.buttons = {};
+    
   }]);
   
   fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', function( $scope, $http, $routeParams, $timeout, getEntries ){
@@ -176,13 +180,16 @@
     $scope.navItems = $scope.navItems.concat( habitats );
   }]);
   
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc ){
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
+      $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
+      console.log( $scope.entry.fieldguide_image );
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
+    
 	}]);
   
   fieldGuide.controller('CategoryList', ['$scope', '$http', '$routeParams', function( $scope, $http, $routeParams ){

@@ -1,14 +1,16 @@
 /* all app scss styles here */
 
-/*
+body {
+  background-color: #f5f5f5;
+}
+
 .top-bar .toggle-topbar.menu-icon a {
     margin-top: 30px;
     span:after {
-      box-shadow: 0 0 0 3px #333333, 0 14px 0 3px #333333, 0 28px 0 3px #333333;
+      box-shadow: 0 0 0 2.5px #333333, 0 14px 0 2.5px #333333, 0 28px 0 2.5px #333333;
       width: 30px;
     }
 }
-*/
 
 .footer, #subFooter {
   color: #d6d6d6;
@@ -26,12 +28,10 @@
   }
 }
 
-
 #headerLogo {
   height: 160px;
   margin: 0px;
 }
-
 
 audio {
   display: block;
