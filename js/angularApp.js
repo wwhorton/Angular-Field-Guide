@@ -159,7 +159,6 @@
     $scope.entries = {};
     getEntries().then( function( result ){
       $scope.entries = result.data;
-      console.log( $scope.entries );
     });
     $scope.type = $routeParams.type;
     $scope.options = _.find( types, function( type ){
@@ -180,7 +179,6 @@
   fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
-      console.log( $scope.entries );
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
