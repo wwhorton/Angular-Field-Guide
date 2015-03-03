@@ -100,7 +100,8 @@
 			<div class="row" ng-controller="NavController">
         <h5>Navigation</h5>
         <ul style="list-style: none; margin-left: 0px;">
-          <li ng-repeat="title in navItems"><a ng-href="/type/{{title}}">{{title}}</a></li>
+          <li ng-repeat="title in types"><a ng-href="/type/{{title.name}}">{{title.name}}</a></li>
+          <li ng-repeat="title in habitats"><a ng-href="/habitats/{{title.name}}">{{title.name}}</a></li>
         </ul>
       </div>
     </div>
