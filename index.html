@@ -53,16 +53,19 @@
           </section>
         </nav>
       </div>
-      <form class="row">
+      <form class="row" name="titleSearch" ng-controller="SearchController">
         <div class="small-12 columns">
           <div class="row collapse">
             <div class="small-10 columns">
-              <input type="text" placeholder="search field guide" model="title">
+              <input type="text" placeholder="search field guide" ng-model="search.title" ng-minlength="3">
             </div>
             <div class="small-2 columns">
-              <a href="#" class="button postfix"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
+              <a href="" class="button postfix"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
             </div>
           </div>
+          <ul class="no-bullet" ng-if="titleSearch.$valid && search.title !==''">
+            <li ng-repeat="entry in search.entries | filter:{title:search.title}"><a ng-href="/entry/{{entry.title}}">{{entry.title}}</a></li>
+          </ul>
         </div>
       </form>
     </header>

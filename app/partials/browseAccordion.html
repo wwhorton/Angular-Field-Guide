@@ -1,4 +1,6 @@
-<accordion close-others="oneAtATime">
+<a class="small-12 columns" ng-if="!category.subtypes" ng-href="/type/{{category.name}}">{{category.name}}</a>
+
+<accordion ng-if="category.subtypes" close-others="oneAtATime">
   <accordion-group heading="{{category.name}}">
     <ul>
       <li>

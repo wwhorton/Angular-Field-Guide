@@ -166,7 +166,7 @@
     $scope.habitat = $routeParams.habitat;
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', function( $scope, $http, $routeParams, $timeout, getEntries ){
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', 'getEntries', function( $scope, $http, $routeParams, getEntries ){
     $scope.subtype = ( !$routeParams.subtype ) ? "" : $routeParams.subtype;
     $scope.entries = {};
     getEntries().then( function( result ){
@@ -188,6 +188,15 @@
     $scope.navItems = $scope.navItems.concat( habitats );
   }]);
   
+  fieldGuide.controller( 'SearchController', [ '$scope', 'getEntries', function( $scope, getEntries ){
+    $scope.search = { };
+    getEntries().then( function( result ){
+      $scope.search.entries = result.data;
+    });
+    
+      
+  }]);
+  
   fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
@@ -195,33 +204,11 @@
       $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
         return category.category_name;
       });
-      $scope.relatedEntries = _.filter( $scope.entries, function( entry ){
-        _.each( $scope.relatedCategories, function( category ){
-          return arrayByArrayFilter( entry.categories, category );
-        });
-      });
-      console.log( $scope.relatedEntries.length );
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
-    
-    
+
 	}]);
   
-  fieldGuide.controller('CategoryList', ['$scope', '$http', '$routeParams', function( $scope, $http, $routeParams ){
-    $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK').success( function( data ){
-      $scope.entries = data;
-    });
-    $scope.options = _.find( types, function( type ){
-     return type.name === $routeParams.category;
-    }).subtypes;
-    $scope.category = $routeParams.category;
-    $scope.subcategory = $routeParams.subcategory ? $routeParams.subcategory : 'All' ;
-    $scope.url_title = $routeParams.url_title;
-
-    $scope.$watch( $routeParams.category );
-	}]);
-
-
 })();
