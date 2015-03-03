@@ -13,7 +13,7 @@
   </form>
   <ul class="small-block-grid-1 medium-block-grid-2">
     <li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
-      <img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" />
+      <a ng-href="/entry/{{entry.title}}"><img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
       <h3><a ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
       <h3><em>{{entry.scientific_name}}</em></h3>
     </li>

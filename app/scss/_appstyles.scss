@@ -51,6 +51,11 @@ audio {
         vertical-align: middle;
       }
     }
+    a {
+      font-size: 1.25rem;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
 }
 #sort {
   background-color: #EBEBEB;
@@ -80,6 +85,22 @@ audio {
 .accordion a {
     border-bottom: 1px solid #c6c6c6;
 }
+
+.accordion .fi-plus{
+  float: right;
+  display:inline;
+}
+.accordion .fi-minus{
+  display:none;
+}
+.accordion .active .fi-plus{
+  display:none;
+}
+.accordion .active .fi-minus{
+  float: right;
+  display:inline;
+}
+
 [id*="panel_"], [id*="panel_"] ul {
   margin-left: 0px;
   //padding-left: 0px !important;
