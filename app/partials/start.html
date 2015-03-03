@@ -12,10 +12,12 @@
       <div class="small-12 columns">
         <h2>Critter of the Month</h2>
         <a href="#"><img ng-src="{{critter.fieldguide_image}}" height="500" width="750"></a>
-        <h3><a href="#">{{critter.title}}</br><i>{{critter.fieldguide_scientific_name}}</i></a></h3>
+        <h3><a href="/entry/{{critter.title}}">{{critter.title}}</br><i>{{critter.fieldguide_scientific_name}}</i></a></h3>
         <div ng-bind-html="renderHtml( critter.fieldguide_description )"></div>
           <ul class="inline-list">
-            <li ng-repeat="category in critter.categories"><a href="#" class="button tiny">{{category.category_name}}</a></li>
+            <li><a ng-href="/type/{{critter.type[0].category_name}}" class="button tiny">{{critter.type[0].category_name}}</a></li>
+            <li ng-repeat="habitat in critter.habitats"><a ng-href="/habitats/{{habitat.category_name}}" class="button tiny">{{habitat.category_name}}</a></li>
+            <li><a ng-href="/type/{{critter.type[0].category_name}}/subtype/{{critter.subtype[0].category_name}}" class="button tiny">{{critter.subtype[0].category_name}}</a></li>
           </ul>
       </div> <!-- end columns -->
     </div> <!-- end row -->

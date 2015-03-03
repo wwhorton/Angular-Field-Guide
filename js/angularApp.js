@@ -154,21 +154,21 @@
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
       $scope.critter.buttons = {};
-      $scope.critter.buttons.types = _.filter( $scope.critter.categories, function( category ){
+      $scope.critter.type = _.filter( $scope.critter.categories, function( category ){
           for( var i = 0; i < types.length; i++ ){
            if( types[i].name === category.category_name ){
              return true;
            }
          }
       });
-      $scope.critter.buttons.habitats = _.filter( $scope.critter.categories, function( category ){
+      $scope.critter.habitats = _.filter( $scope.critter.categories, function( category ){
           for( var i = 0; i < habitats.length; i++ ){
            if( habitats[i].name === category.category_name ){
              return true;
            }
          }
       });
-      $scope.critter.buttons.subtypes = _.filter( $scope.critter.categories, function( category ){
+      $scope.critter.subtype = _.filter( $scope.critter.categories, function( category ){
         var results;
         for( var i = 0; i < types.length; i++ ){
             _.compact( types[i].subtypes ).forEach( function( subtype ){
@@ -178,8 +178,7 @@
             });
         }
         return results;
-      });
-      console.log( $scope.critter.buttons );  
+      });     
     });
   }]);
   
