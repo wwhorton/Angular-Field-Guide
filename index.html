@@ -57,14 +57,14 @@
         <div class="small-12 columns">
           <div class="row collapse">
             <div class="small-10 columns">
-              <input type="text" placeholder="search field guide" ng-model="search.title" ng-minlength="3">
+              <input type="text" name="title" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]+$">
             </div>
             <div class="small-2 columns">
               <a href="" class="button postfix"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
             </div>
           </div>
           <ul class="no-bullet" ng-if="titleSearch.$valid && search.title !==''">
-            <li ng-repeat="entry in search.entries | filter:{title:search.title}"><a ng-href="/entry/{{entry.title}}">{{entry.title}}</a></li>
+            <li ng-repeat="entry in search.entries | filter:{title:search.title}"><a ng-href="/entry/{{entry.title}}" ng-click="search.reset()">{{entry.title}}</a></li>
           </ul>
         </div>
       </form>

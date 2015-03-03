@@ -193,7 +193,9 @@
     getEntries().then( function( result ){
       $scope.search.entries = result.data;
     });
-    
+    $scope.search.reset = function(){
+      $scope.search.title = '';
+    };
       
   }]);
   
