@@ -13,7 +13,7 @@
   <div class="small-12 large-4 columns" style="background-color: #21578A;">
    <h2 style="color: #fff">Critter of the Month</h2>
    <h3 style="color: #C2C2C2"><a style="color: #C2C2C2" href="/entry/{{critter.title}}">{{critter.title}}</br><i>{{critter.fieldguide_scientific_name}}</i></a></h3>
-   <div ng-bind-html="renderHtml( critter.fieldguide_description )" style="color: #f5f5f5"></div>
+   <div ng-bind-html="renderHtml( critter.fieldguide_homepageblurb )" style="color: #f5f5f5"></div>
   </div> <!-- end columns -->
 </div>
   
@@ -26,7 +26,7 @@
     </select>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
         <li ng-repeat="category in categories.options">
-          <div class="row collapse gridItem panelContentBox"">
+          <div class="row collapse gridItem panelContentBox">
             <img class="small-12 columns" src="http://placehold.it/330x220" ng-src="{{image}}" ></img>
             <ng-include src="categories.options.url"></ng-include>
           </div>

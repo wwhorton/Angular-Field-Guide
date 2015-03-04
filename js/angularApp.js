@@ -182,12 +182,23 @@
     });
   }]);
   
-  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', function( $scope, $http, $routeParams, $timeout, getEntries ){
+  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml ){
     $scope.entries = {};
+    $scope.habitat = {};
+    $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
+      console.log( $scope.entries );
     });
-    $scope.habitat = $routeParams.habitat;
+    $scope.habitat.title = $routeParams.habitat;
+    $timeout( function(){
+      $(document).foundation( {
+        equalizer: {
+          equalize_on_stack: true
+        }
+      }, 'equalizer', 'reflow' );
+    });
+
   }]);
   
   fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', 'getEntries', function( $scope, $http, $routeParams, getEntries ){

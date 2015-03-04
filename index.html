@@ -74,38 +74,34 @@
 
   <div ng-view></div>
  
-		<div class="panel footer" style="margin-bottom: 0px; border: none; background: #666;">
-			<div class="row" >
+		<div class="panel footer row collapse" style="margin-bottom: 0px; border: none; background: #666;">
+			<div class="small-12 large-3 columns" >
         <h5>About the Chesapeake Bay Program</h5>
         <p>The Chesapeake Bay Program is a unique regional partnership that has led and directed the restoration of the Chesapeake Bay since 1983.</p>
 			</div>
-			<div class="row">
-        <p>410 Severn Avenue, Suite 112<br />
-        Annapolis, MD 21403<br />
-        Tel: (800) YOUR-BAY<br />
-        Fax: (410) 267-5777</p>
-		  </div>
-			<div class="row collapse">
-				<div class="small-12 columns">
+			<div class="small-12 large-3 columns">
+				<div class="small-12 columns" style="margin-left: 0px; margin-right: 0px;">
 					<h5>Find Us On</h5>
 					<ul class="inline-list">
-						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-facebook" ></i></a></li>
-						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-twitter" ></i></a></li>
-						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-flickr" ></i></a></li>
-						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-tumblr" ></i></a></li>
-						<li style="font-size: 3rem;"><a href="#"><i class="fi-social-vimeo" ></i></a></li>
+						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-facebook" ></i></a></li>
+						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-twitter" ></i></a></li>
+						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-flickr" ></i></a></li>
+						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-tumblr" ></i></a></li>
+						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-vimeo" ></i></a></li>
 					</ul>
 				</div>
       </div>
-			<div class="row" ng-controller="NavController">
+			<div class="small-12 large-6 columns" ng-controller="NavController">
         <h5>Navigation</h5>
-        <ul style="list-style: none; margin-left: 0px;">
+        <ul class="small-12 large-6 columns" style="list-style: none; margin-left: 0px;">
           <li ng-repeat="title in types"><a ng-href="/type/{{title.name}}">{{title.name}}</a></li>
+        </ul>  
+        <ul class="small-12 large-6 columns" style="list-style: none; margin-left: 0px;">
           <li ng-repeat="title in habitats"><a ng-href="/habitats/{{title.name}}">{{title.name}}</a></li>
         </ul>
       </div>
     </div>
-    <div class="panel" id="subFooter" style="border: none; background: #333; margin-bottom: 0px;">
+    <div class="panel row" id="subFooter" style="border: none; background: #333; margin-bottom: 0px;">
 			<p>Copyright 2014 Chesapeake Bay Program. All rights reserved.</p>
 			<a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
 		</div>
