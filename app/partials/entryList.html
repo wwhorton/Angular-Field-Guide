@@ -1,21 +1,25 @@
-<div class="small-12 columns">
-  <form>
-    <div class="row">
-      <div class="small-12 columns">
-        <label><h3><strong>Browse by type:</strong></h3>
-          <select ng-model="subtype" >
+<div class="row">
+  <div class="small-12 columns panel">
+    <form>
+      <div class="row">
+        <div class="small-12 columns">
+          <h3 class="small-3 columns"><strong>Browse by type:</strong></h3>
+          <select class="small-9 columns" ng-model="subtype" >
             <option value="" selected>All</option>
             <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
           </select>
-        </label>
+        </div>
       </div>
-    </div>
-  </form>
-  <ul class="small-block-grid-1 medium-block-grid-2">
-    <li class="accent-white" ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
-      <a ng-href="/entry/{{entry.title}}"><img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
-      <h3><a ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
-      <h3><em>{{entry.scientific_name}}</em></h3>
-    </li>
-  </ul>
-</div> <!-- end columns -->
+    </form>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
+        <div class="row collapse gridItem panelContentBox" data-equalizer-watch>
+          <a ng-href="/entry/{{entry.title}}"><img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
+          <h3><a style="border-bottom: 0px;" ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
+          <h3><em>{{entry.scientific_name}}</em></h3>
+          <div ng-bind-html="renderHtml( entry.fieldguide_homepageblurb )"></div>
+        </div>
+      </li>
+    </ul>
+  </div> <!-- end columns -->
+</div>

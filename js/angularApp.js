@@ -207,9 +207,10 @@
 
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', 'getEntries', function( $scope, $http, $routeParams, getEntries ){
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml ){
     $scope.subtype = ( !$routeParams.subtype ) ? "" : $routeParams.subtype;
     $scope.entries = {};
+    $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
     });
@@ -217,7 +218,13 @@
     $scope.options = _.find( types, function( type ){
      return type.name === $routeParams.type;
     }).subtypes;
-    
+    $timeout( function(){
+      $(document).foundation( {
+        equalizer: {
+          equalize_on_stack: true
+        }
+      }, 'equalizer', 'reflow' );
+    });
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
