@@ -89,7 +89,7 @@ $include-html-global-classes: $include-html-classes;
 
 
 // We use these to define default font stacks
- $font-family-sans-serif: "Helvetica Neue", 'Open Sans', Helvetica, Roboto, Arial, sans-serif;
+ $font-family-sans-serif: "museo-sans", 'Open Sans', Helvetica, Roboto, Arial, sans-serif;
  $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
  $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
@@ -1371,7 +1371,7 @@ $panel-border-color: #c2c2c2;
 
 // Height and margin
  $topbar-height: rem-calc(130);
- $topbar-margin-bottom: 60px;
+ $topbar-margin-bottom: 15px;
 
 // Controlling the styles for the title in the top bar
 // $topbar-title-weight: $font-weight-normal;

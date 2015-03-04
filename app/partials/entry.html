@@ -6,7 +6,13 @@
         <img ng-src="{{entry.fieldguide_image}}">
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-
+<!-- Buttons
+<ul class="inline-list">
+        <li><a ng-href="/type/{{critter.type[0].category_name}}" class="button tiny">{{critter.type[0].category_name}}</a></li>
+        <li ng-repeat="habitat in critter.habitats"><a ng-href="/habitats/{{habitat.category_name}}" class="button tiny">{{habitat.category_name}}</a></li>
+        <li><a ng-href="/type/{{critter.type[0].category_name}}/subtype/{{critter.subtype[0].category_name}}" class="button tiny">{{critter.subtype[0].category_name}}</a></li>
+      </ul>
+-->      
 		<div class="row" id="quickFacts">
 			<div class="small-12 columns hide-for-medium-up">
 				<div class="panel callout">
