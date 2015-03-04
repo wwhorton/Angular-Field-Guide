@@ -73,6 +73,37 @@
     return getCritter;
   }); 
   
+  fieldGuide.factory( 'makeButtons', function(){
+    var makeButtons = function( critter ){
+      critter.buttons = {};
+      critter.type = _.filter( critter.categories, function( category ){
+          for( var i = 0; i < types.length; i++ ){
+           if( types[i].name === category.category_name ){
+             return true;
+           }
+         }
+      });
+      critter.habitats = _.filter( critter.categories, function( category ){
+          for( var i = 0; i < habitats.length; i++ ){
+           if( habitats[i].name === category.category_name ){
+             return true;
+           }
+         }
+      });
+      critter.subtype = _.filter( critter.categories, function( category ){
+        var results;
+        for( var i = 0; i < types.length; i++ ){
+            _.compact( types[i].subtypes ).forEach( function( subtype ){
+              if( subtype === category.category_name ){
+                results = true;
+              }
+            });
+        }
+        return results;
+      });
+    };
+    return makeButtons;
+  });
 /***Filters***/
 
   fieldGuide.filter( 'entryByTitle', function() {
@@ -153,39 +184,14 @@
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
-      $scope.critter.buttons = {};
-      $scope.critter.type = _.filter( $scope.critter.categories, function( category ){
-          for( var i = 0; i < types.length; i++ ){
-           if( types[i].name === category.category_name ){
-             return true;
-           }
-         }
-      });
-      $scope.critter.habitats = _.filter( $scope.critter.categories, function( category ){
-          for( var i = 0; i < habitats.length; i++ ){
-           if( habitats[i].name === category.category_name ){
-             return true;
-           }
-         }
-      });
-      $scope.critter.subtype = _.filter( $scope.critter.categories, function( category ){
-        var results;
-        for( var i = 0; i < types.length; i++ ){
-            _.compact( types[i].subtypes ).forEach( function( subtype ){
-              if( subtype === category.category_name ){
-                results = true;
-              }
-            });
-        }
-        return results;
-      });     
     });
   }]);
   
-  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml ){
+  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'makeButtons', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, makeButtons ){
     $scope.entries = {};
     $scope.habitat = {};
     $scope.renderHtml = renderHtml;
+    $scope.makeButtons = makeButtons;
     getEntries().then( function( result ){
       $scope.entries = result.data;
       console.log( $scope.entries );

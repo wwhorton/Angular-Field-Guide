@@ -19,6 +19,11 @@
           <h3><a style="border: none;" ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
           <h3><em>{{entry.scientific_name}}</em></h3>
           <div ng-bind-html="renderHtml( entry.fieldguide_homepageblurb )"></div>
+          <ul class="inline-list">
+            <li><a ng-href="/type/{{entry.type[0].category_name}}" class="button tiny">{{entry.type[0].category_name}}</a></li>
+            <li ng-repeat="habitat in entry.habitats"><a ng-href="/habitats/{{habitat.category_name}}" class="button tiny">{{habitat.category_name}}</a></li>
+            <li><a ng-href="/type/{{entry.type[0].category_name}}/subtype/{{entry.subtype[0].category_name}}" class="button tiny">{{entry.subtype[0].category_name}}</a></li>
+          </ul>
         </div>
       </li>
     </ul>
