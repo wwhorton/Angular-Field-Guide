@@ -15,7 +15,7 @@
 -->      
 		<div class="row" id="quickFacts">
 			<div class="small-12 columns hide-for-medium-up">
-				<div class="panel callout">
+				<div class="panel">
 					<h2>Quick Facts</h2>
 					<div ng-if="entry.native_nonnative_or_invasive" ng-bind-html="renderHtml( entry.native_nonnative_or_invasive )"></div>
 					<h3 ng-if="entry.fieldguide_size">Size</h3>
@@ -78,7 +78,7 @@
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
     <div class="row" ng-if="entry.related">
-      <div class="panel callout small-12 columns">
+      <div class="panel small-12 columns">
         <h2>Related Critters</h2>
         <ul class="small-block-grid-1 medium-block-grid-2">
           <li class="accent-white" ng-repeat="relatedEntry in relatedEntries">

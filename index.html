@@ -55,21 +55,20 @@
           </section>
         </nav>
       </div>
-      <form class="row" name="titleSearch" ng-controller="SearchController">
-        <div class="small-12 columns">
-          <div class="row collapse">
-            <div class="small-10 small-offset-1 columns">
-              <input type="text" name="title" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]+$/">
-            </div>
-            <!--<div class="small-2 columns">
-              <a href="" class="button postfix"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
-            </div>-->
+      <div class="small-12 columns">
+        <form class="row collapse" name="titleSearch" ng-controller="SearchController">
+          <div class="small-10 columns">
+            <input type="text" name="title" id="titleSearch" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]/">
+          </div>
+          <div class="small-2 columns">
+            <a ng-href="/entry/{{search.title}}" class="button postfix"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
           </div>
           <ul class="no-bullet" ng-if="titleSearch.$valid && search.title !==''">
-            <li ng-repeat="entry in search.entries | filter:{title:search.title}"><a ng-href="/entry/{{entry.title}}" ng-click="search.reset()">{{entry.title}}</a></li>
+            <li ng-repeat="entry in filteredEntries = ( search.entries | filter:{title:search.title} )"><a ng-href="/entry/{{entry.title}}" ng-click="search.reset()">{{entry.title}}</a></li>
+            <li ng-if=" filteredEntries.length === 0 && titleSearch.$dirty ">No entries found.</li>
           </ul>
-        </div>
-      </form>
+        </form>
+      </div>
     </header>
 
   <div ng-view></div>

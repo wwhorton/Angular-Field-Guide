@@ -109,7 +109,7 @@
   fieldGuide.filter( 'entryByTitle', function() {
     return function( array, title ){
       return _.find( array, function( entry ){
-        return entry.title === title;
+        return entry.title.toUpperCase() === title.toUpperCase();
       });  
     };  
   });
@@ -151,19 +151,23 @@
         }).
         when( '/habitats/:habitat', {
           templateUrl: '/app/partials/habitat.html',
-          controller: 'HabitatController'
+          controller: 'HabitatController',
+          caseInsensitiveMatch: true
         }).
         when( '/type/:type', {
           templateUrl: '/app/partials/entryList.html',
-          controller: 'TypeController'
+          controller: 'TypeController',
+          caseInsensitiveMatch: true
         }).
         when( '/type/:type/subtype/:subtype', {
           templateUrl: '/app/partials/entryList.html',
-          controller: 'TypeController'
+          controller: 'TypeController',
+          caseInsensitiveMatch: true
         }).
         when( '/entry/:title', {
           templateUrl: '/app/partials/entry.html',
-          controller: 'EntryController'
+          controller: 'EntryController',
+          caseInsensitiveMatch: true
         }).
         otherwise({
           redirectTo: '/'
