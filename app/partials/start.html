@@ -19,19 +19,24 @@
   
 <div class="row">
   <div id="browse" class="small-12 small-centered columns panel" ng-control="StartController">
-    <label><h3>Browse by:</h3>
-    <select ng-model="categories.selected" ng-change="updateCategories()">
-      <option value="types">Type</option>
-      <option value="habitats">Habitat</option>
-    </select>
+    <h3>Browse by Type:</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
-        <li ng-repeat="category in categories.options">
+        <li ng-repeat="category in categories.types.options">
           <div class="row collapse gridItem panelContentBox">
             <img class="small-12 columns" src="http://placehold.it/330x220" ng-src="{{image}}" ></img>
-            <ng-include src="categories.options.url"></ng-include>
+            <ng-include src="categories.types.templateUrl"></ng-include>
           </div>
         </li>
       </ul>
+    <h3>Browse by Habitat:</h3>
+      <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+        <li ng-repeat="category in categories.habitats.options">
+          <div class="row collapse gridItem panelContentBox">
+            <img class="small-12 columns" src="http://placehold.it/330x220" ng-src="{{image}}" ></img>
+            <ng-include src="categories.habitats.templateUrl"></ng-include>
+          </div>
+        </li>
+      </ul>      
   </div> <!-- end columns -->
 </div> <!-- end row -->
 

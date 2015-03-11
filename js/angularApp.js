@@ -31,10 +31,8 @@
         'subtypes' : [ 'Amphibians', 'Reptiles' ]
       }
     ];
-  types.url = '/app/partials/browseAccordion.html';
-    
+
   var habitats = [ {'name': 'Aquatic Reefs & Pilings'}, {'name': 'Beaches & Tidal Flats'}, {'name': 'Forests & Uplands'}, {'name': 'Marshes & Wetlands'}, {'name': 'Open Waters'}, {'name': 'Shallow Waters'}, {'name': 'Streams & Rivers' }];
-  habitats.url = '/app/partials/browseList.html';
 
 /***Services***/
 
@@ -178,10 +176,10 @@
 /***Controllers***/
  
   fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', function( $scope, $timeout, getEntries, randomCritter, renderHtml ){
-    $scope.categories = { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' };
-    $scope.updateCategories = function(){
-      $scope.categories.options = eval( $scope.categories.selected );
-    };
+    $scope.categories = {};
+    $scope.categories.types = { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' };
+    $scope.categories.habitats = { selected: 'habitats', options: habitats, templateUrl: '/app/partials/browseList.html' };
+
     $scope.renderHtml = renderHtml;
     $scope.entries = {};
     $scope.critter = {};
