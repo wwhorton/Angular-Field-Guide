@@ -5,30 +5,39 @@
 	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation' ]);
 
   var types = [ 
-      { 'name' : 'Algae'
+      { 'name' : 'Algae',
+        'image' : '/app/images/algae.jpg'
       },
       { 'name' : 'Bay Grasses (SAV)',
-        'subtypes' : [ 'Low Salinity', 'Medium Salinity', 'High Salinity' ]
+        'subtypes' : [ 'Low Salinity', 'Medium Salinity', 'High Salinity' ],
+        'image' : '/app/images/Bay Grass.jpg'
       },
       { 'name' : 'Birds',
-        'subtypes' : [ 'Raptors', 'Other', 'Waterfowl', 'Wading', 'Sea & Shorebirds' ]
+        'subtypes' : [ 'Raptors', 'Other', 'Waterfowl', 'Wading', 'Sea & Shorebirds' ],
+        'image' : '/app/images/Birds.jpg'
       },
       { 'name' : 'Fish',
-        'subtypes' : [ 'Freshwater Fish', 'Estuarine Fish', 'Saltwater Fish' ]
+        'subtypes' : [ 'Freshwater Fish', 'Estuarine Fish', 'Saltwater Fish' ],
+        'image' : '/app/images/Fish.jpg'
       },
-      { 'name' : 'Insects'
+      { 'name' : 'Insects',
+        'image' : '/app/images/Insects.jpg'
       },
       { 'name' : 'Invertebrates', 
-        'subtypes' : [ 'Arthropods', 'Mollusks', 'Other Invertebrates' ]
+        'subtypes' : [ 'Arthropods', 'Mollusks', 'Other Invertebrates' ],
+        'image' : '/app/images/Invertebrates.jpg'
       },
       { 'name' : 'Mammals',
-        'subtypes' : [ 'Aquatic', 'Semi-Aquatic', 'Land', 'Flying' ]
+        'subtypes' : [ 'Aquatic', 'Semi-Aquatic', 'Land', 'Flying' ],
+        'image' : '/app/images/Mammals.jpg'        
       },
       { 'name' : 'Plants & Trees',
-        'subtypes' : [ 'Flowers', 'Trees & Shrubs', 'Aquatic & Wetland Plants' ]
+        'subtypes' : [ 'Flowers', 'Trees & Shrubs', 'Aquatic & Wetland Plants' ],
+        'image' : '/app/images/Plants.jpg'        
       },
       { 'name' : 'Reptiles & Amphibians',
-        'subtypes' : [ 'Amphibians', 'Reptiles' ]
+        'subtypes' : [ 'Amphibians', 'Reptiles' ],
+        'image' : '/app/images/Reptiles.jpg'        
       }
     ];
 
@@ -102,6 +111,17 @@
     };
     return makeButtons;
   });
+  
+  fieldGuide.factory( 'equalize', function(){
+    return function(){
+      $(document).foundation( {
+        equalizer: {
+          equalize_on_stack: true
+        }
+      }, 'equalizer', 'reflow' );
+    };
+  });
+  
 /***Filters***/
 
   fieldGuide.filter( 'entryByTitle', function() {
@@ -137,6 +157,35 @@
       }
     };
   });
+  
+  fieldGuide.directive( 'entryBlock', function( renderHtml ) {
+    return {
+      restrict: 'AE',
+      replace: true,
+      scope: { thisEntry: '=entry' },
+      templateUrl: '/app/partials/entry-block.html',
+      link: function( scope ){
+        scope.fieldguide_homepageblurb = renderHtml( scope.fieldguide_homepageblurb );
+      }
+    };
+  });
+  
+  fieldGuide.directive( 'equalize', function( $timeout ){
+    return {
+      restrict: 'A',
+      link: function(){
+        console.log( "Equalizing..." );
+        $timeout( function(){
+          $(document).foundation( {
+            equalizer: {
+              equalize_on_stack: true
+            }
+          }, 'equalizer', 'reflow' );
+        });
+      }
+    };
+  });
+        
 
 /***Router***/
   
@@ -176,10 +225,10 @@
 /***Controllers***/
  
   fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', function( $scope, $timeout, getEntries, randomCritter, renderHtml ){
-    $scope.categories = {};
-    $scope.categories.types = { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' };
-    $scope.categories.habitats = { selected: 'habitats', options: habitats, templateUrl: '/app/partials/browseList.html' };
-
+    $scope.categories = {
+                          types : { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' },
+                          habitats : { selected: 'habitats', options: habitats, templateUrl: '/app/partials/browseList.html' }
+    };  
     $scope.renderHtml = renderHtml;
     $scope.entries = {};
     $scope.critter = {};
@@ -209,7 +258,7 @@
 
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml ){
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$interval', 'getEntries', 'renderHtml', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml ){
     $scope.subtype = ( !$routeParams.subtype ) ? "" : $routeParams.subtype;
     $scope.entries = {};
     $scope.renderHtml = renderHtml;
@@ -220,13 +269,6 @@
     $scope.options = _.find( types, function( type ){
      return type.name === $routeParams.type;
     }).subtypes;
-    $timeout( function(){
-      $(document).foundation( {
-        equalizer: {
-          equalize_on_stack: true
-        }
-      }, 'equalizer', 'reflow' );
-    });
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){

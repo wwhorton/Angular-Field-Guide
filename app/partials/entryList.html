@@ -11,14 +11,9 @@
         </div>
       </div>
     </form>
-    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer equalize>
       <li ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
-        <div class="row collapse gridItem panelContentBox" data-equalizer-watch>
-          <a ng-href="/entry/{{entry.title}}"><img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
-          <h3><a style="border-bottom: 0px;" ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
-          <h3><em>{{entry.scientific_name}}</em></h3>
-          <div ng-bind-html="renderHtml( entry.fieldguide_homepageblurb )"></div>
-        </div>
+        <entry-block entry="entry"></entry-block>
       </li>
     </ul>
   </div> <!-- end columns -->
