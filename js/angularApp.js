@@ -41,7 +41,29 @@
       }
     ];
 
-  var habitats = [ {'name': 'Aquatic Reefs & Pilings'}, {'name': 'Beaches & Tidal Flats'}, {'name': 'Forests & Uplands'}, {'name': 'Marshes & Wetlands'}, {'name': 'Open Waters'}, {'name': 'Shallow Waters'}, {'name': 'Streams & Rivers' }];
+  var habitats = [ 
+      { 'name': 'Aquatic Reefs & Pilings',
+        'image': '/app/images/pilings.jpg'
+      },
+      { 'name': 'Beaches & Tidal Flats',
+        'image': '/app/images/tidal flats.jpg'
+      },
+      { 'name': 'Forests & Uplands',
+        'image': '/app/images/forest.jpg'
+      },
+      { 'name': 'Marshes & Wetlands',
+        'image': '/app/images/wetlands.jpg'
+      },
+      { 'name': 'Open Waters',
+        'image': '/app/images/open water.jpg'
+      },
+      { 'name': 'Shallow Waters',
+        'image': '/app/images/shallow water.jpg'
+      },
+      { 'name': 'Streams & Rivers',
+        'image': '/app/images/river.jpg'
+      }
+    ];
 
 /***Services***/
 
@@ -209,7 +231,7 @@
  
 /***Controllers***/
  
-  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', function( $scope, $timeout, getEntries, randomCritter, renderHtml ){
+  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', 'equalize', function( $scope, $timeout, getEntries, randomCritter, renderHtml, equalize ){
     $scope.categories = {
                           types : { selected: 'types', options: types, templateUrl: '/app/partials/browseAccordion.html' },
                           habitats : { selected: 'habitats', options: habitats, templateUrl: '/app/partials/browseList.html' }
@@ -220,6 +242,10 @@
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
+    });
+    $timeout( function(){
+      console.log( "Fired timeout" );
+      equalize();
     });
   }]);
   
