@@ -142,7 +142,7 @@
             equalize_on_stack: true
           }
         }, 'equalizer', 'reflow' );
-      });
+      }, 30 );
     };
   }]);
   
@@ -182,7 +182,7 @@
     };
   });
   
-  fieldGuide.directive( 'entryBlock', function( renderHtml ) {
+  fieldGuide.directive( 'entryBlock', function( renderHtml, equalize ) {
     return {
       restrict: 'AE',
       replace: true,
@@ -243,10 +243,7 @@
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
     });
-    $timeout( function(){
-      console.log( "Fired timeout" );
-      equalize();
-    });
+    equalize();
   }]);
   
   fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'makeButtons', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, makeButtons, equalize ){
@@ -262,7 +259,7 @@
     equalize();
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$interval', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
     $scope.subtype = ( !$routeParams.subtype ) ? "" : $routeParams.subtype;
     $scope.entries = {};
     $scope.renderHtml = renderHtml;
@@ -274,8 +271,10 @@
      return type.name === $routeParams.type;
     }).subtypes;
     $scope.$watch( 'subtype', function(){
+      console.log( "Fired watch on subtype" );
       equalize();
     });
+    equalize();
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
