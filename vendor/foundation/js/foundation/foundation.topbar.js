@@ -162,7 +162,7 @@
           e.preventDefault();
           self.toggle(this);
         })
-        .on('click.fndtn.topbar','.top-bar .top-bar-section li a[href^="#"],[' + this.attr_name() + '] .top-bar-section li a[href^="#"]',function (e) {
+        .on('click.fndtn.topbar','.top-bar .top-bar-section li a[href^="#"],[' + this.attr_name() + '] .top-bar-section li a[href^="#"],.top-bar .top-bar-section li a',function (e) {
             var li = $(this).closest('li');
             if(self.breakpoint() && !li.hasClass('back') && !li.hasClass('has-dropdown'))
             {
