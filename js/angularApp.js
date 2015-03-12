@@ -112,15 +112,17 @@
     return makeButtons;
   });
   
-  fieldGuide.factory( 'equalize', function(){
+  fieldGuide.factory( 'equalize', ['$timeout', function( $timeout ){
     return function(){
-      $(document).foundation( {
-        equalizer: {
-          equalize_on_stack: true
-        }
-      }, 'equalizer', 'reflow' );
+      $timeout( function(){
+        $(document).foundation( {
+          equalizer: {
+            equalize_on_stack: true
+          }
+        }, 'equalizer', 'reflow' );
+      });
     };
-  });
+  }]);
   
 /***Filters***/
 
@@ -169,23 +171,6 @@
       }
     };
   });
-  
-  fieldGuide.directive( 'equalize', function( $timeout ){
-    return {
-      restrict: 'A',
-      link: function(){
-        console.log( "Equalizing..." );
-        $timeout( function(){
-          $(document).foundation( {
-            equalizer: {
-              equalize_on_stack: true
-            }
-          }, 'equalizer', 'reflow' );
-        });
-      }
-    };
-  });
-        
 
 /***Router***/
   
@@ -238,7 +223,7 @@
     });
   }]);
   
-  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'makeButtons', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, makeButtons ){
+  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'makeButtons', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, makeButtons, equalize ){
     $scope.entries = {};
     $scope.habitat = {};
     $scope.renderHtml = renderHtml;
@@ -248,17 +233,10 @@
       console.log( $scope.entries );
     });
     $scope.habitat.title = $routeParams.habitat;
-    $timeout( function(){
-      $(document).foundation( {
-        equalizer: {
-          equalize_on_stack: true
-        }
-      }, 'equalizer', 'reflow' );
-    });
-
+    equalize();
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$interval', 'getEntries', 'renderHtml', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml ){
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$interval', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
     $scope.subtype = ( !$routeParams.subtype ) ? "" : $routeParams.subtype;
     $scope.entries = {};
     $scope.renderHtml = renderHtml;
@@ -269,6 +247,9 @@
     $scope.options = _.find( types, function( type ){
      return type.name === $routeParams.type;
     }).subtypes;
+    $scope.$watch( 'subtype', function(){
+      equalize();
+    });
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){

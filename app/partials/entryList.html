@@ -11,7 +11,7 @@
         </div>
       </div>
     </form>
-    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer equalize>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
       <li ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
         <entry-block entry="entry"></entry-block>
       </li>
