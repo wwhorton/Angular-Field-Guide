@@ -30,7 +30,7 @@
     <script src="/app/bower_components/angular-foundation/mm-foundation-tpls.js"></script>
     <header class="row">
       <div class="row collapse">
-        <nav class="top-bar" data-topbar data-options="dropdown_autoclose: true" role="navigation">
+        <nav class="top-bar" data-topbar role="navigation">
           <ul class="title-area">
             <li class="name">
               <a href="/">
@@ -73,7 +73,8 @@
 
   <div ng-view></div>
  
-		<div class="panel footer row collapse" style="margin-bottom: 0px; border: none; background: #666;">
+	<div class="panel footer" style="margin-bottom: 0px; border: none; background: #666;">
+    <div class="row collapse" >
 			<div class="small-12 large-3 columns" >
         <h5>About the Chesapeake Bay Program</h5>
         <p>The Chesapeake Bay Program is a unique regional partnership that has led and directed the restoration of the Chesapeake Bay since 1983.</p>
@@ -100,10 +101,13 @@
         </ul>
       </div>
     </div>
-    <div class="panel row" id="subFooter" style="border: none; background: #333; margin-bottom: 0px;">
+  </div>
+  <div class="panel" id="subFooter" style="border: none; background: #333; margin-bottom: 0px;">
+    <div class="row">
 			<p>Copyright 2014 Chesapeake Bay Program. All rights reserved.</p>
 			<a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
-		</div>
+    </div>
+	</div>
 
     <!-- build:js js/vendor/libraries.min.js -->
     <!-- bower:js -->
