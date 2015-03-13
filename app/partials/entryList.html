@@ -11,6 +11,9 @@
         </div>
         <div class="small-12 columns" ng-if="!type">
           <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
+          <div class="small-12 columns" ng-if="!type && entries.length == 0">
+            <p>No results were found. Check the spelling and try again, or use the navigation to browse through existing entries.</p>
+          </div>
         </div>
       </div>
     </form>
