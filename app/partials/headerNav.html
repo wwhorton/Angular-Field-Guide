@@ -33,24 +33,25 @@
 -->  
 
 <header class="row" data-equalizer>
-  <div class="small-4 columns">
-    <a href="/">
-      <img id="headerLogo" src="/images/field-guide-logo.svg" data-equalizer-watch></img>
+  <div class="small-6 medium-6 large-4 columns">
+    <a href="/"  data-equalizer-watch>
+      <img id="headerLogo" src="/images/field-guide-logo.svg" style="height: 150px;"></img>
     </a>
   </div>
-  <div class="small-7 columns">
+  <div class="small-4 medium-4 medium-pull-2 large-2 large-push-7 small-offset-2 large-offset-0 columns">
+    <div data-equalizer-watch></div>
+    <a href="#" ng-click="nav.showMenu = !nav.showMenu"><img src="/app/images/menu.png" style="max-height: 50px; margin-top: 40px;"/></a>
+  </div>
+  <div class="small-12 medium-12 large-6 large-pull-2 columns">
     <div data-equalizer-watch></div>
     <search-bar ></search-bar>
   </div>
-  <div class="small-1 columns">
-    <div data-equalizer-watch></div>
-    <a href="#" ng-click="nav.showMenu = !nav.showMenu"><img src="/app/images/menu.png" style="height: 50px;"/></a>
-  </div>
+
 </header>
-<nav ng-controller="NavController" class="small-3 right columns hidden">
+<nav ng-controller="NavController" class="small-12 medium-6 large-3 right columns hidden">
   <ul class="no-bullet" id="navMenu" ng-if="nav.showMenu">
     <li ng-repeat='type in types'>
-      <a ng-href="/type/{{type.name}}">{{type.name}}</a>
+      <a ng-href="/type/{{type.name}}" ng-click="nav.showMenu = !nav.showMenu">{{type.name}}</a>
     </li>
   </ul>
 </nav>
