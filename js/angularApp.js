@@ -209,6 +209,11 @@
           $location.path( '/search/' + scope.search.title );
           scope.search.title = '';
         });
+        $( '#titleSearch' ).keypress( function( event ){
+          if( event.which == 13 ){
+            $( '#searchButton' ).click();
+          }
+        });
       }
     };
   });
