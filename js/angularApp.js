@@ -292,16 +292,17 @@
     $scope.selection = { 
                       'subtype' : ( !$routeParams.subtype ) ? "" : $routeParams.subtype ,
                       'type' : $routeParams.type,
-                      'options' : function(){
-                                    _.find( types, function( type ){
-                                      return type.name === $routeParams.type;
-                                    }).subtypes;
-                                  }
+                      'options' : _.find( types, function( type ){
+                                    return type.name === $routeParams.type;
+                                  }).subtypes
+                                
                       };
+    
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
     });
+
     $scope.$watch( 'selection.subtype', function(){
       equalize();
     });
