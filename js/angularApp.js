@@ -86,7 +86,6 @@
   }]);
   
   fieldGuide.factory( 'renderSrc', [ '$sce', function( $sce ){
-    
     var renderSrc = function( raw_html ){
       return $sce.trustAsResourceUrl( raw_html );
     }
@@ -145,8 +144,15 @@
       }, 30 );
     };
   }]);
-  
+
 /***Filters***/
+  fieldGuide.filter( 'entriesByTitle', function() {
+    return function( array, title ){
+      return _.filter( array, function( item ){
+        return item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1;
+      });
+    };
+  });
 
   fieldGuide.filter( 'entryByTitle', function() {
     return function( array, title ){
@@ -193,7 +199,17 @@
       }
     };
   });
-
+  
+  fieldGuide.directive( 'searchForm', function(){
+    return {
+      replace: true,
+      templateUrl: '/app/partials/search-form.html',
+      link: function( ){
+        
+      }
+    };
+  });
+  
 /***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 
@@ -202,6 +218,11 @@
         when( '/', {
           templateUrl: '/app/partials/start.html',
           controller: 'StartController'
+        }).
+        when( '/search/:query', {
+          templateUrl: '/app/partials/entryList.html',
+          controller: 'ResultsController',
+          caseInsensitiveMatch: true          
         }).
         when( '/habitats/:habitat', {
           templateUrl: '/app/partials/habitat.html',
@@ -287,14 +308,21 @@
   }]);
   
   fieldGuide.controller( 'SearchController', [ '$scope', 'getEntries', function( $scope, getEntries ){
-    $scope.search = { };
+    $scope.search = { title: "" };
     getEntries().then( function( result ){
       $scope.search.entries = result.data;
     });
     $scope.search.reset = function(){
       $scope.search.title = '';
     };
-      
+  }]);
+  
+  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
+    $scope.type = "";
+    $scope.subtype = "";
+    getEntries().then( function( result ){
+      $scope.entries = entriesByTitleFilter( result.data, $routeParams.query );
+    });
   }]);
   
   fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter ){
