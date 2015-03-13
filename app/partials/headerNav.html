@@ -1,0 +1,57 @@
+<!--
+<header class="row">
+  <div class="row collapse">
+    <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <a href="/">
+            <img id="headerLogo" src="/images/field-guide-logo.svg"></img>
+          </a>
+        </li>
+        <li class="toggle-topbar menu-icon">
+          <a href="#"><span></span></a>
+        </li>
+      </ul>  
+      <section class="top-bar-section" ng-controller="NavController">
+
+       <ul class="right">
+        <li ng-repeat='type in types'>
+          <a ng-href="/type/{{type.name}}">{{type.name}}</a>
+        </li>
+       </ul>
+
+        <ul class="left">
+          <li></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+  <div class="small-12 large-8 large-offset-3 columns">
+    <search-bar></search-bar>
+  </div>
+</header>
+-->  
+
+<header class="row" data-equalizer>
+  <div class="small-4 columns">
+    <a href="/">
+      <img id="headerLogo" src="/images/field-guide-logo.svg" data-equalizer-watch></img>
+    </a>
+  </div>
+  <div class="small-7 columns">
+    <div data-equalizer-watch></div>
+    <search-bar ></search-bar>
+  </div>
+  <div class="small-1 columns">
+    <div data-equalizer-watch></div>
+    <a href="#" ng-click="nav.showMenu = !nav.showMenu"><img src="/app/images/menu.png" style="height: 50px;"/></a>
+  </div>
+</header>
+<nav ng-controller="NavController" class="small-3 right columns hidden">
+  <ul class="no-bullet" id="navMenu" ng-if="nav.showMenu">
+    <li ng-repeat='type in types'>
+      <a ng-href="/type/{{type.name}}">{{type.name}}</a>
+    </li>
+  </ul>
+</nav>
+
