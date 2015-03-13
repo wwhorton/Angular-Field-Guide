@@ -318,10 +318,9 @@
   }]);
   
   fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
-    $scope.type = "";
-    $scope.subtype = "";
+    $scope.results = {};
     getEntries().then( function( result ){
-      $scope.entries = entriesByTitleFilter( result.data, $routeParams.query );
+      $scope.results.entries = entriesByTitleFilter( result.data, $routeParams.query );
     });
   }]);
   

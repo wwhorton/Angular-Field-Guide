@@ -11,12 +11,17 @@
         </div>
         <div class="small-12 columns" ng-if="!selection.type">
           <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
-          <div class="small-12 columns" ng-if="!type && entries.length == 0">
+          <div class="small-12 columns" ng-if="results.entries && results.entries.length == 0">
             <p>No results were found. Check the spelling and try again, or use the navigation to browse through existing entries.</p>
           </div>
         </div>
       </div>
     </form>
+    <ul ng-if="results.entries" class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
+      <li ng-repeat="entry in results.entries">
+        <entry-block entry="entry"></entry-block>
+      </li>
+    </ul>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
       <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}">
         <entry-block entry="entry"></entry-block>
