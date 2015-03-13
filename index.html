@@ -22,81 +22,18 @@
     <script>try{Typekit.load();}catch(e){}</script>
   </head>
   <body>
-		<script src="/app/bower_components/angular/angular.js"></script>
+    <script src="/app/bower_components/angular/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-		<script src="/js/angularApp.js"></script>
+    <script src="/js/angularApp.js"></script>
     <script src="/app/bower_components/underscore/underscore-min.js"></script>
     <script src="/app/bower_components/angular-foundation/mm-foundation.js"></script>
     <script src="/app/bower_components/angular-foundation/mm-foundation-tpls.js"></script>
-    <header class="row">
-      <div class="row collapse">
-        <nav class="top-bar" data-topbar role="navigation">
-          <ul class="title-area">
-            <li class="name">
-              <a href="/">
-                <img id="headerLogo" src="/images/field-guide-logo.svg"></img>
-              </a>
-            </li> <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone --> 
-            <li class="toggle-topbar menu-icon">
-              <a href="#"><span></span></a>
-            </li>
-          </ul>  
-          <section class="top-bar-section" ng-controller="NavController">
-            <!-- Right Nav Section --> 
-           <ul class="right">
-            <li ng-repeat='type in types'>
-              <a ng-href="/type/{{type.name}}">{{type.name}}</a>
-            </li>
-           </ul>
-            <!-- Left Nav Section --> 
-            <ul class="left">
-              <li></li>
-            </ul>
-          </section>
-        </nav>
-      </div>
-      <div class="small-12 large-8 large-offset-3 columns">
-        <search-bar></search-bar>
-      </div>
-    </header>
+    
+    <ng-include src=" '/app/partials/headerNav.html' "></ng-include>
 
-  <div ng-view></div>
- 
-	<div class="panel footer" style="margin-bottom: 0px; border: none; background: #666;">
-    <div class="row collapse" >
-			<div class="small-12 large-3 columns" >
-        <h5>About the Chesapeake Bay Program</h5>
-        <p>The Chesapeake Bay Program is a unique regional partnership that has led and directed the restoration of the Chesapeake Bay since 1983.</p>
-			</div>
-			<div class="small-12 large-3 columns">
-				<div class="small-12 columns" style="margin-left: 0px; margin-right: 0px;">
-					<h5>Find Us On</h5>
-					<ul class="inline-list">
-						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-facebook" ></i></a></li>
-						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-twitter" ></i></a></li>
-						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-flickr" ></i></a></li>
-						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-tumblr" ></i></a></li>
-						<li style="font-size: 2rem;"><a href="#"><i class="fi-social-vimeo" ></i></a></li>
-					</ul>
-				</div>
-      </div>
-			<div class="small-12 large-6 columns" ng-controller="NavController">
-        <h5>Navigation</h5>
-        <ul class="small-12 large-6 columns" style="list-style: none; margin-left: 0px;">
-          <li ng-repeat="title in types"><a ng-href="/type/{{title.name}}">{{title.name}}</a></li>
-        </ul>  
-        <ul class="small-12 large-6 columns" style="list-style: none; margin-left: 0px;">
-          <li ng-repeat="title in habitats"><a ng-href="/habitats/{{title.name}}">{{title.name}}</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="panel" id="subFooter" style="border: none; background: #333; margin-bottom: 0px;">
-    <div class="row">
-			<p>Copyright 2014 Chesapeake Bay Program. All rights reserved.</p>
-			<a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
-    </div>
-	</div>
+    <div ng-view></div>
+   
+    <ng-include src=" '/app/partials/footer.html' "></ng-include>
 
     <!-- build:js js/vendor/libraries.min.js -->
     <!-- bower:js -->
