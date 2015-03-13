@@ -56,14 +56,7 @@
         </nav>
       </div>
       <div class="small-12 large-8 large-offset-3 columns">
-        <form class="row collapse" name="titleSearch" ng-controller="SearchController">
-          <div class="small-10 medium-11 large-11 columns">
-            <input type="text" name="title" id="titleSearch" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]/">
-          </div>
-          <div class="small-2 medium-1 large-1 columns" >
-            <a ng-href="/search/{{search.title}}" id="searchButton" class="button postfix disabled"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
-          </div>
-        </form>
+        <search-bar></search-bar>
       </div>
     </header>
 

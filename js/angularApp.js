@@ -200,12 +200,15 @@
     };
   });
   
-  fieldGuide.directive( 'searchForm', function(){
+  fieldGuide.directive( 'searchBar', function( $location ){
     return {
       replace: true,
-      templateUrl: '/app/partials/search-form.html',
-      link: function( ){
-        
+      templateUrl: '/app/partials/search-bar.html',
+      link: function( scope, element, attributes ){
+        $( '#searchButton' ).on( 'click', function(){
+          $location.path( '/search/' + scope.search.title );
+          scope.search.title = '';
+        });
       }
     };
   });
@@ -305,16 +308,6 @@
       return type.name;
     });
     $scope.navItems = $scope.navItems.concat( habitats );
-  }]);
-  
-  fieldGuide.controller( 'SearchController', [ '$scope', 'getEntries', function( $scope, getEntries ){
-    $scope.search = { title: "" };
-    getEntries().then( function( result ){
-      $scope.search.entries = result.data;
-    });
-    $scope.search.reset = function(){
-      $scope.search.title = '';
-    };
   }]);
   
   fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
