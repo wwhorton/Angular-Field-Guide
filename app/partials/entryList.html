@@ -2,14 +2,14 @@
   <div class="small-12 columns panel">
     <form>
       <div class="row">
-        <div class="small-12 columns" ng-if="type">
+        <div class="small-12 columns" ng-if="selection.type">
           <h3 class="small-3 columns"><strong>Browse by type:</strong></h3>
-          <select class="small-9 columns" ng-model="subtype" >
+          <select class="small-9 columns" ng-model="selection.subtype" >
             <option value="" selected>All</option>
-            <option ng-repeat="option in options" value="{{option}}">{{option}}</option>
+            <option ng-repeat="option in selection.options" value="{{option}}">{{option}}</option>
           </select>
         </div>
-        <div class="small-12 columns" ng-if="!type">
+        <div class="small-12 columns" ng-if="!selection.type">
           <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
           <div class="small-12 columns" ng-if="!type && entries.length == 0">
             <p>No results were found. Check the spelling and try again, or use the navigation to browse through existing entries.</p>
@@ -18,7 +18,7 @@
       </div>
     </form>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
-      <li ng-repeat="entry in entries | filter:{categories:{category_name:type}} | filter:{categories:{category_name:subtype}}">
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}">
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>

@@ -288,22 +288,23 @@
     equalize();
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
-    $scope.subtype = ( !$routeParams.subtype ) ? "" : $routeParams.subtype;
-    $scope.entries = {};
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, getEntries, renderHtml, equalize ){
+    $scope.selection = { 
+                      'subtype' : ( !$routeParams.subtype ) ? "" : $routeParams.subtype ,
+                      'type' : $routeParams.type,
+                      'options' : function(){
+                                    _.find( types, function( type ){
+                                      return type.name === $routeParams.type;
+                                    }).subtypes;
+                                  }
+                      };
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
     });
-    $scope.type = $routeParams.type;
-    $scope.options = _.find( types, function( type ){
-     return type.name === $routeParams.type;
-    }).subtypes;
-    $scope.$watch( 'subtype', function(){
-      console.log( "Fired watch on subtype" );
+    $scope.$watch( 'selection.subtype', function(){
       equalize();
     });
-    equalize();
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
