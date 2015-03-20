@@ -11,11 +11,10 @@
 </div>
 <div class="row">
   <div class="panel small-12 columns">
-    <h3>Browse</h3>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
       <li ng-repeat="entry in entries | filter:{categories:{category_name:habitat.title}}" >
         <div class="row collapse gridItem panelContentBox" data-equalizer-watch>
-          <img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" />
+          <a style="border: none;" ng-href="/entry/{{entry.title}}"><img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
           <h3><a style="border: none;" ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
           <h3><em>{{entry.scientific_name}}</em></h3>
           <div ng-bind-html="renderHtml( entry.fieldguide_homepageblurb )"></div>

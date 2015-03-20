@@ -185,8 +185,16 @@
       }
     };
   });
-        
-
+/*  
+  fieldGuide.directive( 'searchOnEnter', function(){
+    return {
+      restrict: 'A',
+      link: function( scope, element, attributes ){
+        element.bind( 'keydown keypress'
+      }
+    };
+  });
+*/
 /***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 

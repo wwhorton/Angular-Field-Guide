@@ -205,15 +205,17 @@
       replace: true,
       templateUrl: '/app/partials/search-bar.html',
       link: function( scope, element, attributes ){
-        $( '#searchButton' ).on( 'click', function(){
+        $( '#searchIcon' ).on( 'click', function(){
           $location.path( '/search/' + scope.search.title );
           scope.search.title = '';
         });
-        $( '#titleSearch' ).keypress( function( event ){
-          if( event.which == 13 ){
-            $( '#searchButton' ).click();
+        $( '#titleSearch' ).bind( 'keypress', function( event ){
+          if( event.which == '13' ){
+            console.log( event.which );
+            $( '#searchIcon' ).click();
           }
         });
+        
       }
     };
   });
