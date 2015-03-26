@@ -205,9 +205,12 @@
       replace: true,
       templateUrl: '/app/partials/search-bar.html',
       link: function( scope, element, attributes ){
-        $( '#searchIcon' ).on( 'click', function(){
-          $location.path( '/search/' + scope.search.title );
-          scope.search.title = '';
+        $( '#searchIcon' ).on( 'click', function( e ){
+          if( !$( "#searchButton" ).hasClass( "disabled" ) ){
+            var thePath = '/search/' + scope.search.title;
+            $location.path( thePath );
+          }
+        scope.$apply();
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
           if( event.which == '13' ){

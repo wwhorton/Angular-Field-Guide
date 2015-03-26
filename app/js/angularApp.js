@@ -296,7 +296,14 @@
     $scope.search.reset = function(){
       $scope.search.title = '';
     };
-      
+    $scope.search.getResults = function(){
+      if( $("#searchButton").hasClass( "disabled" ) ){
+        console.log( "Disabled");
+        e.preventDefault();
+      } else {
+        $location.url( "/search/" + $scope.search.title );
+      }
+    };
   }]);
   
   fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter ){

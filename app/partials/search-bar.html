@@ -3,6 +3,6 @@
     <input type="text" name="title" id="titleSearch" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]/">
   </div>
   <div class="small-2 medium-1 large-1 columns" >
-    <a id="searchButton" ng-href="/search/{{search.title}}" class="button postfix" ng-class="{ disabled:titleSearch.$error.minlength || titleSearch.$pristine || search.title.length < 1 }"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
+    <a id="searchButton" class="button postfix" ng-class="{ disabled:titleSearch.$error.minlength || titleSearch.$pristine || search.title.length < 1 }"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
   </div>
 </form>
