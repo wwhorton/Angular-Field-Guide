@@ -223,6 +223,16 @@
     };
   });
   
+  fieldGuide.directive( 'tags', [ 'makeButtons', function( makeButtons ){
+    return {
+      replace: true,
+      restrict: 'A',
+      templateUrl: '/app/partials/tags.html',
+      scope: { tagEntry: '=entry' },
+      link: function( scope, element, attributes ){
+        
+    };
+  }]);
 /***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 
