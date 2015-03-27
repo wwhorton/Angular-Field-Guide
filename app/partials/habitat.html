@@ -13,17 +13,7 @@
   <div class="panel small-12 columns">
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
       <li ng-repeat="entry in entries | filter:{categories:{category_name:habitat.title}}" >
-        <div class="row collapse gridItem panelContentBox" data-equalizer-watch>
-          <a style="border: none;" ng-href="/entry/{{entry.title}}"><img ng-src="{{entry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
-          <h3><a style="border: none;" ng-href="/entry/{{entry.title}}">{{entry.title}}</a></h3>
-          <h3><em>{{entry.scientific_name}}</em></h3>
-          <div ng-bind-html="renderHtml( entry.fieldguide_homepageblurb )"></div>
-          <ul class="inline-list">
-            <li><a ng-href="/type/{{entry.type[0].category_name}}" class="button tiny">{{entry.type[0].category_name}}</a></li>
-            <li ng-repeat="habitat in entry.habitats"><a ng-href="/habitats/{{habitat.category_name}}" class="button tiny">{{habitat.category_name}}</a></li>
-            <li><a ng-href="/type/{{entry.type[0].category_name}}/subtype/{{entry.subtype[0].category_name}}" class="button tiny">{{entry.subtype[0].category_name}}</a></li>
-          </ul>
-        </div>
+        <entry-block entry="entry"></entry-block>
       </li>
     </ul>
   </div> <!-- end columns -->

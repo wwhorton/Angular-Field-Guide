@@ -292,14 +292,12 @@
     equalize();
   }]);
   
-  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'makeButtons', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, makeButtons, equalize ){
+  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
     $scope.entries = {};
     $scope.habitat = {};
     $scope.renderHtml = renderHtml;
-    $scope.makeButtons = makeButtons;
     getEntries().then( function( result ){
       $scope.entries = result.data;
-      console.log( $scope.entries );
     });
     $scope.habitat.title = $routeParams.habitat;
     equalize();
@@ -312,14 +310,11 @@
                       'options' : _.find( types, function( type ){
                                     return type.name === $routeParams.type;
                                   }).subtypes
-                                
                       };
-    
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
     });
-
     $scope.$watch( 'selection.subtype', function(){
       equalize();
     });
