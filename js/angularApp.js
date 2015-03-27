@@ -142,7 +142,7 @@
             equalize_on_stack: true
           }
         }, 'equalizer', 'reflow' );
-      }, 30 );
+      }, 100 );
     };
   }]);
 
