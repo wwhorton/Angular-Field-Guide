@@ -104,21 +104,21 @@
   fieldGuide.factory( 'makeButtons', function(){
     var makeButtons = function( critter ){
       critter.buttons = {};
-      critter.type = _.filter( critter.categories, function( category ){
+      critter.buttons.type = _.find( critter.categories, function( category ){
           for( var i = 0; i < types.length; i++ ){
            if( types[i].name === category.category_name ){
              return true;
            }
          }
-      });
-      critter.habitats = _.filter( critter.categories, function( category ){
+      }).category_name;
+      critter.buttons.habitats = _.filter( critter.categories, function( category ){
           for( var i = 0; i < habitats.length; i++ ){
            if( habitats[i].name === category.category_name ){
              return true;
            }
          }
-      });
-      critter.subtype = _.filter( critter.categories, function( category ){
+      });    
+      critter.buttons.subtype = _.find( critter.categories, function( category ){
         var results;
         for( var i = 0; i < types.length; i++ ){
             _.compact( types[i].subtypes ).forEach( function( subtype ){
@@ -129,6 +129,7 @@
         }
         return results;
       });
+      critter.buttons.subtype = ( critter.buttons.subtype ) ? critter.buttons.subtype.category_name : undefined;
     };
     return makeButtons;
   });
@@ -214,11 +215,9 @@
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
           if( event.which == '13' ){
-            console.log( event.which );
             $( '#searchIcon' ).click();
           }
         });
-        
       }
     };
   });
@@ -230,12 +229,13 @@
       templateUrl: '/app/partials/tags.html',
       scope: { tagEntry: '=entry' },
       link: function( scope, element, attributes ){
-      
-
+        makeButtons( scope.tagEntry );
+        console.log( scope.tagEntry.buttons );
       }
     };
   }]);
-/***Router***/
+
+  /***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 
     function($routeProvider, $locationProvider) {
