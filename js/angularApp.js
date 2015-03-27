@@ -226,11 +226,13 @@
   fieldGuide.directive( 'tags', [ 'makeButtons', function( makeButtons ){
     return {
       replace: true,
-      restrict: 'A',
+      restrict: 'E',
       templateUrl: '/app/partials/tags.html',
       scope: { tagEntry: '=entry' },
       link: function( scope, element, attributes ){
-        
+      
+
+      }
     };
   }]);
 /***Router***/
