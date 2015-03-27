@@ -230,7 +230,6 @@
       scope: { tagEntry: '=entry' },
       link: function( scope, element, attributes ){
         makeButtons( scope.tagEntry );
-        console.log( scope.tagEntry.buttons );
       }
     };
   }]);
@@ -347,7 +346,6 @@
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
-
 	}]);
   
 })();
