@@ -302,7 +302,7 @@
     equalize();
   }]);
   
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, getEntries, renderHtml, equalize ){
+  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
     $scope.selection = { 
                       'subtype' : ( !$routeParams.subtype ) ? "" : $routeParams.subtype ,
                       'type' : $routeParams.type,
@@ -316,6 +316,8 @@
     });
     $scope.$watch( 'selection.subtype', function(){
       equalize();
+      var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
+      $location.path( path );
     });
   }]);
   
