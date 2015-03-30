@@ -309,7 +309,7 @@
                       'options' : _.find( types, function( type ){
                                     return type.name === $routeParams.type;
                                   }).subtypes
-                      };
+                      };                  
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
