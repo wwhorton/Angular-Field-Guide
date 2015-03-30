@@ -6,38 +6,47 @@
 
   var types = [ 
       { 'name' : 'Algae',
-        'image' : '/app/images/algae.jpg'
+        'image' : '/app/images/algae.jpg',
+        'blurb' : "Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow."
       },
       { 'name' : 'Bay Grasses (SAV)',
         'subtypes' : [ 'Low Salinity', 'Medium Salinity', 'High Salinity' ],
-        'image' : '/app/images/Bay Grass.jpg'
+        'image' : '/app/images/Bay Grass.jpg',
+        'blurb' : "Bay grasses - also known as submerged aquatic vegetation or SAV - are plants that grow underwater in the Chesapeake Bay's shallows. More than 16 species of bay grasses grow in the Bay and its tributaries."
       },
       { 'name' : 'Birds',
         'subtypes' : [ 'Raptors', 'Other', 'Waterfowl', 'Wading', 'Sea & Shorebirds' ],
-        'image' : '/app/images/Birds.jpg'
+        'image' : '/app/images/Birds.jpg',
+        'blurb' : "Hundreds of species of birds live in the Chesapeake Bay watershed. Some birds live here year-round, while others migrate to the Bay region to feed or nest."
       },
       { 'name' : 'Fish',
         'subtypes' : [ 'Freshwater Fish', 'Estuarine Fish', 'Saltwater Fish' ],
-        'image' : '/app/images/Fish.jpg'
+        'image' : '/app/images/Fish.jpg',
+        'blurb' : "Approximately 350 species of fish live in the Chesapeake Bay. Some fish are year-round residents, while others swim into the Bay from the ocean to feed, reproduce or find shelter."
       },
       { 'name' : 'Insects',
-        'image' : '/app/images/Insects.jpg'
+        'image' : '/app/images/Insects.jpg',
+        'blurb' : "Thousands of species of insects live in the Chesapeake Bay region. Insects are found in nearly every habitat, from deep woods to sandy beaches to our own backyards. Some insects live on the land, while others spend most of their time in the water."
       },
       { 'name' : 'Invertebrates', 
         'subtypes' : [ 'Arthropods', 'Mollusks', 'Other Invertebrates' ],
-        'image' : '/app/images/Invertebrates.jpg'
+        'image' : '/app/images/Invertebrates.jpg',
+        'blurb' : "Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay."
       },
       { 'name' : 'Mammals',
         'subtypes' : [ 'Aquatic', 'Semi-Aquatic', 'Land', 'Flying' ],
-        'image' : '/app/images/Mammals.jpg'        
+        'image' : '/app/images/Mammals.jpg',
+        'blurb' : "Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to bobcats, dolphins and humans."
       },
       { 'name' : 'Plants & Trees',
         'subtypes' : [ 'Flowers', 'Trees & Shrubs', 'Aquatic & Wetland Plants' ],
-        'image' : '/app/images/Plants.jpg'        
+        'image' : '/app/images/Plants.jpg',
+        'blurb' : "More than 2,700 types of plants grow throughout the Chesapeake Bay watershed. Plants grow in nearly every habitat: from upland forests to the Bay's shoreline to our own backyards."
       },
       { 'name' : 'Reptiles & Amphibians',
         'subtypes' : [ 'Amphibians', 'Reptiles' ],
-        'image' : '/app/images/Reptiles.jpg'        
+        'image' : '/app/images/Reptiles.jpg',
+        'blurb' : "Reptiles and amphibians are cold-blooded vertebrates. They are sometimes called herps."
       }
     ];
 
@@ -321,13 +330,14 @@
     });
   }]);
   
-  fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
+  fieldGuide.controller( 'NavController', [ '$scope', 'equalize', function( $scope, equalize ){
     $scope.types = types;
     $scope.habitats = habitats;
     $scope.navItems = _.map( $scope.types, function( type ){
       return type.name;
     });
     $scope.navItems = $scope.navItems.concat( habitats );
+    
   }]);
   
   fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
