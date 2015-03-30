@@ -4,8 +4,8 @@
       <div class="row">
         <div class="small-12 columns" ng-if="selection.type">
           <h3 class="small-3 columns"><strong>Browse by type:</strong></h3>
-          <select class="small-9 columns" ng-model="selection.subtype" >
-            <option value="" selected>All</option>
+          <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" >
+            <option value="" >All</option>
             <option ng-repeat="option in selection.options" value="{{option}}">{{option}}</option>
           </select>
         </div>
