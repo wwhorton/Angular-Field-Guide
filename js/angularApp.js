@@ -231,6 +231,19 @@
     };
   });
   
+  fieldGuide.directive( 'smallMediaQuery', function(){
+    return {
+      restrict: 'A',
+      link: function( scope, element, attributes ){
+        scope.checkSize = _.debounce( function(){
+          scope.isSmall = window.matchMedia( "(max-width: 640px)" ).matches;
+          scope.$apply();
+        }, 100 );
+        $( window ).on( 'load resize', scope.checkSize );
+      }
+    };
+  });
+  
   fieldGuide.directive( 'tags', [ 'makeButtons', function( makeButtons ){
     return {
       replace: true,

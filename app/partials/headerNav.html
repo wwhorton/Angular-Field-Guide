@@ -1,22 +1,21 @@
 
-<header data-equalizer ng-controller="NavController">
-  <div class="row">
-    <div class="small-6 medium-6 large-4 columns">
-      <a href="/"  data-equalizer-watch>
+<header ng-controller="NavController">
+  <div class="row small-collapse medium-uncollapse">
+    <div class="small-6 medium-4 large-4 columns">
+      <a href="/">
         <img id="headerLogo" src="/images/field-guide-logo.svg" style="height: 150px;"></img>
       </a>
     </div>
-    <div class="small-4 medium-4 medium-pull-2 large-2 large-push-7 small-offset-2 large-offset-0 columns">
-      <div data-equalizer-watch></div>
-      <a href="#" ng-click="nav.showMenu = !nav.showMenu"><img src="/app/images/menu.png" style="max-height: 50px; margin-top: 40px;"/></a>
+    <div id="navMenuButton" class="small-4 medium-2 medium-push-6 medium-offset-0 large-2 large-push-7 small-offset-2 columns">
+      <i id="searchToggle" class="fi-magnifying-glass small-2 show-for-small-only columns" ng-click="nav.showSearch = !nav.showSearch"></i>
+      <a href="#" ng-click="nav.showMenu = !nav.showMenu"><img src="/app/images/menu.png" id="menuIcon" /></a>
     </div>
-    <div class="small-12 medium-12 large-6 large-pull-2 columns">
-      <div data-equalizer-watch></div>
+    <div class="small-12 medium-6 medium-pull-2 columns" small-media-query ng-show=" nav.showSearch || !isSmall ">
       <search-bar ></search-bar>
     </div>
   </div>
   <div class="row">
-    <nav class="row collapse hidden" data-equalizer>
+    <nav class="small-12 columns hidden">
       <ul class="no-bullet small-12 medium-6 large-3 columns" id="navMenu" ng-if="nav.showMenu">
         <li ng-repeat='type in types'>
           <a ng-href="/type/{{type.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = type">{{type.name}}</a>
