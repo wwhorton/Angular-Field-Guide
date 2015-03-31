@@ -1,36 +1,3 @@
-<!--
-<header class="row">
-  <div class="row collapse">
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <a href="/">
-            <img id="headerLogo" src="/images/field-guide-logo.svg"></img>
-          </a>
-        </li>
-        <li class="toggle-topbar menu-icon">
-          <a href="#"><span></span></a>
-        </li>
-      </ul>  
-      <section class="top-bar-section" ng-controller="NavController">
-
-       <ul class="right">
-        <li ng-repeat='type in types'>
-          <a ng-href="/type/{{type.name}}">{{type.name}}</a>
-        </li>
-       </ul>
-
-        <ul class="left">
-          <li></li>
-        </ul>
-      </section>
-    </nav>
-  </div>
-  <div class="small-12 large-8 large-offset-3 columns">
-    <search-bar></search-bar>
-  </div>
-</header>
--->  
 
 <header data-equalizer ng-controller="NavController">
   <div class="row">
@@ -49,12 +16,19 @@
     </div>
   </div>
   <div class="row">
-    <nav class="small-12 medium-6 large-3 right columns hidden">
-      <ul class="no-bullet" id="navMenu" ng-if="nav.showMenu">
+    <nav class="row collapse hidden" data-equalizer>
+      <ul class="no-bullet small-12 medium-6 large-3 columns" id="navMenu" ng-if="nav.showMenu">
         <li ng-repeat='type in types'>
-          <a ng-href="/type/{{type.name}}" ng-click="nav.showMenu = !nav.showMenu">{{type.name}}</a>
+          <a ng-href="/type/{{type.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = type">{{type.name}}</a>
         </li>
       </ul>
+      <div id="previewWindow" class="show-for-large-up large-9 columns" ng-if="nav.showMenu">
+        <img ng-src="{{nav.hover.image}}" class="small-6 columns" ></img>
+        <div class="small-6 columns">
+          <h5 id="previewHeader">{{nav.hover.name}}</h5>
+          <p id="previewText">{{nav.hover.blurb}}</p>
+        </div>
+      </div>
     </nav>
   </div>
 </header>
