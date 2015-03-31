@@ -238,7 +238,6 @@
         scope.checkSize = _.debounce( function(){
           scope.isSmall = window.matchMedia( "(max-width: 640px)" ).matches;
           scope.$apply();
-          console.log( "Did stuff." );
         }, 100 );
         $( window ).on( 'load resize', scope.checkSize );
       }
