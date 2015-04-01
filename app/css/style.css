@@ -6945,8 +6945,10 @@ audio {
   background-color: #EBEBEB;
   border: 1px solid #c2c2c2; }
 
-#navMenu li {
+#navMenu li, #subNavMenu li {
   border-bottom: 1px solid #c2c2c2; }
+#navMenu .active, #subNavMenu .active {
+  background-color: tan; }
 
 @media screen and (min-width: 641px) {
   #searchBar {

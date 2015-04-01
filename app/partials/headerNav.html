@@ -14,19 +14,9 @@
     </div>
   </div>
   <div class="row">
-    <nav class="small-12 columns hidden">
-      <ul class="no-bullet small-12 medium-6 large-3 columns" id="navMenu" ng-if="nav.showMenu">
-        <li ng-repeat='type in types'>
-          <a ng-href="/type/{{type.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = type">{{type.name}}</a>
-        </li>
-      </ul>
-      <div id="previewWindow" class="show-for-large-up large-9 columns" ng-if="nav.showMenu">
-        <img ng-src="{{nav.hover.image}}" class="small-6 columns" ></img>
-        <div class="small-6 columns">
-          <h5 id="previewHeader">{{nav.hover.name}}</h5>
-          <p id="previewText">{{nav.hover.blurb}}</p>
-        </div>
-      </div>
+    <nav class="small-12 columns hidden" ng-if="nav.showMenu">
+      <nav-menu-items></nav-menu-items>
+      <preview></preview>
     </nav>
   </div>
 </header>

@@ -255,18 +255,53 @@
       }
     };
   }]);
-  
+  fieldGuide.directive( 'navMenuItems', function(){
+    return {
+      restrict: 'E',
+      replace: false,
+      require: '^navMenu',
+      transclude: true,
+      templateUrl: '/app/partials/navMenuItems.html',
+      link: function( scope, element, attributes, NavController ){
+
+      }
+      
+    };
+  });
+      
   fieldGuide.directive( 'navMenu', function(){
     return {
       replace: true,
       restrict: 'E',
-      scope: '$scope',
+      transclude: true,
       templateUrl: '/app/partials/headerNav.html',
+      controller: 'NavController',
       link: function( scope, element, attributes ){
-        scope.types = types;
+        $( document ).on( 'click', function( event ){
+          if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) != 'menuIcon' ) {
+            scope.nav.showMenu = false;
+            scope.$apply();
+          }
+        });
       }
+      
     };
   });
+  
+  fieldGuide.directive( 'preview', function(){
+    return {
+      replace: true,
+      restrict: 'E',
+      transclude: true,
+      templateUrl: '/app/partials/previewWindow.html',
+      require: '^navMenu',
+      link: function( scope, element, attributes ){
+  
+      }
+      
+    };
+  });
+    
 
   /***Router***/
   
