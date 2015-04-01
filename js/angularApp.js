@@ -255,6 +255,18 @@
       }
     };
   }]);
+  
+  fieldGuide.directive( 'navMenu', function(){
+    return {
+      replace: true,
+      restrict: 'E',
+      scope: '$scope',
+      templateUrl: '/app/partials/headerNav.html',
+      link: function( scope, element, attributes ){
+        scope.types = types;
+      }
+    };
+  });
 
   /***Router***/
   
@@ -343,7 +355,7 @@
     });
   }]);
   
-  fieldGuide.controller( 'NavController', [ '$scope', 'equalize', function( $scope, equalize ){
+  fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
     $scope.types = types;
     $scope.habitats = habitats;
     $scope.navItems = _.map( $scope.types, function( type ){
