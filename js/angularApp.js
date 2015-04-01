@@ -296,7 +296,7 @@
       templateUrl: '/app/partials/previewWindow.html',
       require: '^navMenu',
       link: function( scope, element, attributes ){
-  
+    
       }
       
     };
