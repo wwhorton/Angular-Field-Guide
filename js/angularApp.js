@@ -263,7 +263,7 @@
       transclude: true,
       templateUrl: '/app/partials/navMenuItems.html',
       link: function( scope, element, attributes, NavController ){
-
+        scope.nav.type, scope.nav.hover = types[0];
       }
       
     };
@@ -283,6 +283,7 @@
             scope.$apply();
           }
         });
+
       }
       
     };
