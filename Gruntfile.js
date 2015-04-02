@@ -126,7 +126,15 @@ module.exports = function(grunt) {
 					base: '<%= app %>/',
 					open: true,
 					livereload: true,
-					hostname: '127.0.0.1'
+					hostname: '127.0.0.1',
+          middleware: function(connect, options, middlewares) {
+            var modRewrite = require('connect-modrewrite');
+
+            // enable Angular's HTML5 mode
+            middlewares.unshift(modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]']));
+
+            return middlewares;
+          }
 				}
 			},
 			dist: {
