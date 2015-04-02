@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= app %>/js/**/*.js'
+				'<%= app %>/js/*.js'
 			]
 		},
 
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd: '<%= app %>/images/',
-					src: ['**/*.{jpg,gif,svg,jpeg,png}'],
+					src: ['/*.{jpg,gif,svg,jpeg,png}'],
 					dest: '<%= dist %>/images/'
 				}]
 			}
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 		},
 
 		usemin: {
-			html: ['<%= dist %>/**/*.html', '!<%= app %>/bower_components/**'],
+			html: ['<%= dist %>/*.html', '!<%= app %>/bower_components/**'],
 			css: ['<%= dist %>/css/**/*.css'],
 			options: {
 				dirs: ['<%= dist %>']
@@ -104,11 +104,11 @@ module.exports = function(grunt) {
 				tasks: ['sass']
 			},
 			sass: {
-				files: '<%= app %>/scss/**/*.scss',
+				files: '<%= app %>/scss/*.scss',
 				tasks: ['sass']
 			},
 			livereload: {
-				files: ['<%= app %>/**/*.html', '!<%= app %>/bower_components/**', '<%= app %>/js/**/*.js', '<%= app %>/css/**/*.css', '<%= app %>/images/**/*.{jpg,gif,svg,jpeg,png}'],
+				files: ['<%= app %>*.html', '!<%= app %>/bower_components/', '<%= app %>/js/*.js', '<%= app %>/css/*.css', '<%= app %>/images/*.{jpg,gif,svg,jpeg,png}'],
 				options: {
 					livereload: true
 				}
@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 			app: {
 				options: {
 					port: 9000,
-					base: '<%= app %>/',
+					base: '<%= app %>',
 					open: true,
 					livereload: true,
 					hostname: '127.0.0.1',
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
             var modRewrite = require('connect-modrewrite');
 
             // enable Angular's HTML5 mode
-            middlewares.unshift(modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]']));
+            middlewares.unshift(modRewrite(['!\\.html|\\.js|\\.svg|\\.jpg|\\.woff|\\.ttf|\\.eot|\\.css|\\.png$ /index.html [L]']));
 
             return middlewares;
           }
