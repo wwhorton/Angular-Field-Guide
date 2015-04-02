@@ -4,81 +4,39 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chesapeake Bay Program - Field Guide</title>
+    <base href="/">
     <!-- build:css css/libraries.min.css -->
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.css">
-	<link rel="stylesheet" href="/vendor/fonts/foundation-icons/foundation-icons.css" />
-    <!-- bower:css -->
-    <!-- endbower -->
+    <link rel="stylesheet" href="/vendor/fonts/foundation-icons/foundation-icons.css" />
     <!-- endbuild -->
     <!-- build:css css/app.min.css -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- endbuild -->
-    <!-- build:js js/vendor/modernizr.min.js -->
-    <script src="/vendor/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-    <base href="/">
+    
     <script src="//use.typekit.net/etk6aiv.js"></script>
     <script>try{Typekit.load();}catch(e){}</script>
   </head>
   <body>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-    <script src="/js/angularApp.js"></script>
+    <ng-include src=" '/partials/headerNav.html' "></ng-include>
+    <div ng-view></div>
+    <ng-include src=" '/partials/footer.html' "></ng-include>
+      
+    <!-- build:js js/vendor/modernizr.min.js -->
+    <script src="/vendor/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/vendor/libraries.min.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="/bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
     <script src="/bower_components/underscore/underscore-min.js"></script>
     <script src="/bower_components/angular-foundation/mm-foundation.js"></script>
     <script src="/bower_components/angular-foundation/mm-foundation-tpls.js"></script>
-    
-    <ng-include src=" '/partials/headerNav.html' "></ng-include>
-
-    <div ng-view></div>
-   
-    <ng-include src=" '/partials/footer.html' "></ng-include>
-
-    <!-- build:js js/vendor/libraries.min.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/fastclick/lib/fastclick.js"></script>
-    <script src="bower_components/jquery.cookie/jquery.cookie.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-	
-    <script type="text/javascript" src="/vendor/slick.js/slick/slick.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('.slider').slick({
-          dots: true
-        });
-      });
-    </script>
-    <script type="text/javascript">
-      $( document ).ready( function() {
-        $( '#browseMenu' ).val( "#panel1a" );
-      }); 
-      $( '#browseMenu' ).change( function() {
-        var target = $( this ).val();
-        $( "#browse" ).find( ".active" ).removeClass( 'active' );
-        $( target ).addClass( 'active' );
-      });
-    </script>
-    
-    <script type="text/javascript">
-      $( document ).ready( function() {
-        $( '#sortMenu' ).val( "#panel1" );
-      });
-      $( '#sortMenu' ).change( function() {
-        var target = $( this ).val();
-        $( "#sort" ).find( ".active" ).removeClass( 'active' );
-        $( target ).addClass( 'active' );
-      });
-      $( '.accordion' ).on( 'toggled', function( event, accordion ){
-        $( this ).find( 'li > a > i' ).text( '+' );
-        $( this ).find( 'li.active > a > i' ).text( '-' );
-      });
-    </script>
-
-    <!-- build:js /vendor/foundation.min.js -->
+    <!-- build:js vendor/foundation.min.js -->
     <script src="/vendor/foundation/js/foundation/foundation.js"></script>
     <script src="/vendor/foundation/js/foundation/foundation.abide.js"></script>
     <script src="/vendor/foundation/js/foundation/foundation.accordion.js"></script>
@@ -98,7 +56,9 @@
     <script src="/vendor/foundation/js/foundation/foundation.topbar.js"></script>
     <!-- endbuild -->
     <!-- build:js js/app.min.js -->
+    <script src="js/angularApp.js"></script>
     <script src="js/app.js"></script>
     <!-- endbuild -->
+
   </body>
 </html>

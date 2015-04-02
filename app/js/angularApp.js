@@ -1,3 +1,5 @@
+'use strict';
+
 (function(){
   
 /***Globals***/
@@ -7,46 +9,46 @@
   var types = [ 
       { 'name' : 'Algae',
         'image' : '/images/algae.jpg',
-        'blurb' : "Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow."
+        'blurb' : 'Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow.'
       },
       { 'name' : 'Bay Grasses (SAV)',
         'subtypes' : [ 'Low Salinity', 'Medium Salinity', 'High Salinity' ],
         'image' : '/images/Bay Grass.jpg',
-        'blurb' : "Bay grasses - also known as submerged aquatic vegetation or SAV - are plants that grow underwater in the Chesapeake Bay's shallows. More than 16 species of bay grasses grow in the Bay and its tributaries."
+        'blurb' : 'Bay grasses - also known as submerged aquatic vegetation or SAV - are plants that grow underwater in the Chesapeake Bay\'s shallows. More than 16 species of bay grasses grow in the Bay and its tributaries.'
       },
       { 'name' : 'Birds',
         'subtypes' : [ 'Raptors', 'Other', 'Waterfowl', 'Wading', 'Sea & Shorebirds' ],
         'image' : '/images/Birds.jpg',
-        'blurb' : "Hundreds of species of birds live in the Chesapeake Bay watershed. Some birds live here year-round, while others migrate to the Bay region to feed or nest."
+        'blurb' : 'Hundreds of species of birds live in the Chesapeake Bay watershed. Some birds live here year-round, while others migrate to the Bay region to feed or nest.'
       },
       { 'name' : 'Fish',
         'subtypes' : [ 'Freshwater Fish', 'Estuarine Fish', 'Saltwater Fish' ],
         'image' : '/images/Fish.jpg',
-        'blurb' : "Approximately 350 species of fish live in the Chesapeake Bay. Some fish are year-round residents, while others swim into the Bay from the ocean to feed, reproduce or find shelter."
+        'blurb' : 'Approximately 350 species of fish live in the Chesapeake Bay. Some fish are year-round residents, while others swim into the Bay from the ocean to feed, reproduce or find shelter.'
       },
       { 'name' : 'Insects',
         'image' : '/images/Insects.jpg',
-        'blurb' : "Thousands of species of insects live in the Chesapeake Bay region. Insects are found in nearly every habitat, from deep woods to sandy beaches to our own backyards. Some insects live on the land, while others spend most of their time in the water."
+        'blurb' : 'Thousands of species of insects live in the Chesapeake Bay region. Insects are found in nearly every habitat, from deep woods to sandy beaches to our own backyards. Some insects live on the land, while others spend most of their time in the water.'
       },
       { 'name' : 'Invertebrates', 
         'subtypes' : [ 'Arthropods', 'Mollusks', 'Other Invertebrates' ],
         'image' : '/images/Invertebrates.jpg',
-        'blurb' : "Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay."
+        'blurb' : 'Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay.'
       },
       { 'name' : 'Mammals',
         'subtypes' : [ 'Aquatic', 'Semi-Aquatic', 'Land', 'Flying' ],
         'image' : '/images/Mammals.jpg',
-        'blurb' : "Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to bobcats, dolphins and humans."
+        'blurb' : 'Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to bobcats, dolphins and humans.'
       },
       { 'name' : 'Plants & Trees',
         'subtypes' : [ 'Flowers', 'Trees & Shrubs', 'Aquatic & Wetland Plants' ],
         'image' : '/images/Plants.jpg',
-        'blurb' : "More than 2,700 types of plants grow throughout the Chesapeake Bay watershed. Plants grow in nearly every habitat: from upland forests to the Bay's shoreline to our own backyards."
+        'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed. Plants grow in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards.'
       },
       { 'name' : 'Reptiles & Amphibians',
         'subtypes' : [ 'Amphibians', 'Reptiles' ],
         'image' : '/images/Reptiles.jpg',
-        'blurb' : "Reptiles and amphibians are cold-blooded vertebrates. They are sometimes called herps."
+        'blurb' : 'Reptiles and amphibians are cold-blooded vertebrates. They are sometimes called herps.'
       }
     ];
 
@@ -83,21 +85,21 @@
         promise = $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK');
       }
       return promise;
-    }
+    };
     return getEntries;
   }]);
   
   fieldGuide.factory( 'renderHtml', [ '$sce', function( $sce ){
     var renderHtml = function( raw_html ){
       return $sce.trustAsHtml( raw_html );
-    }
+    };
     return renderHtml;
   }]);
   
   fieldGuide.factory( 'renderSrc', [ '$sce', function( $sce ){
     var renderSrc = function( raw_html ){
       return $sce.trustAsResourceUrl( raw_html );
-    }
+    };
     return renderSrc;
   }]);
   
@@ -106,7 +108,7 @@
       var max = critters.length;
       var index = Math.random() * ( max );
       return critters[ Math.round( index ) ];
-    }
+    };
     return getCritter;
   }); 
   
@@ -129,12 +131,14 @@
       });    
       critter.buttons.subtype = _.find( critter.categories, function( category ){
         var results;
+        function matchCategory( subtype ){
+          if( subtype === category.category_name ){
+            results = true;
+          }
+        }
+        
         for( var i = 0; i < types.length; i++ ){
-            _.compact( types[i].subtypes ).forEach( function( subtype ){
-              if( subtype === category.category_name ){
-                results = true;
-              }
-            });
+            _.compact( types[i].subtypes ).forEach( matchCategory );
         }
         return results;
       });
@@ -198,7 +202,7 @@
     };
   });
   
-  fieldGuide.directive( 'entryBlock', function( renderHtml, equalize ) {
+  fieldGuide.directive( 'entryBlock', function( renderHtml ) {
     return {
       restrict: 'AE',
       replace: true,
@@ -213,17 +217,17 @@
   fieldGuide.directive( 'searchBar', function( $location ){
     return {
       replace: true,
-      templateUrl: '/app/partials/search-bar.html',
-      link: function( scope, element, attributes ){
-        $( '#searchIcon' ).on( 'click', function( e ){
-          if( !$( "#searchButton" ).hasClass( "disabled" ) ){
+      templateUrl: '/partials/search-bar.html',
+      link: function( scope ){
+        $( '#searchIcon' ).on( 'click', function(){
+          if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
             var thePath = '/search/' + scope.search.title;
             $location.path( thePath );
           }
         scope.$apply();
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
-          if( event.which == '13' ){
+          if( event.which === '13' ){
             $( '#searchIcon' ).click();
           }
         });
@@ -234,9 +238,9 @@
   fieldGuide.directive( 'smallMediaQuery', function(){
     return {
       restrict: 'A',
-      link: function( scope, element, attributes ){
+      link: function( scope ){
         scope.checkSize = _.debounce( function(){
-          scope.isSmall = window.matchMedia( "(max-width: 640px)" ).matches;
+          scope.isSmall = window.matchMedia( '(max-width: 640px)' ).matches;
           scope.$apply();
         }, 100 );
         $( window ).on( 'load resize', scope.checkSize );
@@ -250,7 +254,7 @@
       restrict: 'E',
       templateUrl: '/partials/tags.html',
       scope: { tagEntry: '=entry' },
-      link: function( scope, element, attributes ){
+      link: function( scope ){
         makeButtons( scope.tagEntry );
       }
     };
@@ -326,7 +330,7 @@
   
   fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
     $scope.selection = { 
-                      'subtype' : ( !$routeParams.subtype ) ? "" : $routeParams.subtype ,
+                      'subtype' : ( !$routeParams.subtype ) ? '' : $routeParams.subtype ,
                       'type' : $routeParams.type,
                       'options' : _.find( types, function( type ){
                                     return type.name === $routeParams.type;
@@ -343,7 +347,7 @@
     });
   }]);
   
-  fieldGuide.controller( 'NavController', [ '$scope', 'equalize', function( $scope, equalize ){
+  fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
     $scope.types = types;
     $scope.habitats = habitats;
     $scope.navItems = _.map( $scope.types, function( type ){
