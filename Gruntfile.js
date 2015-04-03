@@ -108,7 +108,7 @@ module.exports = function(grunt) {
 				tasks: ['sass']
 			},
 			livereload: {
-				files: ['<%= app %>*.html', '!<%= app %>/bower_components/', '<%= app %>/js/*.js', '<%= app %>/css/*.css', '<%= app %>/images/*.{jpg,gif,svg,jpeg,png}'],
+				files: ['<%= app %>/*.html', '!<%= app %>/bower_components/', '<%= app %>/js/*.js', '<%= app %>/css/*.css', '<%= app %>/images/*.{jpg,gif,svg,jpeg,png}'],
 				options: {
 					livereload: true
 				}
@@ -166,22 +166,21 @@ module.exports = function(grunt) {
 					'modernizr',
 					'font-awesome',
 					'jquery-placeholder',
-					'foundation'
+					'/foundation'
 				]
 			}
 		}
 
 	});
 
-	
 	grunt.registerTask('compile-sass', ['sass']);
 	grunt.registerTask('bower-install', ['wiredep']);
 	
-	grunt.registerTask('default', ['compile-sass', 'bower-install', 'connect:app', 'watch']);
+	grunt.registerTask('default', ['bower-install', 'compile-sass', 'connect:app', 'watch']);
 	grunt.registerTask('validate-js', ['jshint']);
 	grunt.registerTask('server-dist', ['connect:dist']);
 	
-	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin']); //'newer:imagemin',
+	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin', 'newer:imagemin']);
 
   grunt.loadNpmTasks('grunt-karma');
 };
