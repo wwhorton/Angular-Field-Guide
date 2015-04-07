@@ -403,7 +403,7 @@
       return type.name;
     });
     $scope.navItems = $scope.navItems.concat( habitats );
-    
+
   }]);
   
   fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
