@@ -1,0 +1,14 @@
+<ul class="no-bullet small-6 medium-3 large-2 columns" id="navMenu" ng-show="nav.showMenu">
+  <li ng-repeat='type in types' ng-class="{ active: nav.type == type }">
+    <a ng-click="nav.type = type" ng-mouseover="nav.hover = type">{{type.name}}</a>
+  </li>
+</ul>
+<ul class="no-bullet small-6 medium-3 large-2 large-pull-8 columns" id="subNavMenu" ng-show="nav.showMenu && nav.type">
+  <li>
+    <a ng-href="/type/{{nav.type.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = type">All {{nav.type.name}}</a>
+  </li>
+  <li ng-repeat='subtype in nav.type.subtypes'>
+    <a ng-href="/type/{{nav.type.name}}/subtype/{{subtype}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = subtype">{{subtype}}</a>
+  </li>
+</ul>
+

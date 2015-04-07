@@ -8,7 +8,11 @@
 		</div> <!-- end row -->
     <div class="row">
 			<div class="small-12 columns">
-        <tags entry="entry"></tags>
+        <ul class="breadcrumbs">
+          <li><a href="/type/{{entry.buttons.type}}">{{entry.buttons.type}}</a></li>
+          <li><a href="/type/{{entry.buttons.type}}/subtype/{{entry.buttons.subtype}}">{{entry.buttons.subtype}}</a></li>
+          <li><a href="/entry/{{entry.title}}">{{entry.title}}</a></li>
+        </ul>
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
 		<div class="row" id="quickFacts">

@@ -3,7 +3,8 @@
     <form>
       <div class="row">
         <div class="small-12 columns" ng-if="selection.type">
-          <h3 class="small-3 columns"><strong>Browse by type:</strong></h3>
+          <h3>{{selection.type}}</h3>
+          <h3 class="small-3 columns" ng-if="selection.options"><strong>Browse by type:</strong></h3>
           <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" ng-options="option for option in selection.options track by option">
             <option value="" >All</option>
             <!--<option ng-repeat="option in selection.options" value="{{option}}">{{option}}</option>-->
