@@ -10,7 +10,7 @@
         <a class="small-12 columns" ng-href="/type/{{category.name}}">All</a>
       </li>
       <li ng-repeat="subtype in category.subtypes">
-        <a class="small-12 columns" ng-href="/type/{{category.name}}/subtype/{{subtype}}">{{subtype}}</a>
+        <a class="small-12 columns" ng-href="/type/{{category.name}}/subtype/{{subtype.name}}">{{subtype.name}}</a>
       </li>
     </ul>
   </accordion-group>
