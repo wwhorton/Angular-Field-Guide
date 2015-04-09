@@ -367,7 +367,7 @@
       }
     };
   }]);
-  fieldGuide.directive( 'navMenuItems', function(){
+  fieldGuide.directive( 'navMenuItems', [ 'equalize', function( equalize ){
     return {
       restrict: 'E',
       replace: false,
@@ -377,11 +377,11 @@
       link: function( scope, element, attributes, NavController ){
         scope.nav.hover = types[0];
         scope.nav.type = types[0];
-        
+        equalize();
       }
       
     };
-  });
+  }]);
       
   fieldGuide.directive( 'navMenu', function(){
     return {

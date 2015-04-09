@@ -100,6 +100,12 @@ audio {
   background-color: #EBEBEB;
   border: 1px solid #c2c2c2;
 }
+#navMenu {
+  padding-right: 0px;
+}
+#subNavMenu {
+ // padding-left: 0px;
+}
 #navMenu, #subNavMenu {
   li {
     border-bottom: 1px solid #c2c2c2;
@@ -184,4 +190,11 @@ audio {
 }
 #quickFacts {
   margin-top: 15px;
+}
+#previewWindow {
+  background-color: #21578A;
+  padding-left: 5px;
+  h5, p {
+    color: #FFF;
+  }
 }
