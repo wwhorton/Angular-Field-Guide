@@ -403,6 +403,8 @@
         $( document ).on( 'click', function( event ){
           if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) != 'menuIcon' ) {
             scope.nav.showMenu = false;
+            $( '#menuIcon' ).removeClass( 'fi-x' );
+            $( '#menuIcon' ).addClass( 'fi-list' );
             scope.$apply();
           }
         });

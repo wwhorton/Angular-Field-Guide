@@ -105,7 +105,10 @@ audio {
     border-bottom: 1px solid #c2c2c2;
   }
   .active {
-    background-color: tan;
+    background-color: #21578A;
+    a {
+      color: #FFF;
+    }
   }
 }
 #searchBar {
