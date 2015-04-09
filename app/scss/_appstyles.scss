@@ -87,8 +87,12 @@ audio {
   color: #666;
 }
 #searchIcon:hover, #searchToggle:hover {
-    color: #333;
-  }
+  color: #333;
+}
+
+.disabled #searchIcon:hover, .disabled #searchToggle:hover {
+  color: #666;
+}
 #searchToggle {
   cursor: pointer;  
 }
