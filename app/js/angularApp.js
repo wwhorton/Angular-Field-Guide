@@ -391,6 +391,15 @@
       templateUrl: '/partials/headerNav.html',
       controller: 'NavController',
       link: function( scope, element, attributes ){
+        $( '#menuIcon' ).click( function(){
+          if( $( this ).hasClass( 'fi-list' ) ) {
+            $( this ).removeClass( 'fi-list' );
+            $( this ).addClass( 'fi-x' );
+          } else {
+            $( this ).removeClass( 'fi-x' );
+            $( this ).addClass( 'fi-list' );
+          }
+        });
         $( document ).on( 'click', function( event ){
           if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) != 'menuIcon' ) {
             scope.nav.showMenu = false;
