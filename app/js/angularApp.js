@@ -379,7 +379,6 @@
         scope.nav.type = types[0];
         equalize();
       }
-      
     };
   }]);
       
@@ -481,8 +480,10 @@
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
+      equalize();
+      console.log( "Resolved?" );
     });
-    equalize();
+    //equalize();
   }]);
   
   fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
@@ -491,9 +492,11 @@
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
+      equalize();
+      console.log( "Resolved?" );
     });
     $scope.habitat.title = $routeParams.habitat;
-    equalize();
+    //equalize();
   }]);
   
   fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
