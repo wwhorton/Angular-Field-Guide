@@ -15,6 +15,12 @@ iframe {
       width: 30px;
     }
 }
+.collapse-first {
+  padding-left: 0px;
+}
+.collapse-last {
+  padding-right: 0px;
+}
 
 .footer, #subFooter {
   max-width: none;
@@ -30,6 +36,18 @@ iframe {
   }
   [class*="fi-"] {
     color: #c2c2c2;
+  }
+  ul {
+    list-style: none;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+  }
+  .inline-list li {
+    font-size: 2rem;
+  }
+  .inline-list li:first-child {
+    margin-left: 0px;
   }
 }
 
