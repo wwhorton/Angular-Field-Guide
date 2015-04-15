@@ -426,7 +426,16 @@
       
     };
   });
-    
+  
+  fieldGuide.directive( 'howSoonIsNow', function(){
+    return {
+      replace: false,
+      restrict: 'A',
+      link: function( scope ){
+        scope.now = $.now();
+      }
+    };
+  });
   /***Router***/
   
   fieldGuide.config(['$routeProvider', '$locationProvider', 
@@ -544,6 +553,7 @@
       });
       makeButtons( $scope.entry );
     });
+
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
