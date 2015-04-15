@@ -23,7 +23,7 @@
       </li>
     </ul>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
-      <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}">
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}:true">
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>
