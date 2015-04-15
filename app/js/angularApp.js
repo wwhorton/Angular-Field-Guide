@@ -218,8 +218,42 @@
       return critters[ Math.round( index ) ];
     };
     return getCritter;
-  }); 
+  });
   
+  fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', 'arrayByArrayFilter', function( getEntries, matchCategory, arrayByArrayFilter ){
+    return function( entries, critter ){
+      var categoryToMatch = _.find( critter.categories, function( category ){
+        var result;
+        for( var i = 0; i < types.length; i++ ){
+          if( types[i].subtypes ){
+            types[i].subtypes.forEach( function( item ){
+              if( matchCategory( item.name, category.category_name ) ){
+                result = true;
+              }
+            });
+          }
+        }
+        return result;
+      }).category_name;
+      var filtered = [];
+      entries.forEach( function( entry ){
+        entry.categories.forEach( function( category ){
+          if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() ){
+            filtered.push( entry );
+          }
+        });
+      });
+      return filtered;
+    };  
+  }]);
+  
+  fieldGuide.factory( 'matchCategory', function(){
+    return function( cat, category ){
+          if( cat === category ){
+            return true;
+          }
+    };
+  });  
   fieldGuide.factory( 'makeButtons', function(){
     var makeButtons = function( critter ){
       critter.buttons = {};
@@ -287,7 +321,7 @@
   fieldGuide.filter( 'arrayByArray', function() {
     return function( array1, criteria ){
       _.each( array1, function( array1Item ){
-        return array1Item.category_name === criteria ;
+        return array1Item.category_name.toUpperCase() === criteria.toUpperCase() ;
       });
     };
   });
@@ -423,10 +457,8 @@
       link: function( scope, element, attributes ){
     
       }
-      
     };
   });
-  
   fieldGuide.directive( 'howSoonIsNow', function(){
     return {
       replace: false,
@@ -437,7 +469,6 @@
     };
   });
   /***Router***/
-  
   fieldGuide.config(['$routeProvider', '$locationProvider', 
     function($routeProvider, $locationProvider) {
       $routeProvider.
@@ -502,7 +533,6 @@
     getEntries().then( function( result ){
       $scope.entries = result.data;
       equalize();
-      console.log( "Resolved?" );
     });
     $scope.habitat.title = $routeParams.habitat;
     //equalize();
@@ -544,20 +574,19 @@
     });
   }]);
   
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'makeButtons', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, makeButtons ){
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
       $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
         return category.category_name;
       });
+      $scope.relatedCritters = relatedCritters( $scope.entries, $scope.entry ) ;
       makeButtons( $scope.entry );
     });
-
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
-
 	}]);
   
 })();
