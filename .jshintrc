@@ -14,5 +14,6 @@
 	"globals": {
 		"jQuery": false,
 		"$": false
-	}
+	},
+  "predef": [ "angular", "_" ]
 }

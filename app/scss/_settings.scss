@@ -449,8 +449,8 @@ $include-html-global-classes: $include-html-classes;
 // We use these to control button border and hover styles.
  $button-border-width: 1px;
  $button-border-style: solid;
- $button-bg-color: #ebebeb;
- $button-bg-hover: $button-bg-color;
+ $button-bg-color: #666;
+ $button-bg-hover: #333;
 // $button-border-color: #c6c6c6;
 // $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
 // $secondary-button-border-color: $secondary-button-bg-hover;
