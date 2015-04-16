@@ -22,8 +22,13 @@
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>
-    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer ng-if="selection.subtype.length > 0 && selection.subtype !== ''">
       <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}:true">
+        <entry-block entry="entry"></entry-block>
+      </li>
+    </ul>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer ng-if="selection.subtype === ''">
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}">
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>

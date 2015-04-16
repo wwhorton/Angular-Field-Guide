@@ -55,13 +55,7 @@ module.exports = function(grunt) {
 					cwd:'<%= app %>/',
 					src: ['fonts/**', '*.html', '!**/*.scss', 'bower_components/**', 'js/**', 'partials/**', 'images/**'],
 					dest: '<%= dist %>/'
-				} , {
-					expand: true,
-					flatten: true,
-					src: ['<%= app %>/bower_components/font-awesome/fonts/**'],
-					dest: '<%= dist %>/fonts/',
-					filter: 'isFile'
-				} ]
+				}]
 			},
 		},
 
