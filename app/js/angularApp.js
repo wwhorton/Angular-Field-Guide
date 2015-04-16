@@ -8,7 +8,7 @@
 
   var types = [ 
       { 'name' : 'Algae',
-        'image' : '/images/algae.jpg',
+        'image' : '/images/Algae.jpg',
         'blurb' : 'Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow.'
       },
       { 'name' : 'Bay Grasses (SAV)',
