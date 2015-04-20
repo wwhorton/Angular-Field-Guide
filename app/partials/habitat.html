@@ -12,7 +12,7 @@
 <div class="row">
   <div class="panel small-12 columns">
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
-      <li ng-repeat="entry in entries | filter:{categories:{category_name:habitat.title}}" >
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:habitat.title}} | orderBy:'-title':true " >
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>
