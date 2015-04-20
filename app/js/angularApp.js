@@ -399,8 +399,11 @@
       restrict: 'E',
       templateUrl: '/partials/tags.html',
       scope: { tagEntry: '=entry' },
-      link: function( scope ){
+      link: function( scope, element ){
         makeButtons( scope.tagEntry );
+        element.on( 'click', function(){
+          $( 'html' ).scrollTop( 0 );
+        });
       }
     };
   }]);
