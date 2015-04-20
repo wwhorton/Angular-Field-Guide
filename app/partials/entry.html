@@ -1,18 +1,10 @@
 <div class="row" ng-if="entry">
+<ng-include src=" '/partials/breadcrumbs.html' "></ng-include>
 	<div class="small-12 medium-8 large-8 columns">
 	<h2 style="margin-bottom: 0px"><strong>{{entry.title}}</strong></h2><h2 style="font-weight: normal; margin-top: 0px"><em>{{entry.fieldguide_scientific_name}}</em></h2>
 		<div class="row collapse">
 			<div class="small-12 columns">
         <img style="margin-bottom: 15px;" ng-src="{{entry.fieldguide_image}}">
-			</div> <!-- end columns -->
-		</div> <!-- end row -->
-    <div class="row">
-			<div class="small-12 columns">
-        <ul class="breadcrumbs">
-          <li><a href="/type/{{entry.buttons.type}}">{{entry.buttons.type}}</a></li>
-          <li ng-if="entry.buttons.subtype"><a href="/type/{{entry.buttons.type}}/subtype/{{entry.buttons.subtype}}">{{entry.buttons.subtype}}</a></li>
-          <li><a href="/entry/{{entry.title}}">{{entry.title}}</a></li>
-        </ul>
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
 		<div class="row" id="quickFacts">
