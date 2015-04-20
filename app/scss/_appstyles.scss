@@ -200,6 +200,9 @@ audio {
   float: right;
   display:inline;
 }
+.blockContent p:not(:first-child), .blockContent :not(p){
+  display: none;
+}
 
 [id*="panel_"], [id*="panel_"] ul {
   margin-left: 0px;

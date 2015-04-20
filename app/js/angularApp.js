@@ -364,7 +364,7 @@
       scope: { thisEntry: '=entry' },
       templateUrl: '/partials/entry-block.html',
       link: function( scope ){
-        scope.fieldguide_homepageblurb = renderHtml( scope.fieldguide_homepageblurb );
+        scope.thisEntry.fieldguide_description = renderHtml( scope.thisEntry.fieldguide_description );
       }
     };
   });
