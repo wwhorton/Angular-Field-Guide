@@ -52,10 +52,22 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
+          flatten: true,
+					cwd:'<%= app %>/',
+					src: ['vendor/fonts/foundation-icons/foundation-icons.*', '!vendor/fonts/foundation-icons/foundation-icons.css'],
+					dest: '<%= dist %>/css/'
+				} , {
+					expand: true,
 					cwd:'<%= app %>/',
 					src: ['fonts/**', '*.html', '!**/*.scss', 'bower_components/**', 'js/**', 'partials/**', 'images/**'],
 					dest: '<%= dist %>/'
-				}]
+				} , {
+					expand: true,
+					flatten: true,
+					src: ['<%= app %>/bower_components/font-awesome/fonts/**'],
+					dest: '<%= dist %>/fonts/',
+					filter: 'isFile'
+				} ]
 			},
 		},
 

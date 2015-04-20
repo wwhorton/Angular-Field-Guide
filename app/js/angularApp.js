@@ -37,7 +37,7 @@
           'blurb' : ''
           },
           {
-          'name' : 'Other',
+          'name' : 'Other ',
           'image' : '',
           'blurb' : ''
           },
@@ -220,20 +220,23 @@
     return getCritter;
   });
   
-  fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', 'arrayByArrayFilter', function( getEntries, matchCategory, arrayByArrayFilter ){
+  fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', function( getEntries, matchCategory ){
     return function( entries, critter ){
       var categoryToMatch = _.find( critter.categories, function( category ){
-        var result;
-        for( var i = 0; i < types.length; i++ ){
-          if( types[i].subtypes ){
-            types[i].subtypes.forEach( function( item ){
+        var relatedResult;
+        function matchSubtypes( subtypeArray ){
+          if( subtypeArray ){
+            subtypeArray.forEach( function( item ){
               if( matchCategory( item.name, category.category_name ) ){
-                result = true;
+                return true;
               }
             });
           }
         }
-        return result;
+        for( var i = 0; i < types.length; i++ ){
+          relatedResult = matchSubtypes( types[i].subtypes );
+        }
+        return relatedResult;
       }).category_name;
       var filtered = [];
       entries.forEach( function( entry ){
@@ -344,7 +347,7 @@
     };
   });
   
-  fieldGuide.directive( 'entryBlock', function( renderHtml, equalize ) {
+  fieldGuide.directive( 'entryBlock', function( renderHtml ) {
     return {
       restrict: 'AE',
       replace: true,
@@ -360,16 +363,16 @@
     return {
       replace: true,
       templateUrl: '/partials/search-bar.html',
-      link: function( scope, element, attributes ){
-        $( '#searchIcon' ).on( 'click', function( e ){
-          if( !$( "#searchButton" ).hasClass( "disabled" ) ){
+      link: function( scope ){
+        $( '#searchIcon' ).on( 'click', function(){
+          if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
             var thePath = '/search/' + scope.search.title;
             $location.path( thePath );
           }
         scope.$apply();
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
-          if( event.which == '13' ){
+          if( event.which === '13' ){
             $( '#searchIcon' ).click();
           }
         });
@@ -380,9 +383,9 @@
   fieldGuide.directive( 'smallMediaQuery', function(){
     return {
       restrict: 'A',
-      link: function( scope, element, attributes ){
+      link: function( scope ){
         scope.checkSize = _.debounce( function(){
-          scope.isSmall = window.matchMedia( "(max-width: 640px)" ).matches;
+          scope.isSmall = window.matchMedia( '(max-width: 640px)' ).matches;
           scope.$apply();
         }, 100 );
         $( window ).on( 'load resize', scope.checkSize );
@@ -396,7 +399,7 @@
       restrict: 'E',
       templateUrl: '/partials/tags.html',
       scope: { tagEntry: '=entry' },
-      link: function( scope, element, attributes ){
+      link: function( scope ){
         makeButtons( scope.tagEntry );
       }
     };
@@ -408,7 +411,7 @@
       require: '^navMenu',
       transclude: true,
       templateUrl: '/partials/navMenuItems.html',
-      link: function( scope, element, attributes, NavController ){
+      link: function( scope ){
         scope.nav.hover = types[0];
         scope.nav.type = types[0];
         equalize();
@@ -423,7 +426,7 @@
       transclude: true,
       templateUrl: '/partials/headerNav.html',
       controller: 'NavController',
-      link: function( scope, element, attributes ){
+      link: function( scope ){
         $( '#menuIcon' ).click( function(){
           if( $( this ).hasClass( 'fi-list' ) ) {
             $( this ).removeClass( 'fi-list' );
@@ -434,7 +437,7 @@
           }
         });
         $( document ).on( 'click', function( event ){
-          if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) != 'menuIcon' ) {
+          if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) {
             scope.nav.showMenu = false;
             $( '#menuIcon' ).removeClass( 'fi-x' );
             $( '#menuIcon' ).addClass( 'fi-list' );
@@ -453,10 +456,7 @@
       restrict: 'E',
       transclude: true,
       templateUrl: '/partials/previewWindow.html',
-      require: '^navMenu',
-      link: function( scope, element, attributes ){
-    
-      }
+      require: '^navMenu'
     };
   });
   fieldGuide.directive( 'howSoonIsNow', function(){
@@ -521,9 +521,7 @@
       $scope.entries = result.data;
       $scope.critter = randomCritter( $scope.entries );
       equalize();
-      console.log( "Resolved?" );
     });
-    //equalize();
   }]);
   
   fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
@@ -535,7 +533,6 @@
       equalize();
     });
     $scope.habitat.title = $routeParams.habitat;
-    //equalize();
   }]);
   
   fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
