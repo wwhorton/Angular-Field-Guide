@@ -220,29 +220,29 @@
     return getCritter;
   });
   
-  fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', function( getEntries, matchCategory ){
+    fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', function( getEntries, matchCategory ){
     return function( entries, critter ){
+      var filtered = [];
       var categoryToMatch = _.find( critter.categories, function( category ){
-        var relatedResult;
+        var result;
         function matchSubtypes( subtypeArray ){
-          if( subtypeArray ){
-            subtypeArray.forEach( function( item ){
-              if( matchCategory( item.name, category.category_name ) ){
-                return true;
-              }
-            });
-          }
+          subtypeArray.forEach( function( item ){
+            if( matchCategory( item.name, category.category_name ) ){
+            result = true;
+            }
+          });
         }
         for( var i = 0; i < types.length; i++ ){
-          relatedResult = matchSubtypes( types[i].subtypes );
+          if( types[i].subtypes ){
+            matchSubtypes( types[i].subtypes );
+          }
         }
-        return relatedResult;
-      }) || '';
-      categoryToMatch = categoryToMatch.category_name || '';
-      var filtered = [];
+        return result;
+      }).category_name;
+      
       entries.forEach( function( entry ){
         entry.categories.forEach( function( category ){
-          if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() && categoryToMatch.category_name.typeOf !== undefined ){
+          if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() ){
             filtered.push( entry );
           }
         });
@@ -321,6 +321,12 @@
         }
       });
     };
+  });
+  
+  fieldGuide.filter( 'shuffle', function(){
+    return function( array ){
+      return _.shuffle( array );
+    }
   });
 
   fieldGuide.filter( 'entryByTitle', function() {
@@ -451,7 +457,7 @@
         });
         $( document ).on( 'click', function( event ){
           if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) {
-            if( scope.nav.typeOf !== undefined ){ 
+            if( scope.nav ){ 
               scope.nav.showMenu = false;
               $( '#menuIcon' ).removeClass( 'fi-x' );
               $( '#menuIcon' ).addClass( 'fi-list' );
@@ -593,7 +599,7 @@
       $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
         return category.category_name;
       });
-      $scope.relatedCritters = relatedCritters( $scope.entries, $scope.entry ) ;
+      $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
       makeButtons( $scope.entry );
     });
     $scope.title = $routeParams.title;

@@ -74,19 +74,7 @@
 
 			</div> <!-- end columns -->
 		</div> <!-- end row -->
-    <div class="row" ng-if="relatedCritters">
-      <div class="panel small-12 columns">
-        <h2>Related Critters</h2>
-        <ul class="small-block-grid-1 medium-block-grid-2">
-          <li class="accent-white" ng-repeat="relatedEntry in relatedCritters" ng-if="relatedEntry.title != entry.title">
-            <img ng-src="{{relatedEntry.fieldguide_image}}" src="http://placehold.it/320x200" />
-            <h3><a ng-href="/entry/{{relatedEntry.title}}">{{relatedEntry.title}}</a></h3>
-            <h3><em>{{relatedEntry.scientific_name}}</em></h3>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <a class="button radius" ng-href="/">Back to Field Guide</a>
+    
 	</div> <!-- end left columns -->
 
 	<div class="hide-for-small-only medium-4 large-4 columns">
@@ -111,5 +99,16 @@
       <h3 ng-if="entry.fieldguide_conservation_status">Status</h3>
       <div ng-bind-html="renderHtml( entry.fieldguide_conservation_status )"></div>
     </div>
+    <div ng-if="relatedCritters.length > 0" class="panel">
+      <h2>Related Critters</h2>
+      <ul class="no-bullet">
+        <li class="accent-white"  ng-if="relatedEntry.title != entry.title" ng-repeat="relatedEntry in relatedCritters | limitTo: 3">
+          <img ng-src="{{relatedEntry.fieldguide_image}}" src="http://placehold.it/320x200" />
+          <h3><a ng-href="/entry/{{relatedEntry.title}}">{{relatedEntry.title}}</a></h3>
+          <h3><em>{{relatedEntry.scientific_name}}</em></h3>
+        </li>
+      </ul>
+    </div>
+  <a class="button radius" ng-href="/">Back to Field Guide</a>
 	</div> <!-- end right columns -->
 </div> <!-- end row -->
