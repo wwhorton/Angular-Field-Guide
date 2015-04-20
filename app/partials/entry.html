@@ -10,7 +10,7 @@
 			<div class="small-12 columns">
         <ul class="breadcrumbs">
           <li><a href="/type/{{entry.buttons.type}}">{{entry.buttons.type}}</a></li>
-          <li><a href="/type/{{entry.buttons.type}}/subtype/{{entry.buttons.subtype}}">{{entry.buttons.subtype}}</a></li>
+          <li ng-if="entry.buttons.subtype"><a href="/type/{{entry.buttons.type}}/subtype/{{entry.buttons.subtype}}">{{entry.buttons.subtype}}</a></li>
           <li><a href="/entry/{{entry.title}}">{{entry.title}}</a></li>
         </ul>
 			</div> <!-- end columns -->

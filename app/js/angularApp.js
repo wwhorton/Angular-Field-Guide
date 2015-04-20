@@ -237,11 +237,12 @@
           relatedResult = matchSubtypes( types[i].subtypes );
         }
         return relatedResult;
-      }).category_name;
+      }) || '';
+      categoryToMatch = categoryToMatch.category_name || '';
       var filtered = [];
       entries.forEach( function( entry ){
         entry.categories.forEach( function( category ){
-          if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() ){
+          if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() && categoryToMatch.category_name.typeOf !== undefined ){
             filtered.push( entry );
           }
         });
@@ -305,10 +306,19 @@
   }]);
 
 /***Filters***/
-  fieldGuide.filter( 'entriesByTitle', function() {
+  fieldGuide.filter( 'entriesByKeyword', function() {
     return function( array, title ){
       return _.filter( array, function( item ){
-        return item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1;
+        switch( true ){
+          case item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_appearance.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_description.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_scientific_name.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_other_facts.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+            return true;
+          default:
+            return false;
+        }
       });
     };
   });
@@ -372,7 +382,7 @@
         scope.$apply();
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
-          if( event.which === '13' ){
+          if( event.which === 13 ){
             $( '#searchIcon' ).click();
           }
         });
@@ -441,10 +451,12 @@
         });
         $( document ).on( 'click', function( event ){
           if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) {
-            scope.nav.showMenu = false;
-            $( '#menuIcon' ).removeClass( 'fi-x' );
-            $( '#menuIcon' ).addClass( 'fi-list' );
-            scope.$apply();
+            if( scope.nav.typeOf !== undefined ){ 
+              scope.nav.showMenu = false;
+              $( '#menuIcon' ).removeClass( 'fi-x' );
+              $( '#menuIcon' ).addClass( 'fi-list' );
+              scope.$apply();
+            }
           }
         });
 
@@ -567,10 +579,10 @@
 
   }]);
   
-  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
+  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByKeywordFilter', function( $scope, $routeParams, getEntries, entriesByKeywordFilter ){
     $scope.results = {};
     getEntries().then( function( result ){
-      $scope.results.entries = entriesByTitleFilter( result.data, $routeParams.query );
+      $scope.results.entries = entriesByKeywordFilter( result.data, $routeParams.query );
     });
   }]);
   
