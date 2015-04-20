@@ -1,0 +1,11 @@
+<ul class="inline-list">
+  <li ng-repeat="button in tagEntry.buttons.habitats">
+    <a ng-href="/habitats/{{button.category_name}}" class="button tiny">{{button.category_name}}</a>
+  </li>
+  <li>
+    <a ng-href="/type/{{tagEntry.buttons.type}}" class="button tiny">{{tagEntry.buttons.type}}</a>
+  </li>
+  <li ng-if="tagEntry.buttons.subtype">
+    <a ng-href="/type/{{tagEntry.buttons.type}}/subtype/{{tagEntry.buttons.subtype}}" class="button tiny">{{tagEntry.buttons.subtype}}</a>
+  </li>
+</ul>

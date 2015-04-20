@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="small-12 columns panel">
+    <form>
+      <div class="row">
+        <div class="small-12 columns" ng-if="selection.type">
+          <h3>{{selection.type}}</h3>
+          <h3 class="small-3 columns" ng-if="selection.options"><strong>Browse by type:</strong></h3>
+          <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" ng-options="option.name as option.name for option in selection.options">
+            <option value="" >All</option>
+          </select>
+        </div>
+        <div class="small-12 columns" ng-if="!selection.type">
+          <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
+          <div class="small-12 columns" ng-if="results.entries && results.entries.length == 0">
+            <p>No results were found. Check the spelling and try again, or use the navigation to browse through existing entries.</p>
+          </div>
+        </div>
+      </div>
+    </form>
+    <ul ng-if="results.entries" class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
+      <li ng-repeat="entry in results.entries">
+        <entry-block entry="entry"></entry-block>
+      </li>
+    </ul>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer ng-if="selection.subtype.length > 0 && selection.subtype !== ''">
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}:true">
+        <entry-block entry="entry"></entry-block>
+      </li>
+    </ul>
+    <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer ng-if="selection.subtype === ''">
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:selection.type}} | filter:{categories:{category_name:selection.subtype}}">
+        <entry-block entry="entry"></entry-block>
+      </li>
+    </ul>
+  </div> <!-- end columns -->
+</div>

@@ -1,0 +1,8 @@
+<form class="row collapse" name="titleSearch" id="searchBar">
+  <div class="small-10 large-11 columns">
+    <input type="text" name="title" id="titleSearch" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]/">
+  </div>
+  <div class="small-2 large-1 columns" >
+    <a id="searchButton" class="button postfix" ng-class="{ disabled:titleSearch.$error.minlength || titleSearch.$pristine || search.title.length < 1 }"><i id="searchIcon" class='fi-magnifying-glass'></i></a>
+  </div>
+</form>
