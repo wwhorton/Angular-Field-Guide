@@ -1,7 +1,10 @@
 <div class="row" ng-if="entry">
 <ng-include src=" '/partials/breadcrumbs.html' "></ng-include>
+  <div class="small-12 columns">
+    <h2 style="margin-bottom: 0px"><strong>{{entry.title}}</strong></h2><h2 style="font-weight: normal; margin-top: 0px"><em>{{entry.fieldguide_scientific_name}}</em></h2>
+  </div>
 	<div class="small-12 medium-8 large-8 columns">
-	<h2 style="margin-bottom: 0px"><strong>{{entry.title}}</strong></h2><h2 style="font-weight: normal; margin-top: 0px"><em>{{entry.fieldguide_scientific_name}}</em></h2>
+  
 		<div class="row collapse">
 			<div class="small-12 columns">
         <img style="margin-bottom: 15px;" ng-src="{{entry.fieldguide_image}}">
