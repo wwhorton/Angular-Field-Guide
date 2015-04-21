@@ -211,11 +211,13 @@
     return renderSrc;
   }]);
   
-  fieldGuide.factory( 'randomCritter', function(){
+  fieldGuide.factory( 'critterOfTheMonth', function(){
     var getCritter = function( critters ) {
-      var max = critters.length;
-      var index = Math.random() * ( max );
-      return critters[ Math.round( index ) ];
+      var monthlyCritter = _.filter( critters, function( critter ){
+        return critter.status === 'critterofthemonth';
+      });
+      monthlyCritter = _.sortBy( monthlyCritter, 'edit_date' );
+      return monthlyCritter[monthlyCritter.length - 1];
     };
     return getCritter;
   });
@@ -521,7 +523,7 @@
  
 /***Controllers***/
  
-  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', 'equalize', function( $scope, $timeout, getEntries, randomCritter, renderHtml, equalize ){
+  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $timeout, getEntries, critterOfTheMonth, renderHtml, equalize ){
     $scope.categories = {
                           types : { selected: 'types', options: types, templateUrl: '/partials/browseAccordion.html' },
                           habitats : { selected: 'habitats', options: habitats, templateUrl: '/partials/browseList.html' }
@@ -531,7 +533,7 @@
     $scope.critter = {};
     getEntries().then( function( result ){
       $scope.entries = result.data;
-      $scope.critter = randomCritter( $scope.entries );
+      $scope.critter = critterOfTheMonth( $scope.entries );
       equalize();
     });
   }]);
