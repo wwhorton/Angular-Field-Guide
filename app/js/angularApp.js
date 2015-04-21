@@ -228,15 +228,18 @@
       var categoryToMatch = _.find( critter.categories, function( category ){
         var result;
         function matchSubtypes( subtypeArray ){
-          subtypeArray.forEach( function( item ){
-            if( matchCategory( item.name, category.category_name ) ){
-            result = true;
+          for( var i = 0; i < subtypeArray.length; i++){
+            if( matchCategory( subtypeArray[i].name, category.category_name ) ){
+              result = true;
             }
-          });
+          }
         }
         for( var i = 0; i < types.length; i++ ){
           if( types[i].subtypes ){
+            if ( matchCategory( types[i].name, category.category_name ) ) { result = true };
             matchSubtypes( types[i].subtypes );
+          } else { 
+            if ( matchCategory( types[i].name, category.category_name ) ) { result = true };
           }
         }
         return result;
@@ -255,9 +258,9 @@
   
   fieldGuide.factory( 'matchCategory', function(){
     return function( cat, category ){
-          if( cat === category ){
-            return true;
-          }
+      if( cat === category ){
+        return true;
+      }
     };
   });  
   fieldGuide.factory( 'makeButtons', function(){
@@ -590,11 +593,11 @@
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
+      makeButtons( $scope.entry );
       $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
         return category.category_name;
       });
       $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
-      makeButtons( $scope.entry );
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
