@@ -37,11 +37,10 @@
         </svg>
       </a>
     </div>
-    <div id="navMenuButton" class="small-4 medium-2 medium-push-6 medium-offset-0 large-2 large-push-7 small-offset-2 columns">
-      <i id="searchToggle" class="fi-magnifying-glass small-2 small-offset-4 show-for-small-only columns" ng-click="nav.showSearch = !nav.showSearch"></i>
+    <div id="navMenuButton" class="small-2 medium-2 medium-push-6 medium-offset-0 large-2 large-push-7 small-offset-4 columns">
       <a href="#" ng-click="nav.showMenu = !nav.showMenu"><i class="fi-list" id="menuIcon" /></i></a>
     </div>
-    <div class="small-12 medium-6 medium-pull-2 columns" small-media-query ng-show=" nav.showSearch || !isSmall ">
+    <div class="small-12 medium-6 medium-pull-2 columns">
       <search-bar ></search-bar>
     </div>
   </div>
