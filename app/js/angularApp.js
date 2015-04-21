@@ -368,7 +368,7 @@
     };
   });
   
-  fieldGuide.directive( 'searchBar', function( $location, $route ){
+  fieldGuide.directive( 'searchBar', function( $location ){
     return {
       replace: true,
       templateUrl: '/partials/search-bar.html',
