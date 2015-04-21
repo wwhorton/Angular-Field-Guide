@@ -71,7 +71,7 @@
           'blurb' : ''
           },
           {
-          'name' : 'Saltwater Fish',
+          'name' : 'Migratory Fish',
           'image' : '',
           'blurb' : ''
           }],
@@ -220,25 +220,26 @@
     return getCritter;
   });
   
-  fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', function( getEntries, matchCategory ){
+    fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', function( getEntries, matchCategory ){
     return function( entries, critter ){
+      var filtered = [];
       var categoryToMatch = _.find( critter.categories, function( category ){
-        var relatedResult;
+        var result;
         function matchSubtypes( subtypeArray ){
-          if( subtypeArray ){
-            subtypeArray.forEach( function( item ){
-              if( matchCategory( item.name, category.category_name ) ){
-                return true;
-              }
-            });
-          }
+          subtypeArray.forEach( function( item ){
+            if( matchCategory( item.name, category.category_name ) ){
+            result = true;
+            }
+          });
         }
         for( var i = 0; i < types.length; i++ ){
-          relatedResult = matchSubtypes( types[i].subtypes );
+          if( types[i].subtypes ){
+            matchSubtypes( types[i].subtypes );
+          }
         }
-        return relatedResult;
+        return result;
       }).category_name;
-      var filtered = [];
+      
       entries.forEach( function( entry ){
         entry.categories.forEach( function( category ){
           if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() ){
@@ -305,14 +306,23 @@
   }]);
 
 /***Filters***/
-  fieldGuide.filter( 'entriesByTitle', function() {
+  fieldGuide.filter( 'entriesByKeyword', function() {
     return function( array, title ){
       return _.filter( array, function( item ){
-        return item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1;
+        switch( true ){
+          case item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_appearance.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_description.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_scientific_name.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+          case item.fieldguide_other_facts.toUpperCase().indexOf( title.toUpperCase() ) > -1:
+            return true;
+          default:
+            return false;
+        }
       });
     };
   });
-
+  
   fieldGuide.filter( 'entryByTitle', function() {
     return function( array, title ){
       return _.find( array, function( entry ){
@@ -354,12 +364,12 @@
       scope: { thisEntry: '=entry' },
       templateUrl: '/partials/entry-block.html',
       link: function( scope ){
-        scope.fieldguide_homepageblurb = renderHtml( scope.fieldguide_homepageblurb );
+        scope.thisEntry.fieldguide_description = renderHtml( scope.thisEntry.fieldguide_description );
       }
     };
   });
   
-  fieldGuide.directive( 'searchBar', function( $location ){
+  fieldGuide.directive( 'searchBar', function( $location, $route ){
     return {
       replace: true,
       templateUrl: '/partials/search-bar.html',
@@ -367,12 +377,16 @@
         $( '#searchIcon' ).on( 'click', function(){
           if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
             var thePath = '/search/' + scope.search.title;
-            $location.path( thePath );
+            if( $location.path() === thePath ){
+              $route.reload();
+            } else {
+              $location.path( thePath );
+            }
           }
         scope.$apply();
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
-          if( event.which === '13' ){
+          if( event.which === 13 ){
             $( '#searchIcon' ).click();
           }
         });
@@ -399,8 +413,11 @@
       restrict: 'E',
       templateUrl: '/partials/tags.html',
       scope: { tagEntry: '=entry' },
-      link: function( scope ){
+      link: function( scope, element ){
         makeButtons( scope.tagEntry );
+        element.on( 'click', function(){
+          $( 'html' ).scrollTop( 0 );
+        });
       }
     };
   }]);
@@ -438,10 +455,12 @@
         });
         $( document ).on( 'click', function( event ){
           if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) {
-            scope.nav.showMenu = false;
-            $( '#menuIcon' ).removeClass( 'fi-x' );
-            $( '#menuIcon' ).addClass( 'fi-list' );
-            scope.$apply();
+            if( scope.nav ){ 
+              scope.nav.showMenu = false;
+              $( '#menuIcon' ).removeClass( 'fi-x' );
+              $( '#menuIcon' ).addClass( 'fi-list' );
+              scope.$apply();
+            }
           }
         });
 
@@ -564,10 +583,10 @@
 
   }]);
   
-  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByTitleFilter', function( $scope, $routeParams, getEntries, entriesByTitleFilter ){
+  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByKeywordFilter', function( $scope, $routeParams, getEntries, entriesByKeywordFilter ){
     $scope.results = {};
     getEntries().then( function( result ){
-      $scope.results.entries = entriesByTitleFilter( result.data, $routeParams.query );
+      $scope.results.entries = entriesByKeywordFilter( result.data, $routeParams.query );
     });
   }]);
   
@@ -578,7 +597,7 @@
       $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
         return category.category_name;
       });
-      $scope.relatedCritters = relatedCritters( $scope.entries, $scope.entry ) ;
+      $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
       makeButtons( $scope.entry );
     });
     $scope.title = $routeParams.title;

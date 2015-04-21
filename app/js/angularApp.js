@@ -312,7 +312,6 @@
         switch( true ){
           case item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1:
           case item.fieldguide_appearance.toUpperCase().indexOf( title.toUpperCase() ) > -1:
-          case item.fieldguide_description.toUpperCase().indexOf( title.toUpperCase() ) > -1:
           case item.fieldguide_scientific_name.toUpperCase().indexOf( title.toUpperCase() ) > -1:
           case item.fieldguide_other_facts.toUpperCase().indexOf( title.toUpperCase() ) > -1:
             return true;
@@ -323,12 +322,6 @@
     };
   });
   
-  fieldGuide.filter( 'shuffle', function(){
-    return function( array ){
-      return _.shuffle( array );
-    }
-  });
-
   fieldGuide.filter( 'entryByTitle', function() {
     return function( array, title ){
       return _.find( array, function( entry ){
@@ -375,7 +368,7 @@
     };
   });
   
-  fieldGuide.directive( 'searchBar', function( $location ){
+  fieldGuide.directive( 'searchBar', function( $location, $route ){
     return {
       replace: true,
       templateUrl: '/partials/search-bar.html',
@@ -465,9 +458,7 @@
             }
           }
         });
-
       }
-      
     };
   });
   
@@ -585,10 +576,11 @@
 
   }]);
   
-  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', 'getEntries', 'entriesByKeywordFilter', function( $scope, $routeParams, getEntries, entriesByKeywordFilter ){
+  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'entriesByKeywordFilter', 'equalize', function( $scope, $routeParams, $sce, getEntries, entriesByKeywordFilter, equalize ){
     $scope.results = {};
     getEntries().then( function( result ){
       $scope.results.entries = entriesByKeywordFilter( result.data, $routeParams.query );
+      equalize();
     });
   }]);
   
