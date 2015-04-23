@@ -4,7 +4,7 @@
   
 /***Globals***/
 
-	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation' ]);
+	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation', 'angular-md5' ]);
 
   var types = [ 
       { 'name' : 'Algae',
@@ -298,6 +298,28 @@
     return makeButtons;
   });
   
+  fieldGuide.factory( 'getFlickr', [ '$http', 'md5', function( $http, md5 ){
+    return function( tags ){
+      var apiSig = '589af94b6012d347api_keyc03d2c380487bc102a9213f8487b891dauth_token72157627022294584-5cb5ec33745f610cextrasdescriptionformatrestmethodflickr.photos.searchtags' + tags + 'user_id29388462@N06';
+      apiSig = md5.createHash( apiSig );     
+      return $http( {
+        url:  'https://api.flickr.com/services/rest/',
+        params: {
+          'method' : 'flickr.photos.search',
+          'api_key' : 'c03d2c380487bc102a9213f8487b891d',
+          'user_id' : '29388462@N06',
+          'tags' : tags,
+          'extras' : 'description',
+          'format' : 'rest',
+          'auth_token' : '72157627022294584-5cb5ec33745f610c',
+          'api_sig' : apiSig
+        }
+      });
+    };
+
+     
+  }]);
+  
   fieldGuide.factory( 'equalize', ['$timeout', function( $timeout ){
     return function(){
       $timeout( function(){
@@ -369,6 +391,38 @@
       templateUrl: '/partials/entry-block.html',
       link: function( scope ){
         scope.thisEntry.fieldguide_description = renderHtml( scope.thisEntry.fieldguide_description );
+      }
+    };
+  });
+  
+  fieldGuide.directive( 'slickCarousel', function( $timeout ) {
+    return {
+      restrict: 'AE',
+      replace: false,
+      templateUrl: '/partials/mediaSlider.html',
+      scope: { entry: '=entry' },
+      link: function( scope, element, attribute ){
+        /*$timeout( function(){
+          $( element ).slick({
+            dots: true,
+            infinite: true,
+            center: true,
+            adaptiveHeight: true,
+            fade: true
+          });
+        }, 3000 );
+        */
+        scope.$watch( 'entry.imageUrls.length', function( newVal, oldVal ){
+          if( newVal !== oldVal ){
+            $( element ).slick({
+              dots: true,
+              infinite: true,
+              center: true,
+              adaptiveHeight: true,
+              fade: true
+            });
+          }  
+        }, true);
       }
     };
   });
@@ -589,7 +643,7 @@
     });
   }]);
   
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons ){
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons, getFlickr ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
@@ -598,10 +652,25 @@
         return category.category_name;
       });
       $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
+      $scope.entry.images = [];
+      $scope.entry.imageUrls = [];
+      getFlickr( $scope.entry.flickr_tags ).then( function( results ){
+        var images = $( $.parseXML( results.data ) ).find( 'photo' );
+        for( var i = 0; i < images.length; i++ ){
+          $scope.entry.images.push( images[i].attributes );
+          
+        }
+        for( var i = 0; i < $scope.entry.images.length; i++ ){
+          $scope.entry.imageUrls.push( 'https://farm'+$scope.entry.images[i].farm.value+'.staticflickr.com/'+$scope.entry.images[i].server.value+'/'+$scope.entry.images[i].id.value+'_'+$scope.entry.images[i].secret.value+'.jpg' );
+        }
+        
+      });  
+     
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
+
 	}]);
   
 })();

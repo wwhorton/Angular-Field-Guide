@@ -6,9 +6,8 @@
 	<div class="small-12 medium-8 large-8 columns">
   
 		<div class="row collapse">
-			<div class="small-12 columns">
-        <img style="margin-bottom: 15px;" ng-src="{{entry.fieldguide_image}}">
-			</div> <!-- end columns -->
+			<!--<ng-include src=" '/partials/mediaSlider.html' " class="small-12 columns"></ng-include>-->
+      <slick-carousel entry="entry" ></slick-carousel>
 		</div> <!-- end row -->
 		<div class="row" id="quickFacts">
 			<div class="small-12 columns hide-for-medium-up">
