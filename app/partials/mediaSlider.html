@@ -1,0 +1,19 @@
+<div>
+  <img class="carousel" ng-src="{{entry.fieldguide_image}}" />
+  <div class="controls">
+    <i class="fa fa-chevron-left" ng-click="$( 'slick-carousel' ).slickPrev()"></i><i class="fa fa-chevron-right" ng-click="$( 'slick-carousel' ).slickNext()"></i><p>1 of {{entry.images.length + 1}}</p>
+  </div>
+  <div class="caption">
+  <p>{{entry.fieldguide_image_caption}}</p>
+  </div>
+</div>
+<div ng-repeat="image in entry.images" >
+  <img class="carousel" ng-src="{{image.url}}" />
+  <div class="controls">
+    <i class="fa fa-chevron-left" ng-click="$( 'slick-carousel' ).slickPrev()"></i><i class="fa fa-chevron-right" ng-click="$( 'slick-carousel' ).slickNext()"></i><p>{{$index + 2}} of {{entry.images.length + 1}}</p>
+  </div>
+  <div class="caption" ng-if="image.caption">
+    <p>{{image.caption}}</p>
+  </div>
+</div>
+
