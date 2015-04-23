@@ -263,3 +263,28 @@ p a:hover {
   width: 100%;
   height: auto;
 }
+.controls {
+  background-color: #FFF;
+  border: 1px solid #D6D6D6;
+  i {
+    font-weight: bold;
+    font-size: 36px;
+    margin: 5px 15px 5px 5px;
+    color: #D6D6D6;
+  }
+  i:hover {
+    color: #333;
+  }
+  p {
+    display: inline;
+    font-size: 1.2rem;
+  }
+}
+
+.caption {
+  background-color: #666666;
+  padding: 5px;
+  p {
+    color: #fff;
+  }
+}      

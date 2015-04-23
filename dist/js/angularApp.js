@@ -4,7 +4,7 @@
   
 /***Globals***/
 
-	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation' ]);
+	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation', 'angular-md5' ]);
 
   var types = [ 
       { 'name' : 'Algae',
@@ -37,7 +37,7 @@
           'blurb' : ''
           },
           {
-          'name' : 'Other ',
+          'name' : 'Other',
           'image' : '',
           'blurb' : ''
           },
@@ -211,11 +211,13 @@
     return renderSrc;
   }]);
   
-  fieldGuide.factory( 'randomCritter', function(){
+  fieldGuide.factory( 'critterOfTheMonth', function(){
     var getCritter = function( critters ) {
-      var max = critters.length;
-      var index = Math.random() * ( max );
-      return critters[ Math.round( index ) ];
+      var monthlyCritter = _.filter( critters, function( critter ){
+        return critter.status === 'critterofthemonth';
+      });
+      monthlyCritter = _.sortBy( monthlyCritter, 'edit_date' );
+      return monthlyCritter[monthlyCritter.length - 1];
     };
     return getCritter;
   });
@@ -226,15 +228,18 @@
       var categoryToMatch = _.find( critter.categories, function( category ){
         var result;
         function matchSubtypes( subtypeArray ){
-          subtypeArray.forEach( function( item ){
-            if( matchCategory( item.name, category.category_name ) ){
-            result = true;
+          for( var i = 0; i < subtypeArray.length; i++){
+            if( matchCategory( subtypeArray[i].name, category.category_name ) ){
+              result = true;
             }
-          });
+          }
         }
         for( var i = 0; i < types.length; i++ ){
           if( types[i].subtypes ){
+            if ( matchCategory( types[i].name, category.category_name ) ) { result = true; }
             matchSubtypes( types[i].subtypes );
+          } else { 
+            if ( matchCategory( types[i].name, category.category_name ) ) { result = true; }
           }
         }
         return result;
@@ -253,9 +258,9 @@
   
   fieldGuide.factory( 'matchCategory', function(){
     return function( cat, category ){
-          if( cat === category ){
-            return true;
-          }
+      if( cat === category ){
+        return true;
+      }
     };
   });  
   fieldGuide.factory( 'makeButtons', function(){
@@ -292,6 +297,28 @@
     };
     return makeButtons;
   });
+  
+  fieldGuide.factory( 'getFlickr', [ '$http', 'md5', function( $http, md5 ){
+    return function( tags ){
+      var apiSig = '589af94b6012d347api_keyc03d2c380487bc102a9213f8487b891dauth_token72157627022294584-5cb5ec33745f610cextrasdescriptionformatrestmethodflickr.photos.searchtags' + tags + 'user_id29388462@N06';
+      apiSig = md5.createHash( apiSig );     
+      return $http( {
+        url:  'https://api.flickr.com/services/rest/',
+        params: {
+          'method' : 'flickr.photos.search',
+          'api_key' : 'c03d2c380487bc102a9213f8487b891d',
+          'user_id' : '29388462@N06',
+          'tags' : tags,
+          'extras' : 'description',
+          'format' : 'rest',
+          'auth_token' : '72157627022294584-5cb5ec33745f610c',
+          'api_sig' : apiSig
+        }
+      });
+    };
+
+     
+  }]);
   
   fieldGuide.factory( 'equalize', ['$timeout', function( $timeout ){
     return function(){
@@ -364,6 +391,30 @@
       templateUrl: '/partials/entry-block.html',
       link: function( scope ){
         scope.thisEntry.fieldguide_description = renderHtml( scope.thisEntry.fieldguide_description );
+      }
+    };
+  });
+  
+  fieldGuide.directive( 'slickCarousel', function() {
+    return {
+      restrict: 'AE',
+      replace: false,
+      templateUrl: '/partials/mediaSlider.html',
+      scope: { entry: '=entry' },
+      link: function( scope, element ){
+        scope.$watch( 'entry.images.length', function( newVal, oldVal ){
+          if( newVal !== oldVal ){
+            $( element ).slick({
+              infinite: true,
+              center: true,
+              adaptiveHeight: true,
+              fade: true,
+              arrows: true,
+              prevArrow: $( '.fa-chevron-left' ),
+              nextArrow: $( '.fa-chevron-right' )
+            });
+          }  
+        }, true);
       }
     };
   });
@@ -521,7 +572,7 @@
  
 /***Controllers***/
  
-  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'randomCritter', 'renderHtml', 'equalize', function( $scope, $timeout, getEntries, randomCritter, renderHtml, equalize ){
+  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $timeout, getEntries, critterOfTheMonth, renderHtml, equalize ){
     $scope.categories = {
                           types : { selected: 'types', options: types, templateUrl: '/partials/browseAccordion.html' },
                           habitats : { selected: 'habitats', options: habitats, templateUrl: '/partials/browseList.html' }
@@ -531,7 +582,7 @@
     $scope.critter = {};
     getEntries().then( function( result ){
       $scope.entries = result.data;
-      $scope.critter = randomCritter( $scope.entries );
+      $scope.critter = critterOfTheMonth( $scope.entries );
       equalize();
     });
   }]);
@@ -545,6 +596,11 @@
       equalize();
     });
     $scope.habitat.title = $routeParams.habitat;
+    $scope.$watch( $scope.entries, function( newVal, oldVal ){
+      if( newVal !== oldVal ){
+        equalize();
+      }
+    }, true );
   }]);
   
   fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
@@ -558,12 +614,15 @@
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
-    });
-    $scope.$watch( 'selection.subtype', function(){
       equalize();
-      var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
-      $location.path( path );
     });
+    $scope.$watch( 'selection.subtype', function( newVal, oldVal ){
+      if( newVal !== oldVal ){
+        equalize();
+        var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
+        $location.path( path );
+      }
+    }, true);
   }]);
   
   fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
@@ -584,19 +643,34 @@
     });
   }]);
   
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons ){
+  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons, getFlickr ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
+      makeButtons( $scope.entry );
       $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
         return category.category_name;
       });
       $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
-      makeButtons( $scope.entry );
+      $scope.entry.images = [];
+      getFlickr( $scope.entry.flickr_tags ).then( function( results ){
+        var images = $( $.parseXML( results.data ) ).find( 'photo' );
+        for( var i = 0; i < images.length; i++ ){
+          $scope.entry.images.push( images[i].attributes );
+        }
+        for( i = 0; i < $scope.entry.images.length; i++ ){
+          $scope.entry.images[i].url = 'https://farm'+$scope.entry.images[i].farm.value+'.staticflickr.com/'+$scope.entry.images[i].server.value+'/'+$scope.entry.images[i].id.value+'_'+$scope.entry.images[i].secret.value+'.jpg';
+          $scope.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
+                    console.log( $scope.entry.images[i] );
+        }
+        
+      });  
+     
     });
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
+
 	}]);
   
 })();
