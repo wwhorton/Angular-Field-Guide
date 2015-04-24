@@ -1,4 +1,5 @@
 'use strict';
+
 ( function(){
 
   var fieldGuideControllers = angular.module( 'fieldGuideControllers', [] );
