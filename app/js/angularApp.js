@@ -5,29 +5,6 @@
   
   fieldGuide.run( function( $rootScope ){
     $rootScope.types = [ 
-        { 'name' : 'Algae',
-          'image' : '/images/Algae.jpg',
-          'blurb' : 'Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow.'
-        },
-        { 'name' : 'Bay Grasses (SAV)',
-          'subtypes' : [{
-              'name' : 'Low Salinity',
-              'image' : '',
-              'blurb' : ''
-              },
-              {
-              'name' : 'Medium Salinity',
-              'image' : '',
-              'blurb' : ''
-              },
-              {
-              'name' : 'High Salinity',
-              'image' : '',
-              'blurb' : ''
-              }],
-          'image' : '/images/Bay Grass.jpg',
-          'blurb' : 'Bay grasses - also known as submerged aquatic vegetation or SAV - are plants that grow underwater in the Chesapeake Bay\'s shallows. More than 16 species of bay grasses grow in the Bay and its tributaries.'
-        },
         { 'name' : 'Birds',
           'subtypes' : [{
             'name' : 'Raptors',
@@ -76,12 +53,13 @@
           'image' : '/images/Fish.jpg',
           'blurb' : 'Approximately 350 species of fish live in the Chesapeake Bay. Some fish are year-round residents, while others swim into the Bay from the ocean to feed, reproduce or find shelter.'
         },
-        { 'name' : 'Insects',
-          'image' : '/images/Insects.jpg',
-          'blurb' : 'Thousands of species of insects live in the Chesapeake Bay region. Insects are found in nearly every habitat, from deep woods to sandy beaches to our own backyards. Some insects live on the land, while others spend most of their time in the water.'
-        },
-        { 'name' : 'Invertebrates', 
+        { 'name' : 'Insects & Invertebrates', 
           'subtypes' : [{
+            'name' : 'Insects',
+            'image' : '',
+            'blurb' : '',
+            },
+            {
             'name' : 'Arthropods',
             'image' : '',
             'blurb' : '',
@@ -124,7 +102,17 @@
           'blurb' : 'Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to bobcats, dolphins and humans.'
         },
         { 'name' : 'Plants & Trees',
-          'subtypes' : [{
+          'subtypes' : [{ 
+            'name' : 'Algae',
+            'image' : '/images/Algae.jpg',
+            'blurb' : 'Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow.'
+            },
+            {
+            'name' : 'Bay Grasses (SAV)',
+            'image' : '/images/Bay Grass.jpg',
+            'blurb' : 'Bay grasses - also known as submerged aquatic vegetation or SAV - are plants that grow underwater in the Chesapeake Bay\'s shallows. More than 16 species of bay grasses grow in the Bay and its tributaries.'
+            },
+            {
             'name' : 'Flowers',
             'image' : '',
             'blurb' : ''
@@ -171,10 +159,7 @@
         { 'name': 'Marshes & Wetlands',
           'image': '/images/wetlands.jpg'
         },
-        { 'name': 'Open Waters',
-          'image': '/images/open water.jpg'
-        },
-        { 'name': 'Shallow Waters',
+        { 'name': 'Open & Shallow Waters',
           'image': '/images/shallow water.jpg'
         },
         { 'name': 'Streams & Rivers',
