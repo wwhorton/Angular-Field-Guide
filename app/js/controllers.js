@@ -39,6 +39,9 @@
     $scope.selection = { 
                       'subtype' : ( !$routeParams.subtype ) ? '' : $routeParams.subtype ,
                       'type' : $routeParams.type,
+                      'blurb' : _.find( $rootScope.types, function( type ){
+                                    return type.name === $routeParams.type;
+                                  }).blurb,
                       'options' : _.find( $rootScope.types, function( type ){
                                     return type.name === $routeParams.type;
                                   }).subtypes
