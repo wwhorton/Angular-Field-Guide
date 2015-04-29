@@ -15,5 +15,5 @@
 		"jQuery": false,
 		"$": false
 	},
-  "predef": [ "angular", "_" ]
+  "predef": [ "angular", "_", "Foundation" ]
 }
