@@ -4,6 +4,7 @@
       <div class="row">
         <div class="small-12 columns" ng-if="selection.type">
           <h3>{{selection.type}}</h3>
+          <p>{{selection.blurb}}</p>
             <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" ng-options="option.name as option.name for option in selection.options">
             <option value="" >All</option>
           </select>

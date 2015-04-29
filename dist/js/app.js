@@ -6,6 +6,7 @@ var app = (function(document, $) {
 			docElem.setAttribute('data-useragent', navigator.userAgent);
 		},
 		_init = function() {
+      Foundation.global.namespace = '';
 			$(document).foundation();
             // needed to use joyride
             // doc: http://foundation.zurb.com/docs/components/joyride.html

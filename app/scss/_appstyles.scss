@@ -145,17 +145,17 @@ audio {
   }
 }
 #menuIcon {
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 320px) {
     font-size: 50px;
     line-height: 50px;
     margin-top: 7px;
   }
-  @media screen and (min-width: 361px) and (max-width: 800px) {
+  @media screen and (min-width: 321px) and (max-width: 1024px) {
     font-size: 50px;
     line-height: 60px;
     margin-top: 20px;
   }
-  @media screen and (min-width: 801px) {
+  @media screen and (min-width: 1025px) {
     font-size: 50px;
     line-height: 90px;
   }
@@ -168,13 +168,13 @@ audio {
 
 #navMenuButton {
   
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 320px) {
     margin-top: 98px;
   }
-  @media screen and (min-width: 361px) and (max-width: 800px) {
+  @media screen and (min-width: 321px) and (max-width: 1024px) {
     margin-top: 115px;
   }
-  @media screen and (min-width: 801px) {
+  @media screen and (min-width: 1025px) {
     position: relative;
     top: 100px;
   }
@@ -288,3 +288,14 @@ p a:hover {
     color: #fff;
   }
 }      
+
+.socialLinks {
+  li {
+    font-size: 2rem;
+  }
+  @media screen and (min-width: 1025px) {
+    li:nth-child( 6n ) {
+      margin-left: 0px;
+    }
+  }
+}

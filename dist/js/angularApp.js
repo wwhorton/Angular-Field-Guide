@@ -1,536 +1,180 @@
 'use strict';
 
 (function(){
+	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation', 'fieldGuideServices', 'fieldGuideFilters', 'fieldGuideDirectives', 'fieldGuideControllers' ]);
   
-/***Globals***/
-
-	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation', 'angular-md5' ]);
-
-  var types = [ 
-      { 'name' : 'Algae',
-        'image' : '/images/Algae.jpg',
-        'blurb' : 'Algae are simple plants that lack roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow.'
-      },
-      { 'name' : 'Bay Grasses (SAV)',
-        'subtypes' : [{
-            'name' : 'Low Salinity',
+  fieldGuide.run( function( $rootScope ){
+    $rootScope.types = [ 
+        { 'name' : 'Birds',
+          'subtypes' : [{
+            'name' : 'Raptors',
             'image' : '',
-            'blurb' : ''
+            'blurb' : 'Raptors are birds of prey. Their keen eyesight allows them to hunt while flying, and they use their sharp beaks and talons to capture prey. Hawks, owls, ospreys, eagles and falcons are all raptors.'
             },
             {
-            'name' : 'Medium Salinity',
+            'name' : 'Other',
             'image' : '',
-            'blurb' : ''
+            'blurb' : 'As home to hundreds of bird species, the Bay region is full of opportunities birdwatchers and hunters alike. Songbirds, game birds and hummingbirds are just a few of the many other types of birds that live in the Bay region.'
             },
             {
-            'name' : 'High Salinity',
+            'name' : 'Waterfowl',
             'image' : '',
-            'blurb' : ''
+            'blurb' : 'Ducks, geese and swans are all waterfowl. Most waterfowl visit the Chesapeake Bay region in winter as they migrate along the Atlantic Flyway, a major flight path for millions of birds. Other waterfowl live in the Bay region year-round.'
+            },
+            {
+            'name' : 'Wading',
+            'image' : '',
+            'blurb' : 'Wading birds quietly stalk their prey in wetlands and shallow waters. Most wading birds, which include herons and egrets, nest together in large breeding colonies on the Chesapeake Bay\'s small, isolated islands.' 
+            },
+            {
+            'name' : 'Sea & Shorebirds',
+            'image' : '',
+            'blurb' : 'Seabirds and shorebirds live on and along the water. They primarily eat fish and other aquatic animals. Shorebirds include gulls, terns and sandpipers. Coots, pelicans and cormorants are all seabirds.'
             }],
-        'image' : '/images/Bay Grass.jpg',
-        'blurb' : 'Bay grasses - also known as submerged aquatic vegetation or SAV - are plants that grow underwater in the Chesapeake Bay\'s shallows. More than 16 species of bay grasses grow in the Bay and its tributaries.'
-      },
-      { 'name' : 'Birds',
-        'subtypes' : [{
-          'name' : 'Raptors',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Other',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Waterfowl',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Wading',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Sea & Shorebirds',
-          'image' : '',
-          'blurb' : ''
-          }],
-        'image' : '/images/Birds.jpg',
-        'blurb' : 'Hundreds of species of birds live in the Chesapeake Bay watershed. Some birds live here year-round, while others migrate to the Bay region to feed or nest.'
-      },
-      { 'name' : 'Fish',
-        'subtypes' : [{
-          'name' : 'Freshwater Fish',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Estuarine Fish',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Migratory Fish',
-          'image' : '',
-          'blurb' : ''
-          }],
-        'image' : '/images/Fish.jpg',
-        'blurb' : 'Approximately 350 species of fish live in the Chesapeake Bay. Some fish are year-round residents, while others swim into the Bay from the ocean to feed, reproduce or find shelter.'
-      },
-      { 'name' : 'Insects',
-        'image' : '/images/Insects.jpg',
-        'blurb' : 'Thousands of species of insects live in the Chesapeake Bay region. Insects are found in nearly every habitat, from deep woods to sandy beaches to our own backyards. Some insects live on the land, while others spend most of their time in the water.'
-      },
-      { 'name' : 'Invertebrates', 
-        'subtypes' : [{
-          'name' : 'Arthropods',
-          'image' : '',
-          'blurb' : '',
-          },
-          {
-          'name' : 'Mollusks',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Other Invertebrates',
-          'image' : '',
-          'blurb' : ''
-          }],
-        'image' : '/images/Invertebrates.jpg',
-        'blurb' : 'Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay.'
-      },
-      { 'name' : 'Mammals',
-        'subtypes' : [{
-          'name' : 'Aquatic',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Semi-Aquatic',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Land',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Flying',
-          'image' : '',
-          'blurb' : ''
-          }],
-        'image' : '/images/Mammals.jpg',
-        'blurb' : 'Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to bobcats, dolphins and humans.'
-      },
-      { 'name' : 'Plants & Trees',
-        'subtypes' : [{
-          'name' : 'Flowers',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Trees & Shrubs',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Aquatic & Wetland Plants',
-          'image' : '',
-          'blurb' : ''
-          }],
-        'image' : '/images/Plants.jpg',
-        'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed. Plants grow in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards.'
-      },
-      { 'name' : 'Reptiles & Amphibians',
-        'subtypes' : [{
-          'name' : 'Amphibians',
-          'image' : '',
-          'blurb' : ''
-          },
-          {
-          'name' : 'Reptiles',
-          'image' : '',
-          'blurb' : ''
-          }],
-        'image' : '/images/Reptiles.jpg',
-        'blurb' : 'Reptiles and amphibians are cold-blooded vertebrates. They are sometimes called herps.'
-      }
-    ];
+          'image' : '/images/Birds.jpg',
+          'blurb' : 'Hundreds of species of birds live in the Chesapeake Bay watershed. Some live here year-round, while others migrate to the region to feed or nest. Birds are some of the region\'s most beautiful—but vulnerable—species, and all serve as important links in the Bay ecosystem. '
+        },
+        { 'name' : 'Fish',
+          'subtypes' : [{
+            'name' : 'Freshwater Fish',
+            'image' : '',
+            'blurb' : 'Freshwater fish live year-round in the freshwater streams and rivers that flow to the Chesapeake Bay. Some freshwater fish may move into brackish waters in the Bay and its tidal rivers.'
+            },
+            {
+            'name' : 'Estuarine Fish',
+            'image' : '',
+            'blurb' : 'Estuarine fish can survive in waters where fresh and salt water mix, like those throughout the Chesapeake Bay and its tidal rivers. Generally, estuarine fish stay close to the shore during summer and move to deeper waters in winter.'
+            },
+            {
+            'name' : 'Migratory Fish',
+            'image' : '',
+            'blurb' : 'Migratory fish visit the Chesapeake Bay each year to feed or spawn. Marine fish live and spawn in coastal waters, anadromous fish migrate from the ocean to freshwater rivers to spawn and catadromous fish migrate from freshwater rivers to the ocean to spawn.'
+            }],
+          'image' : '/images/Fish.jpg',
+          'blurb' : 'Nearly 350 species of fish live in the Chesapeake Bay. Some are year-round residents, while others swim in from the ocean to feed, reproduce or find shelter. Each of the Bay\'s fish has a vital place in the food web, and many provide abundant opportunities for fishermen.'
 
-  var habitats = [ 
-      { 'name': 'Aquatic Reefs & Pilings',
-        'image': '/images/pilings.jpg'
-      },
-      { 'name': 'Beaches & Tidal Flats',
-        'image': '/images/tidal flats.jpg'
-      },
-      { 'name': 'Forests & Uplands',
-        'image': '/images/forest.jpg'
-      },
-      { 'name': 'Marshes & Wetlands',
-        'image': '/images/wetlands.jpg'
-      },
-      { 'name': 'Open Waters',
-        'image': '/images/open water.jpg'
-      },
-      { 'name': 'Shallow Waters',
-        'image': '/images/shallow water.jpg'
-      },
-      { 'name': 'Streams & Rivers',
-        'image': '/images/river.jpg'
-      }
-    ];
+        },
+        { 'name' : 'Insects & Invertebrates', 
+          'subtypes' : [{
+            'name' : 'Insects',
+            'image' : '',
+            'blurb' : 'Insects are found in nearly every habitat across the watershed, both on land and in the water. Some people may think insects are gross or scary, but they are an important part of the food web for fish, birds, mammals and reptiles.'
+            },
+            {
+            'name' : 'Arthropods',
+            'image' : '',
+            'blurb' : 'Arthropods have an external skeleton—or exoskeleton—that they molt to grow. Crustaceans like crabs, shrimp and barnacles are the Bay\'s most common arthropods. Horseshoe crabs are arthropods, but not crustaceans: they are more closely related to spiders and scorpions.'
+            },
+            {
+            'name' : 'Mollusks',
+            'image' : '',
+            'blurb' : 'Mollusks include bivalves, gastropods (snails) and cephalopods (squid). Most mollusks have at least one shell that protects and supports the animal\'s soft body. They also have a foot, which allows them to move.'
+            },
+            {
+            'name' : 'Other Invertebrates',
+            'image' : '',
+            'blurb' : 'Invertebrates make up the most diverse and abundant species on Earth. Worms, sponges, corals, tunicates and echinoderms are just a few of the many other types of invertebrates that live in the Bay.'
+            }],
+          'image' : '/images/Invertebrates.jpg',
+          'blurb' : 'Invertebrates are animals without a backbone, including insects, mollusks, crustaceans and more. Hundreds of species of invertebrates live in the waters of Chesapeake Bay, and thousands of species of insects live throughout the watershed, from deep woods to sandy beaches to our own backyards.'
+        },
+        { 'name' : 'Mammals',
+          'subtypes' : [{
+            'name' : 'Aquatic',
+            'image' : '',
+            'blurb' : 'Unlike many other mammals, aquatic mammals have no fur and have a thick layer of blubber. The Chesapeake Bay is home to several mammals that spend their entire lives in the water, including dolphins and the occasional wayward manatee.'
+            },
+            {
+            'name' : 'Semi-Aquatic',
+            'image' : '',
+            'blurb' : 'Some mammals divide their time between land and water. Their waterproof—often oily—fur allows them to stay warm while in the water. These semi-aquatic species include beavers, muskrats and river otters.'
+            },
+            {
+            'name' : 'Land',
+            'image' : '',
+            'blurb' : 'A variety of land mammals live in the Bay watershed, from the small meadow vole to the large American black bear. While some of these animals are able to swim, they spend the majority of their lives on land. Land mammals include deer, squirrels, rabbits and foxes.'
+            },
+            {
+            'name' : 'Flying',
+            'image' : '',
+            'blurb' : 'While bats are the only mammals truly able to fly, others can “fly” by gliding for short distances using flaps on skin on either side of their body. Many species of bats, as well as the southern flying squirrel, can be found throughout the Chesapeake Bay region.'
+            }],
+          'image' : '/images/Mammals.jpg',
+          'blurb' : 'Mammals are warm-blooded vertebrates that give birth to and nurse live young, are covered with hair at some point in their lives and generally have two pairs of limbs. Many different types of mammals live in or visit the Bay region, both on land and in the water.'
+        },
+        { 'name' : 'Plants & Trees',
+          'subtypes' : [{ 
+            'name' : 'Algae',
+            'image' : '/images/Algae.jpg',
+            'blurb' : 'Algae are simple plants lacking roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow. Some algae species can be confused with bay grasses, because they look similar and grow in the same places.'
+            },
+            {
+            'name' : 'Bay Grasses',
+            'image' : '/images/Bay Grass.jpg',
+            'blurb' : 'Bay grasses—also known as submerged aquatic vegetation, or SAV—are plants that grow in the shallow waters of the Bay, providing food and habitat for fish, crabs and waterfowl. More than 16 species of bay grasses grow in the Bay and its tributaries.'
+            },
+            {
+            'name' : 'Flowers',
+            'image' : '',
+            'blurb' : 'There are hundreds of flowering plants that are native to the Chesapeake Bay region. These flowers are technically known as herbaceous plants, meaning they die off at the end of the growing season.'
+            },
+            {
+            'name' : 'Trees & Shrubs',
+            'image' : '',
+            'blurb' : 'At least 50 types of trees grow in the Chesapeake Bay watershed. Some trees are deciduous, meaning they lose their leaves each autumn and grow new ones in spring. Other trees are evergreen and do not lose their leaves.'
+            },
+            {
+            'name' : 'Aquatic & Wetland Plants',
+            'image' : '',
+            'blurb' : 'Wetland plants grow in damp, moist soils, whereas aquatic plants grow directly in water. Many are technically emergent plants, meaning they grow in standing water. Although native to wetlands and marshes, these plants are common in parks, yards and other areas.'
+            }],
+          'image' : '/images/Plants.jpg',
+          'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards. Plants help keep our air and water clean and provide habitat for countless animals.'
+        },
+        { 'name' : 'Reptiles & Amphibians',
+          'subtypes' : [{
+            'name' : 'Amphibians',
+            'image' : '',
+            'blurb' : 'Amphibians have moist, absorbent, scale-less skin. Frogs, toads, newts and salamanders are all amphibians. Amphibians are very sensitive to environmental changes, making them excellent indicators of an ecosystem\'s health.'
+            },
+            {
+            'name' : 'Reptiles',
+            'image' : '',
+            'blurb' : 'Reptiles have scaly skin that helps them retain water. While many reptiles spend most of their time on land, some species live in or near the water. Snakes, turtles and lizards are all reptiles.'
+            }],
+          'image' : '/images/Reptiles.jpg',
+          'blurb' : 'Reptiles and amphibians, sometimes called herps, are cold-blooded vertebrates. Hundreds of species live in the Chesapeake region: from frogs and salamanders that dwell along mountainous streams to sea turtles that visit the salty waters of the Bay\'s mouth.'
+        }
+      ];
 
-/***Services***/
+    $rootScope.habitats = [ 
+        { 'name': 'Aquatic Reefs & Pilings',
+          'image': '/images/pilings.jpg',
+          'blurb': ''
+        },
+        { 'name': 'Beaches & Tidal Flats',
+          'image': '/images/tidal flats.jpg',
+          'blurb': ''
+        },
+        { 'name': 'Forests & Uplands',
+          'image': '/images/forest.jpg',
+          'blurb': ''
+        },
+        { 'name': 'Marshes & Wetlands',
+          'image': '/images/wetlands.jpg',
+          'blurb': ''
+        },
+        { 'name': 'Open & Shallow Waters',
+          'image': '/images/shallow water.jpg',
+          'blurb': ''
+        },
+        { 'name': 'Streams & Rivers',
+          'image': '/images/river.jpg',
+          'blurb': ''
+        }
+      ];
+  });
 
-  fieldGuide.factory( 'getEntries', [ '$http', function( $http ){
-    var promise;
-    var getEntries = function(){
-      if( !promise ){
-        promise = $http.jsonp('http://www.chesapeakebay.net/site/API_test?callback=JSON_CALLBACK');
-      }
-      return promise;
-    };
-    return getEntries;
-  }]);
-  
-  fieldGuide.factory( 'renderHtml', [ '$sce', function( $sce ){
-    var renderHtml = function( raw_html ){
-      return $sce.trustAsHtml( raw_html );
-    };
-    return renderHtml;
-  }]);
-  
-  fieldGuide.factory( 'renderSrc', [ '$sce', function( $sce ){
-    var renderSrc = function( raw_html ){
-      return $sce.trustAsResourceUrl( raw_html );
-    };
-    return renderSrc;
-  }]);
-  
-  fieldGuide.factory( 'critterOfTheMonth', function(){
-    var getCritter = function( critters ) {
-      var monthlyCritter = _.filter( critters, function( critter ){
-        return critter.status === 'critterofthemonth';
-      });
-      monthlyCritter = _.sortBy( monthlyCritter, 'edit_date' );
-      return monthlyCritter[monthlyCritter.length - 1];
-    };
-    return getCritter;
-  });
-  
-    fieldGuide.factory( 'relatedCritters', [ 'getEntries', 'matchCategory', function( getEntries, matchCategory ){
-    return function( entries, critter ){
-      var filtered = [];
-      var categoryToMatch = _.find( critter.categories, function( category ){
-        var result;
-        function matchSubtypes( subtypeArray ){
-          for( var i = 0; i < subtypeArray.length; i++){
-            if( matchCategory( subtypeArray[i].name, category.category_name ) ){
-              result = true;
-            }
-          }
-        }
-        for( var i = 0; i < types.length; i++ ){
-          if( types[i].subtypes ){
-            if ( matchCategory( types[i].name, category.category_name ) ) { result = true; }
-            matchSubtypes( types[i].subtypes );
-          } else { 
-            if ( matchCategory( types[i].name, category.category_name ) ) { result = true; }
-          }
-        }
-        return result;
-      }).category_name;
-      
-      entries.forEach( function( entry ){
-        entry.categories.forEach( function( category ){
-          if( category.category_name.toUpperCase() === categoryToMatch.toUpperCase() ){
-            filtered.push( entry );
-          }
-        });
-      });
-      return filtered;
-    };  
-  }]);
-  
-  fieldGuide.factory( 'matchCategory', function(){
-    return function( cat, category ){
-      if( cat === category ){
-        return true;
-      }
-    };
-  });  
-  fieldGuide.factory( 'makeButtons', function(){
-    var makeButtons = function( critter ){
-      critter.buttons = {};
-      critter.buttons.type = _.find( critter.categories, function( category ){
-          for( var i = 0; i < types.length; i++ ){
-           if( types[i].name === category.category_name ){
-             return true;
-           }
-         }
-      }).category_name;
-      critter.buttons.habitats = _.filter( critter.categories, function( category ){
-          for( var i = 0; i < habitats.length; i++ ){
-           if( habitats[i].name === category.category_name ){
-             return true;
-           }
-         }
-      });    
-      critter.buttons.subtype = _.find( critter.categories, function( category ){
-        var results;
-        function matchCategory( subtype ){
-          if( subtype.name === category.category_name ){
-            results = true;
-          }
-        }
-        
-        for( var i = 0; i < types.length; i++ ){
-            _.compact( types[i].subtypes ).forEach( matchCategory );
-        }
-        return results;
-      });
-      critter.buttons.subtype = ( critter.buttons.subtype ) ? critter.buttons.subtype.category_name : undefined;
-    };
-    return makeButtons;
-  });
-  
-  fieldGuide.factory( 'getFlickr', [ '$http', 'md5', function( $http, md5 ){
-    return function( tags ){
-      var apiSig = '589af94b6012d347api_keyc03d2c380487bc102a9213f8487b891dauth_token72157627022294584-5cb5ec33745f610cextrasdescriptionformatrestmethodflickr.photos.searchtags' + tags + 'user_id29388462@N06';
-      apiSig = md5.createHash( apiSig );     
-      return $http( {
-        url:  'https://api.flickr.com/services/rest/',
-        params: {
-          'method' : 'flickr.photos.search',
-          'api_key' : 'c03d2c380487bc102a9213f8487b891d',
-          'user_id' : '29388462@N06',
-          'tags' : tags,
-          'extras' : 'description',
-          'format' : 'rest',
-          'auth_token' : '72157627022294584-5cb5ec33745f610c',
-          'api_sig' : apiSig
-        }
-      });
-    };
-
-     
-  }]);
-  
-  fieldGuide.factory( 'equalize', ['$timeout', function( $timeout ){
-    return function(){
-      $timeout( function(){
-        $(document).foundation( {
-          equalizer: {
-            equalize_on_stack: true
-          }
-        }, 'equalizer', 'reflow' );
-      }, 100 );
-    };
-  }]);
-
-/***Filters***/
-  fieldGuide.filter( 'entriesByKeyword', function() {
-    return function( array, title ){
-      return _.filter( array, function( item ){
-        switch( true ){
-          case item.title.toUpperCase().indexOf( title.toUpperCase() ) > -1:
-          case item.fieldguide_appearance.toUpperCase().indexOf( title.toUpperCase() ) > -1:
-          case item.fieldguide_scientific_name.toUpperCase().indexOf( title.toUpperCase() ) > -1:
-          case item.fieldguide_other_facts.toUpperCase().indexOf( title.toUpperCase() ) > -1:
-            return true;
-          default:
-            return false;
-        }
-      });
-    };
-  });
-  
-  fieldGuide.filter( 'entryByTitle', function() {
-    return function( array, title ){
-      return _.find( array, function( entry ){
-        return entry.title.toUpperCase() === title.toUpperCase();
-      });  
-    };  
-  });
-  
-  fieldGuide.filter( 'arrayByArray', function() {
-    return function( array1, criteria ){
-      _.each( array1, function( array1Item ){
-        return array1Item.category_name.toUpperCase() === criteria.toUpperCase() ;
-      });
-    };
-  });
-  
-/***Directives***/
-  
-  fieldGuide.directive( 'audio', function( $sce ) {
-    return {
-      restrict: 'A',
-      scope: { code:'=' },
-      replace: true,
-      template: '<audio ng-src="{{url}}" controls></audio>',
-      link: function( scope ){
-        scope.$watch( 'code', function( sourceUrl ){
-          if( sourceUrl !== undefined ){
-            scope.url = $sce.trustAsResourceUrl( sourceUrl );
-          }
-        });
-      }
-    };
-  });
-  
-  fieldGuide.directive( 'entryBlock', function( renderHtml ) {
-    return {
-      restrict: 'AE',
-      replace: true,
-      scope: { thisEntry: '=entry' },
-      templateUrl: '/partials/entry-block.html',
-      link: function( scope ){
-        scope.thisEntry.fieldguide_description = renderHtml( scope.thisEntry.fieldguide_description );
-      }
-    };
-  });
-  
-  fieldGuide.directive( 'slickCarousel', function() {
-    return {
-      restrict: 'AE',
-      replace: false,
-      templateUrl: '/partials/mediaSlider.html',
-      scope: { entry: '=entry' },
-      link: function( scope, element ){
-        scope.$watch( 'entry.images.length', function( newVal, oldVal ){
-          if( newVal !== oldVal ){
-            $( element ).slick({
-              infinite: true,
-              center: true,
-              adaptiveHeight: true,
-              fade: true,
-              arrows: true,
-              prevArrow: $( '.fa-chevron-left' ),
-              nextArrow: $( '.fa-chevron-right' )
-            });
-          }  
-        }, true);
-      }
-    };
-  });
-  
-  fieldGuide.directive( 'searchBar', function( $location ){
-    return {
-      replace: true,
-      templateUrl: '/partials/search-bar.html',
-      link: function( scope ){
-        $( '#searchIcon' ).on( 'click', function(){
-          if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
-            var thePath = '/search/' + scope.search.title;
-            $location.path( thePath );
-          }
-        scope.$apply();
-        });
-        $( '#titleSearch' ).bind( 'keypress', function( event ){
-          if( event.which === 13 ){
-            $( '#searchIcon' ).click();
-          }
-        });
-      }
-    };
-  });
-  
-  fieldGuide.directive( 'smallMediaQuery', function(){
-    return {
-      restrict: 'A',
-      link: function( scope ){
-        scope.checkSize = _.debounce( function(){
-          scope.isSmall = window.matchMedia( '(max-width: 640px)' ).matches;
-          scope.$apply();
-        }, 100 );
-        $( window ).on( 'load resize', scope.checkSize );
-      }
-    };
-  });
-  
-  fieldGuide.directive( 'tags', [ 'makeButtons', function( makeButtons ){
-    return {
-      replace: true,
-      restrict: 'E',
-      templateUrl: '/partials/tags.html',
-      scope: { tagEntry: '=entry' },
-      link: function( scope, element ){
-        makeButtons( scope.tagEntry );
-        element.on( 'click', function(){
-          $( 'html' ).scrollTop( 0 );
-        });
-      }
-    };
-  }]);
-  fieldGuide.directive( 'navMenuItems', [ 'equalize', function( equalize ){
-    return {
-      restrict: 'E',
-      replace: false,
-      require: '^navMenu',
-      transclude: true,
-      templateUrl: '/partials/navMenuItems.html',
-      link: function( scope ){
-        scope.nav.hover = types[0];
-        scope.nav.type = types[0];
-        equalize();
-      }
-    };
-  }]);
-      
-  fieldGuide.directive( 'navMenu', function(){
-    return {
-      replace: true,
-      restrict: 'E',
-      transclude: true,
-      templateUrl: '/partials/headerNav.html',
-      controller: 'NavController',
-      link: function( scope ){
-        $( '#menuIcon' ).click( function(){
-          if( $( this ).hasClass( 'fi-list' ) ) {
-            $( this ).removeClass( 'fi-list' );
-            $( this ).addClass( 'fi-x' );
-          } else {
-            $( this ).removeClass( 'fi-x' );
-            $( this ).addClass( 'fi-list' );
-          }
-        });
-        $( document ).on( 'click', function( event ){
-          if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) {
-            if( scope.nav ){ 
-              scope.nav.showMenu = false;
-              $( '#menuIcon' ).removeClass( 'fi-x' );
-              $( '#menuIcon' ).addClass( 'fi-list' );
-              scope.$apply();
-            }
-          }
-        });
-      }
-    };
-  });
-  
-  fieldGuide.directive( 'preview', function(){
-    return {
-      replace: true,
-      restrict: 'E',
-      transclude: true,
-      templateUrl: '/partials/previewWindow.html',
-      require: '^navMenu'
-    };
-  });
-  fieldGuide.directive( 'howSoonIsNow', function(){
-    return {
-      replace: false,
-      restrict: 'A',
-      link: function( scope ){
-        scope.now = $.now();
-      }
-    };
-  });
   /***Router***/
   fieldGuide.config(['$routeProvider', '$locationProvider', 
     function($routeProvider, $locationProvider) {
@@ -569,108 +213,5 @@
         });
       $locationProvider.html5Mode( true );
   }]);
- 
-/***Controllers***/
- 
-  fieldGuide.controller( 'StartController', [ '$scope', '$timeout', 'getEntries', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $timeout, getEntries, critterOfTheMonth, renderHtml, equalize ){
-    $scope.categories = {
-                          types : { selected: 'types', options: types, templateUrl: '/partials/browseAccordion.html' },
-                          habitats : { selected: 'habitats', options: habitats, templateUrl: '/partials/browseList.html' }
-    };  
-    $scope.renderHtml = renderHtml;
-    $scope.entries = {};
-    $scope.critter = {};
-    getEntries().then( function( result ){
-      $scope.entries = result.data;
-      $scope.critter = critterOfTheMonth( $scope.entries );
-      equalize();
-    });
-  }]);
-  
-  fieldGuide.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
-    $scope.entries = {};
-    $scope.habitat = {};
-    $scope.renderHtml = renderHtml;
-    getEntries().then( function( result ){
-      $scope.entries = result.data;
-      equalize();
-    });
-    $scope.habitat.title = $routeParams.habitat;
-    $scope.$watch( $scope.entries, function( newVal, oldVal ){
-      if( newVal !== oldVal ){
-        equalize();
-      }
-    }, true );
-  }]);
-  
-  fieldGuide.controller( 'TypeController', [ '$scope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
-    $scope.selection = { 
-                      'subtype' : ( !$routeParams.subtype ) ? '' : $routeParams.subtype ,
-                      'type' : $routeParams.type,
-                      'options' : _.find( types, function( type ){
-                                    return type.name === $routeParams.type;
-                                  }).subtypes
-                      };                  
-    $scope.renderHtml = renderHtml;
-    getEntries().then( function( result ){
-      $scope.entries = result.data;
-      equalize();
-    });
-    $scope.$watch( 'selection.subtype', function( newVal, oldVal ){
-      if( newVal !== oldVal ){
-        equalize();
-        var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
-        $location.path( path );
-      }
-    }, true);
-  }]);
-  
-  fieldGuide.controller( 'NavController', [ '$scope', function( $scope ){
-    $scope.types = types;
-    $scope.habitats = habitats;
-    $scope.navItems = _.map( $scope.types, function( type ){
-      return type.name;
-    });
-    $scope.navItems = $scope.navItems.concat( habitats );
 
-  }]);
-  
-  fieldGuide.controller( 'ResultsController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'entriesByKeywordFilter', 'equalize', function( $scope, $routeParams, $sce, getEntries, entriesByKeywordFilter, equalize ){
-    $scope.results = {};
-    getEntries().then( function( result ){
-      $scope.results.entries = entriesByKeywordFilter( result.data, $routeParams.query );
-      equalize();
-    });
-  }]);
-  
-  fieldGuide.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons, getFlickr ){
-    getEntries().then( function( result ){
-      $scope.entries = result.data;
-      $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
-      makeButtons( $scope.entry );
-      $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
-        return category.category_name;
-      });
-      $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
-      $scope.entry.images = [];
-      getFlickr( $scope.entry.flickr_tags ).then( function( results ){
-        var images = $( $.parseXML( results.data ) ).find( 'photo' );
-        for( var i = 0; i < images.length; i++ ){
-          $scope.entry.images.push( images[i].attributes );
-        }
-        for( i = 0; i < $scope.entry.images.length; i++ ){
-          $scope.entry.images[i].url = 'https://farm'+$scope.entry.images[i].farm.value+'.staticflickr.com/'+$scope.entry.images[i].server.value+'/'+$scope.entry.images[i].id.value+'_'+$scope.entry.images[i].secret.value+'.jpg';
-          $scope.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
-                    console.log( $scope.entry.images[i] );
-        }
-        
-      });  
-     
-    });
-    $scope.title = $routeParams.title;
-    $scope.renderHtml = renderHtml;
-    $scope.renderSrc = renderSrc;
-
-	}]);
-  
 })();
