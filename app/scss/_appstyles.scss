@@ -238,9 +238,6 @@ p a:hover {
 }
 
 #critterOfTheMonth {
-  @media screen and (max-width: 1024px) {
-    margin: 15px;
-  }
   a {
     padding: 0px;
   }
@@ -303,11 +300,5 @@ p a:hover {
     li:nth-child( 6n ) {
       margin-left: 0px;
     }
-  }
-}
-
-#browseRow {
-  @media screen and ( max-width: 1024px ){
-  padding: 15px;
   }
 }

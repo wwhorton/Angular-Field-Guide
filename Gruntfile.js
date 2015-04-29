@@ -120,8 +120,8 @@ module.exports = function(grunt) {
 				}
 			},
       karma: {
-        files: ['../app/js/*.js', 'unit/*.js'],
-        tasks: ['karma:unit:run']
+        files: ['<%= app %>/js/*.js', '<%= app %>/test/unit/*.js'],
+        tasks: ['karma']
       }
 		},
 

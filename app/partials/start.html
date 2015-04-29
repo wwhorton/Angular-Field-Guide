@@ -20,7 +20,8 @@
 </div>
   
 <div class="row" id="browseRow">
-  <div id="browse" class="small-12 small-centered columns panel" ng-control="StartController">
+  <div id="browse" class="small-12 small-centered columns" ng-control="StartController">
+    <div class="panel">
     <h3>Browse by Type:</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
         <li ng-repeat="category in categories.types.options">
@@ -30,6 +31,8 @@
           </div>
         </li>
       </ul>
+    </div>
+    <div class="panel">
     <h3>Browse by Habitat:</h3>
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
         <li ng-repeat="category in categories.habitats.options" >
@@ -39,6 +42,7 @@
           </div>
         </li>
       </ul>      
+    </div>
   </div> <!-- end columns -->
 </div> <!-- end row -->
 
