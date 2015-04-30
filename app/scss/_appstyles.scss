@@ -240,6 +240,10 @@ p a:hover {
 #critterOfTheMonth {
   a {
     padding: 0px;
+    color: #c2c2c2;
+  }
+  a:hover {
+    color: #ebebeb;
   }
   img {
     height: auto;
@@ -247,11 +251,14 @@ p a:hover {
   }
   div {
     background-color: #21578A;
-    h2 {
-      color: #fff;
-    }
     h3 {
+      color: #fff;
+      font-size: 1.5rem !important;
+    }
+    h4 {
       color: #C2C2C2;
+      font-size: 1.125rem !important;
+      font-style: italic !important;
       a {
         color: #C2C2C2;
       }
@@ -297,8 +304,8 @@ p a:hover {
     font-size: 2rem;
   }
   @media screen and (min-width: 1025px) {
-    li:nth-child( 6n ) {
-      margin-left: 0px;
+    li:nth-child( n+2 ) {
+      margin-left: 15px;
     }
   }
 }
