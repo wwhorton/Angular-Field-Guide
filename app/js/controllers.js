@@ -19,7 +19,7 @@
     });
   }]);
   
-  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
     $scope.entries = {};
     $scope.habitat = {};
     $scope.renderHtml = renderHtml;
@@ -27,7 +27,9 @@
       $scope.entries = result.data;
       equalize();
     });
-    $scope.habitat.title = $routeParams.habitat;
+    $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
+      return habitat.name === $routeParams.habitat;
+    });
     $scope.$watch( $scope.entries, function( newVal, oldVal ){
       if( newVal !== oldVal ){
         equalize();
@@ -78,7 +80,7 @@
     });
   }]);
   
-  fieldGuideControllers.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByCategoryFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByCategoryFilter, relatedCritters, makeButtons, getFlickr ){
+  fieldGuideControllers.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, relatedCritters, makeButtons, getFlickr ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
@@ -96,7 +98,6 @@
         for( i = 0; i < $scope.entry.images.length; i++ ){
           $scope.entry.images[i].url = 'https://farm'+$scope.entry.images[i].farm.value+'.staticflickr.com/'+$scope.entry.images[i].server.value+'/'+$scope.entry.images[i].id.value+'_'+$scope.entry.images[i].secret.value+'.jpg';
           $scope.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
-                    console.log( $scope.entry.images[i] );
         }
         
       });  

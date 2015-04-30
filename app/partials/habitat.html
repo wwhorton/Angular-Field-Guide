@@ -1,18 +1,16 @@
 <div style="margin-bottom: 30px;" class="row collapse">
-  <h2 class="small-12 columns">{{habitat.title}}</h2>
+  <h2 class="small-12 columns">{{habitat.name}}</h2>
   <div class="row collapse" data-equalizer>
     <img class="small-12 large-6 columns" data-equalizer-watch ng-src="{{habitat.image}}" src="http://placehold.it/320x200" />
-    <div class="small-12 large-6 columns" data-equalizer-watch style="background-color: #21578A;">
-      
-      <h3 class="small-12 columns" style="color: #F5F5F5;">Life-saving our grantees and partners revitalize Peace Corps global network provide women and children. Reproductive rights combat malaria dialogue advancement Bono.</h3>
-      <p class="small-12 columns" style="color: #F5F5F5;">Local, pursue these aspirations beneficiaries, social worker campaign catalyze. Nonprofit philanthropy, turmoil diversity honesty civic engagement community health workers. Replicable medical supplies long-term education change lives advocate positive social change invest convener. International development cross-cultural; cross-agency coordination detection climate change challenges of our times. </p>
+    <div class="small-12 large-6 columns" data-equalizer-watch style="background-color: #21578A;" >
+      <div ng-bind-html="renderHtml( habitat.blurb )"></div>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="panel small-12 columns">
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
-      <li ng-repeat="entry in entries | filter:{categories:{category_name:habitat.title}} | orderBy:'-title':true " >
+      <li ng-repeat="entry in entries | filter:{categories:{category_name:habitat.name}} | orderBy:'-name':true " >
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>
