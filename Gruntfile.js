@@ -32,6 +32,18 @@ module.exports = function(grunt) {
       }
     },
 		
+    protractor: {
+      options: {
+      configFile: "node_modules/protractor/example/conf.js", // Default config file 
+      keepAlive: true, // If false, the grunt process stops when the test fails. 
+      noColor: false, // If true, protractor will not use colors in its output. 
+      args: {
+        // Arguments passed to the command 
+        }
+      },
+      all: { },
+    },
+
 
 		jshint: {
 			options: {
@@ -186,7 +198,8 @@ module.exports = function(grunt) {
 	grunt.registerTask('validate-js', ['jshint']);
 	grunt.registerTask('server-dist', ['connect:dist']);
 	
-	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin', 'newer:imagemin']);
+	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'karma', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin', 'newer:imagemin']);
 
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-protractor-runner');
 };
