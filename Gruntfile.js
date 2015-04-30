@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        background: false,
+        background: true,
         singleRun: false
       }
     },
@@ -133,7 +133,10 @@ module.exports = function(grunt) {
 			},
       karma: {
         files: ['<%= app %>/js/*.js', '<%= app %>/test/unit/*-spec.js'],
-        tasks: ['karma:unit:run']
+        tasks: ['karma:unit:run'],
+        options: {
+          atBegin: true
+        }
       }
 		},
 
