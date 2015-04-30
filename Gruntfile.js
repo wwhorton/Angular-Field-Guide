@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        background: true,
+        background: false,
         singleRun: false
       }
     },
@@ -132,8 +132,8 @@ module.exports = function(grunt) {
 				}
 			},
       karma: {
-        files: ['<%= app %>/js/*.js', '<%= app %>/test/unit/*.js'],
-        tasks: ['karma']
+        files: ['<%= app %>/js/*.js', '<%= app %>/test/unit/*-spec.js'],
+        tasks: ['karma:unit:run']
       }
 		},
 
@@ -194,7 +194,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('compile-sass', ['sass']);
 	grunt.registerTask('bower-install', ['wiredep']);
 	
-	grunt.registerTask('default', ['bower-install', 'compile-sass', 'connect:app', 'watch']);
+	grunt.registerTask('default', ['bower-install', 'compile-sass', 'connect:app', 'karma', 'watch']);
 	grunt.registerTask('validate-js', ['jshint']);
 	grunt.registerTask('server-dist', ['connect:dist']);
 	

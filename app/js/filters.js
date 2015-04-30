@@ -25,12 +25,5 @@
       });  
     };  
   });
-  
-  fieldGuideFilters.filter( 'arrayByArray', function() {
-    return function( array1, criteria ){
-      _.each( array1, function( array1Item ){
-        return array1Item.category_name.toUpperCase() === criteria.toUpperCase() ;
-      });
-    };
-  });
+
 })();  

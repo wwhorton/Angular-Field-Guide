@@ -78,7 +78,7 @@
     });
   }]);
   
-  fieldGuideControllers.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByArrayFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByArrayFilter, relatedCritters, makeButtons, getFlickr ){
+  fieldGuideControllers.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'arrayByCategoryFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, arrayByCategoryFilter, relatedCritters, makeButtons, getFlickr ){
     getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
