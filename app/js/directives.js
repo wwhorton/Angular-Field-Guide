@@ -69,6 +69,9 @@
           }
         scope.$apply();
         });
+        $( 'html' ).click( function( ){
+          $( '#suggestionBox' ).hide();
+        });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
           if( event.which === 13 ){
             $( '#searchIcon' ).click();

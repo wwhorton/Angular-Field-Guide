@@ -8,8 +8,8 @@
   </div>
 
 </form>
-<ul ng-if="search.title.length > 2" class="no-bullet suggestion">
-  <li ng-repeat="entry in entries | fuzzy: search.title | limitTo: 5 " ng-click="search.title = entry.title" ng-if="search.title.toUpperCase() != entry.title.toUpperCase()">
+<ul ng-if="search.title.length > 2" class="no-bullet suggestion" id="suggestionBox" >
+  <li ng-repeat="entry in entries | fuzzy: search.title | limitTo: 5 " ng-click="search.title = entry.title">
     {{entry.title}}
   </li>
 </ul>
