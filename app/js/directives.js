@@ -54,11 +54,14 @@
     };
   });
   
-  fieldGuideDirectives.directive( 'searchBar', function( $location ){
+  fieldGuideDirectives.directive( 'searchBar', [ '$location', 'getEntries', function( $location, getEntries ){
     return {
       replace: true,
       templateUrl: '/partials/search-bar.html',
       link: function( scope ){
+        getEntries().then( function( result ){
+          scope.entries = result.data;
+        });
         $( '#searchIcon' ).on( 'click', function(){
           if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
             var thePath = '/search/' + scope.search.title;
@@ -73,7 +76,7 @@
         });
       }
     };
-  });
+  }]);
   
   fieldGuideDirectives.directive( 'smallMediaQuery', function(){
     return {

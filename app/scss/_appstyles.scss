@@ -309,3 +309,16 @@ p a:hover {
     }
   }
 }
+
+.suggestion {
+  background-color: #fff;
+  border: 1px solid #D6D6D6;
+  position: relative;
+  z-index: 100;
+  @media screen and (min-width: 641px){
+    top: 104px;
+  }
+  @media screen and (max-width: 640px) {
+    top: -20px;
+  }
+}
