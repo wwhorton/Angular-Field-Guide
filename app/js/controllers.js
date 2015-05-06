@@ -19,19 +19,24 @@
     });
   }]);
   
-  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$filter', 'getEntries', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $filter, getEntries, renderHtml, equalize ){
+    var matches, results;
     $scope.entries = {};
     $scope.habitat = {};
+    $scope.selection = { 'type': '' };
+    $scope.types;
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
       equalize();
+      
     });
+    
     $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
       return habitat.name === $routeParams.habitat;
     });
-    $scope.$watch( $scope.entries, function( newVal, oldVal ){
-      if( newVal !== oldVal ){
+    $scope.$watchGroup( [ 'entries', 'selection.type' ], function( newVal, oldVal ){
+      if( newVal[0] !== oldVal[0] || newVal[1] !== oldVal[1] ){
         equalize();
       }
     }, true );
