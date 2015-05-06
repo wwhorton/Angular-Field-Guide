@@ -133,8 +133,6 @@
         }
       });
     };
-
-     
   }]);
 
   fieldGuideServices.factory( 'equalize', ['$timeout', function( $timeout ){

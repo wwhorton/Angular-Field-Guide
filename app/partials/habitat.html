@@ -11,14 +11,14 @@
 <div class="row">
   <div class="panel small-12 columns">
     <h4 class="small-3 columns">Browse by:</h4>
-    <select class="small-4 columns" ng-model="selection.type" ng-options="type.name as type.name for type in types">
+    <select class="small-4 columns" ng-model="selection.type" ng-options="entry.type as entry.type for entry in types | uniq: 'type' ">
     <option value="" >All</option>
     </select> 
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
-      <li ng-if="selection.type" ng-repeat="entry in entries | filter:{categories:{category_name:habitat.name}} | filter:{categories:{category_name:selection.type}}:true| orderBy:'-title':true " >
+      <li ng-if="selection.type" ng-repeat="entry in entries | filter:{habitats:habitat.name} | filter:{type:selection.type}:true| orderBy:'-title':true " >
         <entry-block entry="entry"></entry-block>
       </li>
-      <li ng-if="!selection.type" ng-repeat="entry in entries | filter:{categories:{category_name:habitat.name}} | orderBy:'-title':true " >
+      <li ng-if="!selection.type" ng-repeat="entry in entries | filter:{habitats:habitat.name} | orderBy:'-title':true " >
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>

@@ -54,17 +54,23 @@
     };
   });
   
-  fieldGuideDirectives.directive( 'searchBar', function( $location ){
+  fieldGuideDirectives.directive( 'searchBar', [ '$location', 'getEntries', function( $location, getEntries ){
     return {
       replace: true,
       templateUrl: '/partials/search-bar.html',
       link: function( scope ){
+        getEntries().then( function( result ){
+          scope.entries = result.data;
+        });
         $( '#searchIcon' ).on( 'click', function(){
           if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
             var thePath = '/search/' + scope.search.title;
             $location.path( thePath );
           }
         scope.$apply();
+        });
+        $( 'html' ).click( function( ){
+          $( '#suggestionBox' ).hide();
         });
         $( '#titleSearch' ).bind( 'keypress', function( event ){
           if( event.which === 13 ){
@@ -73,7 +79,7 @@
         });
       }
     };
-  });
+  }]);
   
   fieldGuideDirectives.directive( 'smallMediaQuery', function(){
     return {

@@ -3,7 +3,14 @@
 (function(){
 	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation', 'fieldGuideServices', 'fieldGuideFilters', 'fieldGuideDirectives', 'fieldGuideControllers', 'angular.filter' ]);
   
-  fieldGuide.run( function( $rootScope ){
+  fieldGuide.run( function( $rootScope, getEntries ){
+    $rootScope.entries = [
+        {  'type': '',
+          'subtype': '',
+          'habitats': []
+        }
+    ];
+    
     $rootScope.types = [ 
         { 'name' : 'Birds',
           'subtypes' : [{
@@ -173,6 +180,30 @@
           'blurb': '<h4>Hundreds of thousands of streams, creeks and rivers thread through the Chesapeake Bay watershed and eventually flow to the Bay. These freshwater tributaries provide critical habitat for many plants and animals, including <a href="/fieldguide/categories/category/fish">fish</a>, <a href="/fieldguide/categories/category/insects">insects</a>, <a href="/fieldguide/categories/category/reptiles_amphibians">reptiles</a>, <a href="/fieldguide/categories/category/reptiles_amphibians">amphibians</a> and <a href="/fieldguide/categories/category/invertebrates">invertebrates</a>.</h4><p>Catfish, sunfish and <a href="/fieldguide/critter/brook_trout">brook trout</a> are just a few types of fish that live their entire lives in fresh water. Many other fish - including shad, <a href="/fieldguide/critter/atlantic_sturgeon">Atlantic sturgeon</a> and <a href="/fieldguide/critter/striped_bass">striped bass</a> - travel from the Bay and the ocean to freshwater streams and rivers to spawn.</p><p>Fish aren\'t the only animals that are found in streams and rivers. Diverse communities of tiny worms and clams live at the bottom of streams. Many bay <a href="/fieldguide/categories/category/bay_grasses_sav">grass species</a>, including <a href="/fieldguide/critter/coontail">coontail</a> and <a href="/fieldguide/critter/wild_celery">wild celery</a>, only grow in fresh water. Along the edges of streams and rivers, turtles and snakes bask in the sun and search for prey. </p><p>Click on the images below to learn about some of the critters that live in the Chesapeake Bay watershed\'s streams and rivers.</p>'
         }
       ];
+      
+    getEntries().then( function( results ){
+      $rootScope.entries = results.data;
+      _.map( $rootScope.entries, function( entry ){
+        entry.habitats = [];
+        _.each( entry.categories, function( category ){
+          _.each( $rootScope.types, function( type ){
+            if( type.name === category.category_name ){
+              entry.type = type.name;
+            }
+            _.each( type.subtypes, function( subtype ){
+              if( subtype.name === category.category_name ){
+                entry.subtype = subtype.name;
+              }
+            });
+          });
+          _.each( $rootScope.habitats, function( habitat ){
+            if( habitat.name === category.category_name ){
+              entry.habitats.push( habitat.name);
+            }
+          });
+        });
+      });
+    });
   });
 
   /***Router***/

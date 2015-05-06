@@ -19,17 +19,24 @@
     });
   }]);
   
-  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$http', '$routeParams', '$timeout', 'getEntries', 'renderHtml', 'equalize', function( $scope, $http, $routeParams, $timeout, getEntries, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$filter', 'getEntries', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $filter, getEntries, renderHtml, equalize ){
+    var matches, results;
     $scope.entries = {};
     $scope.habitat = {};
+    $scope.selection = { 'type': '' };
+    $scope.types;
     $scope.renderHtml = renderHtml;
     getEntries().then( function( result ){
       $scope.entries = result.data;
       equalize();
+      
     });
-    $scope.habitat.title = $routeParams.habitat;
-    $scope.$watch( $scope.entries, function( newVal, oldVal ){
-      if( newVal !== oldVal ){
+    
+    $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
+      return habitat.name === $routeParams.habitat;
+    });
+    $scope.$watchGroup( [ 'entries', 'selection.type' ], function( newVal, oldVal ){
+      if( newVal[0] !== oldVal[0] || newVal[1] !== oldVal[1] ){
         equalize();
       }
     }, true );
@@ -96,7 +103,6 @@
         for( i = 0; i < $scope.entry.images.length; i++ ){
           $scope.entry.images[i].url = 'https://farm'+$scope.entry.images[i].farm.value+'.staticflickr.com/'+$scope.entry.images[i].server.value+'/'+$scope.entry.images[i].id.value+'_'+$scope.entry.images[i].secret.value+'.jpg';
           $scope.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
-                    console.log( $scope.entry.images[i] );
         }
         
       });  

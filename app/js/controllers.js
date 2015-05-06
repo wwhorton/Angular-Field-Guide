@@ -10,27 +10,23 @@
                           habitats : { selected: 'habitats', options: $rootScope.habitats, templateUrl: '/partials/browseList.html' }
     };  
     $scope.renderHtml = renderHtml;
-    $scope.entries = {};
+    $scope.entries = $rootScope.entries;
     $scope.critter = {};
-    getEntries().then( function( result ){
+    /*getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.critter = critterOfTheMonth( $scope.entries );
       equalize();
-    });
+    });*/
   }]);
   
-  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$filter', 'getEntries', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $filter, getEntries, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$filter', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $filter, renderHtml, equalize ){
     var matches, results;
-    $scope.entries = {};
+    $scope.FG = { 'entries': $rootScope.entries };
     $scope.habitat = {};
     $scope.selection = { 'type': '' };
-    $scope.types;
+    $scope.types = $filter( 'filter' )( $scope.entries, $routeParams.habitat );
+    console.log( $scope.types );
     $scope.renderHtml = renderHtml;
-    getEntries().then( function( result ){
-      $scope.entries = result.data;
-      equalize();
-      
-    });
     
     $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
       return habitat.name === $routeParams.habitat;
@@ -42,7 +38,8 @@
     }, true );
   }]);
   
-  fieldGuideControllers.controller( 'TypeController', [ '$scope', '$rootScope', '$http', '$routeParams', '$location', 'getEntries', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $location, getEntries, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'TypeController', [ '$scope', '$rootScope', '$http', '$routeParams', '$location', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $location, renderHtml, equalize ){
+    $scope.FG = { 'entries': $rootScope.entries };
     $scope.selection = { 
                       'subtype' : ( !$routeParams.subtype ) ? '' : $routeParams.subtype ,
                       'type' : $routeParams.type,
@@ -54,10 +51,6 @@
                                   }).subtypes
                       };                  
     $scope.renderHtml = renderHtml;
-    getEntries().then( function( result ){
-      $scope.entries = result.data;
-      equalize();
-    });
     $scope.$watch( 'selection.subtype', function( newVal, oldVal ){
       if( newVal !== oldVal ){
         equalize();
@@ -78,11 +71,9 @@
   }]);
   
   fieldGuideControllers.controller( 'ResultsController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'entriesByKeywordFilter', 'equalize', function( $scope, $routeParams, $sce, getEntries, entriesByKeywordFilter, equalize ){
-    $scope.results = {};
-    getEntries().then( function( result ){
-      $scope.results.entries = entriesByKeywordFilter( result.data, $routeParams.query );
-      equalize();
-    });
+    $scope.results = { 'entries': '' };
+    $scope.results.entries = entriesByKeywordFilter( $rootScope.entries, $routeParams.query );
+
   }]);
   
   fieldGuideControllers.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, relatedCritters, makeButtons, getFlickr ){
