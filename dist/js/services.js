@@ -33,7 +33,8 @@
       var monthlyCritter = _.filter( critters, function( critter ){
         return critter.status === 'critterofthemonth';
       });
-      monthlyCritter = _.sortBy( monthlyCritter, 'edit_date' );
+      monthlyCritter = _.sortBy( monthlyCritter, 'entry_date' );
+      console.log( monthlyCritter );
       return monthlyCritter[monthlyCritter.length - 1];
     };
     return getCritter;

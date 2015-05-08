@@ -9,7 +9,7 @@
 
 </form>
 <ul ng-if="search.title.length > 2" class="no-bullet suggestion" id="suggestionBox" >
-  <li ng-repeat="entry in entries | fuzzy: search.title | limitTo: 5 " ng-click="search.title = entry.title">
+  <li ng-repeat="entry in entries | fuzzyBy: 'title': search.title | limitTo: 5 " ng-click="search.title = entry.title">
     {{entry.title}}
   </li>
 </ul>

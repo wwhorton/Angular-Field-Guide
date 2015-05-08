@@ -66,10 +66,11 @@
 
   }]);
   
-  fieldGuideControllers.controller( 'ResultsController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'entriesByKeywordFilter', 'equalize', function( $scope, $routeParams, $sce, getEntries, entriesByKeywordFilter, equalize ){
+  fieldGuideControllers.controller( 'ResultsController', [ '$scope', '$rootScope','$routeParams', '$sce', 'getEntries', 'entriesByKeywordFilter', 'equalize', function( $scope, $rootScope, $routeParams, $sce, getEntries, entriesByKeywordFilter, equalize ){
     $scope.results = { 'entries': '' };
-    $scope.results.entries = entriesByKeywordFilter( $rootScope.entries, $routeParams.query );
-
+    $scope.$watch( 'entries', function(){
+      $scope.results.entries = entriesByKeywordFilter( $rootScope.entries, $routeParams.query );
+    });
   }]);
   
   fieldGuideControllers.controller( 'EntryController', [ '$scope', '$rootScope','$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $rootScope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, relatedCritters, makeButtons, getFlickr ){

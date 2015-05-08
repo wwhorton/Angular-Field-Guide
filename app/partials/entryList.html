@@ -23,12 +23,12 @@
       </li>
     </ul>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer ng-if="selection.subtype.length > 0 && selection.subtype !== ''">
-      <li ng-repeat="entry in entries | filter:{type:selection.type} | filter:{subtype:selection.subtype}:true | orderBy:'-title':true ">
+      <li ng-repeat="entry in FG.entries | filter:{type:selection.type} | filter:{subtype:selection.subtype}:true | orderBy:'-title':true ">
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer ng-if="!selection.subtype">
-      <li ng-repeat="entry in entries | filter:{type:selection.type} | filter:{subtype:selection.subtype} | orderBy:'-title':true ">
+      <li ng-repeat="entry in FG.entries | filter:{type:selection.type} | filter:{subtype:selection.subtype} | orderBy:'-title':true ">
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>
