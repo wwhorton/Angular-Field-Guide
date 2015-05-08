@@ -4,35 +4,36 @@
 
   var fieldGuideControllers = angular.module( 'fieldGuideControllers', [] );
   
-  fieldGuideControllers.controller( 'StartController', [ '$scope', '$rootScope', '$timeout', 'getEntries', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $rootScope, $timeout, getEntries, critterOfTheMonth, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'StartController', [ '$scope', '$rootScope', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $rootScope, critterOfTheMonth, renderHtml, equalize ){
     $scope.categories = {
                           types : { selected: 'types', options: $rootScope.types, templateUrl: '/partials/browseAccordion.html' },
                           habitats : { selected: 'habitats', options: $rootScope.habitats, templateUrl: '/partials/browseList.html' }
     };  
     $scope.renderHtml = renderHtml;
-    $scope.entries = $rootScope.entries;
-    $scope.critter = {};
-    /*getEntries().then( function( result ){
-      $scope.entries = result.data;
-      $scope.critter = critterOfTheMonth( $scope.entries );
-      equalize();
-    });*/
+    $scope.FG = { 'entries': $rootScope.entries };
+                  
+    $scope.$watch( 'entries', function( newVal, oldVal ){
+      if( newVal !== oldVal ){
+        $scope.FG.entries = $rootScope.entries;
+        $scope.FG.critter = critterOfTheMonth( $rootScope.entries );
+        console.log( $scope.FG.critter );
+      }
+    });
   }]);
   
   fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$filter', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $filter, renderHtml, equalize ){
     var matches, results;
     $scope.FG = { 'entries': $rootScope.entries };
-    $scope.habitat = {};
     $scope.selection = { 'type': '' };
     $scope.types = $filter( 'filter' )( $scope.entries, $routeParams.habitat );
-    console.log( $scope.types );
     $scope.renderHtml = renderHtml;
-    
-    $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
+    equalize();
+    $scope.FG.habitat = _.find( $rootScope.habitats, function( habitat ){
       return habitat.name === $routeParams.habitat;
     });
-    $scope.$watchGroup( [ 'entries', 'selection.type' ], function( newVal, oldVal ){
+    $scope.$watchGroup( [ 'entries.length', 'selection.type' ], function( newVal, oldVal ){
       if( newVal[0] !== oldVal[0] || newVal[1] !== oldVal[1] ){
+        $scope.FG = { 'entries': $rootScope.entries };
         equalize();
       }
     }, true );
@@ -76,8 +77,35 @@
 
   }]);
   
-  fieldGuideControllers.controller( 'EntryController', [ '$scope', '$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, relatedCritters, makeButtons, getFlickr ){
-    getEntries().then( function( result ){
+  fieldGuideControllers.controller( 'EntryController', [ '$scope', '$rootScope','$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $rootScope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, relatedCritters, makeButtons, getFlickr ){
+    
+    $scope.FG = { 'entries': $rootScope.entries,
+                  'entry': '',
+                  'relatedCritters': ''
+                };
+    $scope.$watch( 'entries', function( newVal, oldVal ){
+      if( newVal !== oldVal ){
+        $scope.FG.entries = $rootScope.entries;
+        $scope.FG.entry = entryByTitleFilter( $rootScope.entries, $routeParams.title );
+        makeButtons( $scope.FG.entry );
+        $scope.FG.relatedCritters = _.shuffle( relatedCritters( $scope.FG.entries, $scope.FG.entry ) );
+        $scope.FG.entry.images = [];
+        getFlickr( $scope.FG.entry.flickr_tags ).then( function( results ){
+          var images = $( $.parseXML( results.data ) ).find( 'photo' );
+          for( var i = 0; i < images.length; i++ ){
+            $scope.FG.entry.images.push( images[i].attributes );
+          }
+          for( i = 0; i < $scope.FG.entry.images.length; i++ ){
+            $scope.FG.entry.images[i].url = 'https://farm'+$scope.FG.entry.images[i].farm.value+'.staticflickr.com/'+$scope.FG.entry.images[i].server.value+'/'+$scope.FG.entry.images[i].id.value+'_'+$scope.FG.entry.images[i].secret.value+'.jpg';
+            $scope.FG.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
+          }
+          
+        });
+
+      }
+    });
+    
+    /*getEntries().then( function( result ){
       $scope.entries = result.data;
       $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
       makeButtons( $scope.entry );
@@ -98,7 +126,7 @@
         
       });  
      
-    });
+    });*/
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
