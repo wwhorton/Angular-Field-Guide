@@ -10,14 +10,12 @@
                           habitats : { selected: 'habitats', options: $rootScope.habitats, templateUrl: '/partials/browseList.html' }
     };  
     $scope.renderHtml = renderHtml;
-    $scope.FG = { 'entries': $rootScope.entries };
-                  
-    $scope.$watch( 'entries', function( newVal, oldVal ){
-      if( newVal !== oldVal ){
-        $scope.FG.entries = $rootScope.entries;
-        $scope.FG.critter = critterOfTheMonth( $rootScope.entries );
-        console.log( $scope.FG.critter );
-      }
+    $scope.FG = { };
+    $scope.FG.entries = $rootScope.entries;            
+    $scope.FG.critter = critterOfTheMonth( $rootScope.entries );
+    $scope.$watch( 'entries.length', function(){
+      $scope.FG.entries = $rootScope.entries;            
+      $scope.FG.critter = critterOfTheMonth( $rootScope.entries );
     });
   }]);
   
@@ -25,18 +23,17 @@
     var matches, results;
     $scope.FG = { 'entries': $rootScope.entries };
     $scope.selection = { 'type': '' };
-    $scope.types = $filter( 'filter' )( $scope.entries, $routeParams.habitat );
+    $scope.types = $filter( 'filter' )( $scope.FG.entries, $routeParams.habitat );
     $scope.renderHtml = renderHtml;
     equalize();
-    $scope.FG.habitat = _.find( $rootScope.habitats, function( habitat ){
+    $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
       return habitat.name === $routeParams.habitat;
     });
-    $scope.$watchGroup( [ 'entries.length', 'selection.type' ], function( newVal, oldVal ){
-      if( newVal[0] !== oldVal[0] || newVal[1] !== oldVal[1] ){
-        $scope.FG = { 'entries': $rootScope.entries };
-        equalize();
-      }
-    }, true );
+    $scope.$watchGroup( [ 'entries.length', 'selection.type' ], function(){
+      $scope.FG = { 'entries': $rootScope.entries };
+      $scope.types = $filter( 'filter' )( $scope.FG.entries, $routeParams.habitat );
+      equalize();
+    });
   }]);
   
   fieldGuideControllers.controller( 'TypeController', [ '$scope', '$rootScope', '$http', '$routeParams', '$location', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $location, renderHtml, equalize ){
@@ -52,13 +49,11 @@
                                   }).subtypes
                       };                  
     $scope.renderHtml = renderHtml;
-    $scope.$watch( 'selection.subtype', function( newVal, oldVal ){
-      if( newVal !== oldVal ){
-        equalize();
-        var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
-        $location.path( path );
-      }
-    }, true);
+    $scope.$watch( 'selection.subtype', function(){
+      equalize();
+      var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
+      $location.path( path );
+    });
   }]);
   
   fieldGuideControllers.controller( 'NavController', [ '$scope', '$rootScope', function( $scope, $rootScope ){
@@ -81,10 +76,12 @@
     
     $scope.FG = { 'entries': $rootScope.entries,
                   'entry': '',
-                  'relatedCritters': ''
-                };
-    $scope.$watch( 'entries', function( newVal, oldVal ){
-      if( newVal !== oldVal ){
+                  'relatedCritters': '',
+                  'title': $routeParams.title
+                };        
+        
+    $scope.$watchGroup( ['FG.title', 'entries'], function( newVal, oldVal ){
+      if( $scope.FG.title || newVal[1] !== oldVal[1] ){
         $scope.FG.entries = $rootScope.entries;
         $scope.FG.entry = entryByTitleFilter( $rootScope.entries, $routeParams.title );
         makeButtons( $scope.FG.entry );
@@ -99,9 +96,7 @@
             $scope.FG.entry.images[i].url = 'https://farm'+$scope.FG.entry.images[i].farm.value+'.staticflickr.com/'+$scope.FG.entry.images[i].server.value+'/'+$scope.FG.entry.images[i].id.value+'_'+$scope.FG.entry.images[i].secret.value+'.jpg';
             $scope.FG.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
           }
-          
         });
-
       }
     });
     
