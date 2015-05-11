@@ -49,11 +49,21 @@
                                   }).subtypes
                       };                  
     $scope.renderHtml = renderHtml;
-    $scope.$watch( 'selection.subtype', function(){
+    $scope.$watchGroup( [ 'entries.length', 'selection.subtype' ], function(){
+      $scope.FG = { 'entries': $rootScope.entries };
       equalize();
       var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
       $location.path( path );
+      _.find( $rootScope.types, function( type ){
+        if( type.name === $routeParams.type && $routeParams.subtype && $scope.selection.subtype ){
+          $scope.subBlurb = _.find( type.subtypes, function( subtype ){
+            return subtype.name === $routeParams.subtype;
+          }).blurb;
+        }
+      });
+      console.log( $scope.subBlurb );
     });
+    
   }]);
   
   fieldGuideControllers.controller( 'NavController', [ '$scope', '$rootScope', function( $scope, $rootScope ){

@@ -62,7 +62,12 @@ iframe {
     fill: #666;
   }
 }
-
+.qf div {
+  margin-bottom: 30px;
+}
+.description p {
+  font-size: 27px;
+}
 #headerLogo:hover {
   path {
     fill: #333;
@@ -125,17 +130,20 @@ audio {
 #navMenu {
   padding-right: 0px;
 }
-#subNavMenu {
- // padding-left: 0px;
+#navMenu {
+  border-right: 1px solid #c2c2c2;
 }
 #navMenu, #subNavMenu {
   li {
-    border-bottom: 1px solid #c2c2c2;
+    padding: 7.5px;
   }
   .active {
-    background-color: #21578A;
+    background-color: #EBEBEB;
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+    border-color: #c2c2c2;
     a {
-      color: #FFF;
+      color: #4a91d3;
     }
   }
 }
@@ -187,6 +195,9 @@ audio {
 }
 .accordion a {
     border-bottom: 1px solid #c6c6c6;
+    span {
+      font-size: 22px;
+    }
 }
 
 .accordion .fi-plus{
@@ -293,7 +304,7 @@ p a:hover {
   border: 1px solid #D6D6D6;
   i {
     font-weight: bold;
-    font-size: 36px;
+    font-size: 18px;
     margin: 5px 15px 5px 5px;
     color: #D6D6D6;
   }
@@ -305,12 +316,16 @@ p a:hover {
     font-size: 1.2rem;
   }
 }
+.fa-chevron-left {
+  padding-left: 15px;
+}
 
 .caption {
   background-color: #666666;
-  padding: 5px;
+  padding: 15px;
   p {
     color: #fff;
+    margin-bottom: 0px;
   }
 }      
 

@@ -4,11 +4,12 @@
       <div class="row">
         <div class="small-12 columns" ng-if="selection.type">
           <h3>{{selection.type}}</h3>
-          <p>{{selection.blurb}}</p>
-            <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" ng-options="option.name as option.name for option in selection.options">
+          <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" ng-options="option.name as option.name for option in selection.options">
             <option value="" >All</option>
           </select>
         </div>
+        <p ng-if="!subBlurb" class="small-12 columns">{{selection.blurb}}</p>
+        <p ng-if="subBlurb" class="small-12 columns">{{subBlurb}}</p>
         <div class="small-12 columns" ng-if="!selection.type">
           <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
           <div class="small-12 columns" ng-if="results.entries && results.entries.length == 0">
