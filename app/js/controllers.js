@@ -40,15 +40,16 @@
   
   fieldGuideControllers.controller( 'TypeController', [ '$scope', '$rootScope', '$http', '$routeParams', '$location', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $location, renderHtml, equalize ){
     $scope.FG = { 'entries': $rootScope.entries };
+    $scope.FG.thisType = _.find( $rootScope.types, function( type ){
+      return type.name === $routeParams.type;
+    });
     $scope.selection = { 
                       'subtype' : ( !$routeParams.subtype ) ? '' : $routeParams.subtype ,
-                      'type' : $routeParams.type,
-                      'blurb' : _.find( $rootScope.types, function( type ){
-                                    return type.name === $routeParams.type;
-                                  }).blurb,
-                      'options' : _.find( $rootScope.types, function( type ){
-                                    return type.name === $routeParams.type;
-                                  }).subtypes
+                      'image' : $scope.FG.thisType.image,
+                      'type' : $scope.FG.thisType.name,
+                      'blurb' : $scope.FG.thisType.blurb,
+                      'text' : $scope.FG.thisType.text,
+                      'options' : $scope.FG.thisType.subtypes
                       };                  
     $scope.renderHtml = renderHtml;
     $scope.$watchGroup( [ 'entries.length', 'selection.subtype' ], function(){
@@ -112,29 +113,7 @@
         });
       }
     });
-    
-    /*getEntries().then( function( result ){
-      $scope.entries = result.data;
-      $scope.entry = entryByTitleFilter( $scope.entries, $routeParams.title );
-      makeButtons( $scope.entry );
-      $scope.relatedCategories = _.map( $scope.entry.categories, function( category ){
-        return category.category_name;
-      });
-      $scope.relatedCritters = _.shuffle( relatedCritters( $scope.entries, $scope.entry ) );
-      $scope.entry.images = [];
-      getFlickr( $scope.entry.flickr_tags ).then( function( results ){
-        var images = $( $.parseXML( results.data ) ).find( 'photo' );
-        for( var i = 0; i < images.length; i++ ){
-          $scope.entry.images.push( images[i].attributes );
-        }
-        for( i = 0; i < $scope.entry.images.length; i++ ){
-          $scope.entry.images[i].url = 'https://farm'+$scope.entry.images[i].farm.value+'.staticflickr.com/'+$scope.entry.images[i].server.value+'/'+$scope.entry.images[i].id.value+'_'+$scope.entry.images[i].secret.value+'.jpg';
-          $scope.entry.images[i].caption =  $( images[i] ).find( 'description' ).text();
-        }
-        
-      });  
-     
-    });*/
+
     $scope.title = $routeParams.title;
     $scope.renderHtml = renderHtml;
     $scope.renderSrc = renderSrc;
