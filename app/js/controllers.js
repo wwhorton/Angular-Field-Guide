@@ -25,13 +25,15 @@
     $scope.selection = { 'type': '' };
     $scope.types = $filter( 'filter' )( $scope.FG.entries, $routeParams.habitat );
     $scope.renderHtml = renderHtml;
-    equalize();
     $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
       return habitat.name === $routeParams.habitat;
     });
     $scope.$watchGroup( [ 'entries.length', 'selection.type' ], function(){
       $scope.FG = { 'entries': $rootScope.entries };
       $scope.types = $filter( 'filter' )( $scope.FG.entries, $routeParams.habitat );
+      $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
+        return habitat.name === $routeParams.habitat;
+      });
       equalize();
     });
   }]);

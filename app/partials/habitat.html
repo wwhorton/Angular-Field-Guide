@@ -1,4 +1,4 @@
-<div style="margin-bottom: 30px;" class="row collapse">
+<div style="margin-bottom: 30px;" class="row large-collapse">
   <h2 class="small-12 columns">{{habitat.name}}</h2>
   <div class="row collapse" data-equalizer data-options="equalize_on_stack: false">
     <img class="small-12 large-6 columns" data-equalizer-watch ng-src="{{habitat.image}}" src="http://placehold.it/320x200" />
@@ -10,10 +10,12 @@
  
 <div class="row">
   <div class="panel small-12 columns">
-    <h4 class="small-3 columns">Browse by:</h4>
-    <select class="small-4 columns" ng-model="selection.type" ng-options="entry.type as entry.type for entry in types | uniq: 'type' ">
-    <option value="" >All</option>
-    </select> 
+    <div class="row collapse center">
+      <h4 class="small-4 medium-3 large-2 columns">Browse by:</h4>
+      <select class="small-8 medium-3 medium-pull-6 large-4 columns" ng-model="selection.type" ng-options="entry.type as entry.type for entry in types | uniq: 'type' ">
+        <option value="" >All</option>
+      </select> 
+    </div>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
       <li ng-if="selection.type" ng-repeat="entry in entries | filter:{habitats:habitat.name} | filter:{type:selection.type}:true| orderBy:'-title':true " >
         <entry-block entry="entry"></entry-block>

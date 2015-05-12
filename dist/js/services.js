@@ -34,7 +34,6 @@
         return critter.status === 'critterofthemonth';
       });
       monthlyCritter = _.sortBy( monthlyCritter, 'entry_date' );
-      console.log( monthlyCritter );
       return monthlyCritter[monthlyCritter.length - 1];
     };
     return getCritter;
