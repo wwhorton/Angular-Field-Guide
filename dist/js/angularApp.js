@@ -39,7 +39,8 @@
             'blurb' : 'Seabirds and shorebirds live on and along the water. They primarily eat fish and other aquatic animals. Shorebirds include gulls, terns and sandpipers. Coots, pelicans and cormorants are all seabirds.'
             }],
           'image' : '/images/Birds.jpg',
-          'blurb' : 'Hundreds of species of birds live in the Chesapeake Bay watershed. Some live here year-round, while others migrate to the region to feed or nest. Birds are some of the region\'s most beautiful—but vulnerable—species, and all serve as important links in the Bay ecosystem. '
+          'blurb' : 'Hundreds of species of birds live in the Chesapeake Bay watershed. Some live here year-round, while others migrate to the region to feed or nest. Birds are some of the region\'s most beautiful—but vulnerable—species, and all serve as important links in the Bay ecosystem. ',
+          'text' : '<p>Hundreds of species of birds live in the Chesapeake Bay watershed. Some birds live here year-round, while others migrate to the Bay region to feed or nest.</p><p>Birds are some of the region\'s most beautiful - but vulnerable - species. Although each bird has distinct behaviors and habitat needs, they all serve as important links in the Bay food web. However, birds are sensitive to pollution and habitat degradation.</p><p>Click on the images below to learn about some of the birds that live in the Chesapeake Bay region.</p>'
         },
         { 'name' : 'Fish',
           'subtypes' : [{
@@ -58,7 +59,8 @@
             'blurb' : 'Migratory fish visit the Chesapeake Bay each year to feed or spawn. Marine fish live and spawn in coastal waters, anadromous fish migrate from the ocean to freshwater rivers to spawn and catadromous fish migrate from freshwater rivers to the ocean to spawn.'
             }],
           'image' : '/images/Fish.jpg',
-          'blurb' : 'Nearly 350 species of fish live in the Chesapeake Bay. Some are year-round residents, while others swim in from the ocean to feed, reproduce or find shelter. Each of the Bay\'s fish has a vital place in the food web, and many provide abundant opportunities for fishermen.'
+          'blurb' : 'Nearly 350 species of fish live in the Chesapeake Bay. Some are year-round residents, while others swim in from the ocean to feed, reproduce or find shelter. Each of the Bay\'s fish has a vital place in the food web, and many provide abundant opportunities for fishermen.',
+          'text' : '<p>Approximately 350 species of fish live in the Chesapeake Bay. Some fish are year-round residents, while others swim into the Bay from the ocean to feed, reproduce or find shelter.</p><p>Each of the Bay\'s fish has a place in the food web. For example, menhaden and other filter-feeders are a vital link between the lower food web and higher-level predators. Menhaden feed on plankton and, in turn, are a critical food source for bluefish and striped bass.</p>For centuries, the Bay and its rivers have provided rich fishing opportunities. Striped bass and white perch are some of the many Chesapeake fish species that anglers and commercial fishermen seek out.</p><p>Click on the images below to learn about some of the fish that live in the Chesapeake Bay.</p>'
 
         },
         { 'name' : 'Insects & Invertebrates', 
@@ -83,7 +85,8 @@
             'blurb' : 'Invertebrates make up the most diverse and abundant species on Earth. Worms, sponges, corals, tunicates and echinoderms are just a few of the many other types of invertebrates that live in the Bay.'
             }],
           'image' : '/images/Invertebrates.jpg',
-          'blurb' : 'Invertebrates are animals without a backbone, including insects, mollusks, crustaceans and more. Hundreds of species of invertebrates live in the waters of Chesapeake Bay, and thousands of species of insects live throughout the watershed, from deep woods to sandy beaches to our own backyards.'
+          'blurb' : 'Invertebrates are animals without a backbone, including insects, mollusks, crustaceans and more. Hundreds of species of invertebrates live in the waters of Chesapeake Bay, and thousands of species of insects live throughout the watershed, from deep woods to sandy beaches to our own backyards.',
+          'text' : '<p>Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay.</p><p>Some invertebrates, like oysters and blue crabs, are well-known and easy to recognize. Others, like worms and copepods, are some of the most abundant animals in the Bay, but humans rarely see them. These small invertebrates are an important food source for larger fish and shellfish.</p><p>Insects are also invertebrates. Thousands of species of insects live in the Chesapeake Bay region in nearly every habitat, from deep woods to sandy beaches to our own backyards. Insects are a major food source for larger animals, including fish, birds, mammals and reptiles.</p><p>Click on the images below to learn about some of the insects and invertebrates that live in the Chesapeake Bay.</p>'
         },
         { 'name' : 'Mammals',
           'subtypes' : [{
@@ -107,7 +110,8 @@
             'blurb' : 'While bats are the only mammals truly able to fly, others can “fly” by gliding for short distances using flaps on skin on either side of their body. Many species of bats, as well as the southern flying squirrel, can be found throughout the Chesapeake Bay region.'
             }],
           'image' : '/images/Mammals.jpg',
-          'blurb' : 'Mammals are warm-blooded vertebrates that give birth to and nurse live young, are covered with hair at some point in their lives and generally have two pairs of limbs. Many different types of mammals live in or visit the Bay region, both on land and in the water.'
+          'blurb' : 'Mammals are warm-blooded vertebrates that give birth to and nurse live young, are covered with hair at some point in their lives and generally have two pairs of limbs. Many different types of mammals live in or visit the Bay region, both on land and in the water.',
+          'text' : '<p>Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to bobcats, dolphins and humans.</p><p>All mammals are warm-blooded vertebrates that give birth to and nurse live young; have highly evolved skeletons; are covered with hair at some point in their lives; and generally have two pairs of limbs (although some aquatic mammals have evolved without hind limbs).</p><p>Many different types of mammals live in or visit the Chesapeake Bay region. Some live either on land or in the water, while others spend time in both environments.</p><p>Click on the images below to learn about some of the mammals that live in the Chesapeake Bay watershed.</p>'
         },
         { 'name' : 'Plants & Trees',
           'subtypes' : [{ 
@@ -136,7 +140,8 @@
             'blurb' : 'Wetland plants grow in damp, moist soils, whereas aquatic plants grow directly in water. Many are technically emergent plants, meaning they grow in standing water. Although native to wetlands and marshes, these plants are common in parks, yards and other areas.'
             }],
           'image' : '/images/Plants.jpg',
-          'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards. Plants help keep our air and water clean and provide habitat for countless animals.'
+          'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards. Plants help keep our air and water clean and provide habitat for countless animals.',
+          'text' : '<p> More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, ranging from tiny, single-celled algae to tall, sturdy trees. Plants grow in nearly every habitat, from upland forests to the Bay\'s shoreline to our own backyards.</p><p>Plants can help indicate the health of the larger Bay ecosystem. For example, large algae blooms are often a sign of nutrient pollution in the water. Bay grasses—also called submerged aquatic vegetation, or SAV—are sensitive to pollution but quick to respond to improved water quality, so their abundance is also a good indicator of Bay health.</p><p>Plants are critical to the Bay ecosystem because they help trap pollution, keep our air and water clean and provide habitat for countless animals, including fish, birds and mammals.</p><p>Click on the images below to learn about some of the plants and trees that grow in the Chesapeake Bay watershed</p>'
         },
         { 'name' : 'Reptiles & Amphibians',
           'subtypes' : [{
@@ -150,7 +155,8 @@
             'blurb' : 'Reptiles have scaly skin that helps them retain water. While many reptiles spend most of their time on land, some species live in or near the water. Snakes, turtles and lizards are all reptiles.'
             }],
           'image' : '/images/Reptiles.jpg',
-          'blurb' : 'Reptiles and amphibians, sometimes called herps, are cold-blooded vertebrates. Hundreds of species live in the Chesapeake region: from frogs and salamanders that dwell along mountainous streams to sea turtles that visit the salty waters of the Bay\'s mouth.'
+          'blurb' : 'Reptiles and amphibians, sometimes called herps, are cold-blooded vertebrates. Hundreds of species live in the Chesapeake region: from frogs and salamanders that dwell along mountainous streams to sea turtles that visit the salty waters of the Bay\'s mouth.',
+          'text' : '<p>Reptiles and amphibians are cold-blooded vertebrates. They are sometimes called herps.</p><p>Because reptiles and amphibians are cold-blooded, they must to bask in the sun to keep warm. Reptiles spend most of their time on land, whereas amphibians live both on land and in the water.</p><p>Hundreds of reptiles and amphibians live in the Chesapeake Bay region: from the frogs and salamanders that dwell along mountainous streams to the sea turtles that visit the Bay\'s salty mouth.</p><p>Click on the images below to learn about some of the reptiles and amphibians that live in the Chesapeake Bay watershed.</p>'
         }
       ];
 

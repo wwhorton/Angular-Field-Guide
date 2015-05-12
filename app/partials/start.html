@@ -12,8 +12,8 @@
   <div id="critterOfTheMonth" class="small-12 large-4 columns">
     <a class="small-12 columns" href="/entry/{{FG.critter.title}}"><img ng-src="{{FG.critter.fieldguide_image}}"></a>
     <div class="small-12 columns">
-     <h3 >Critter of the Month</h3>
-     <h4 ><a href="/entry/{{FG.critter.title}}">{{FG.critter.title}}</a></h4>
+     <h3>Critter of the Month</h3>
+     <h4><a href="/entry/{{FG.critter.title}}">{{FG.critter.title}}</a></h4>
     </div> <!-- end columns -->
   </div>
   <h1 class="small-12 columns hide-for-large-up">Field Guide to the Chesapeake</h1>
@@ -36,7 +36,7 @@
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
         <li ng-repeat="category in categories.types.options">
           <div class="row collapse gridItem panelContentBox">
-            <img class="small-12 columns" src="http://placehold.it/330x220" ng-src="{{category.image}}" ></img>
+
             <ng-include src="categories.types.templateUrl"></ng-include>
           </div>
         </li>
@@ -47,7 +47,6 @@
       <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
         <li ng-repeat="category in categories.habitats.options" >
           <div class="row collapse gridItem panelContentBox" data-equalizer-watch>
-            <img class="small-12 columns" src="http://placehold.it/330x220" ng-src="{{category.image}}" ></img>
             <ng-include src="categories.habitats.templateUrl"></ng-include>
           </div>
         </li>

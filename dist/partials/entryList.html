@@ -1,20 +1,28 @@
+<div style="margin-bottom: 30px;" class="row large-collapse">
+  <h2 class="small-12 columns">{{selection.type}}</h2>
+  <div class="row collapse" data-equalizer data-options="equalize_on_stack: false">
+    <img class="small-12 large-6 columns" data-equalizer-watch ng-src="{{selection.image}}" src="http://placehold.it/320x200" />
+    <div class="small-12 large-6 columns calloutWindow" data-equalizer-watch >
+      <div ng-bind-html="renderHtml( selection.text )"></div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="small-12 columns panel">
     <form>
-      <div class="row">
-        <div class="small-12 columns" ng-if="selection.type">
-          <h3>{{selection.type}}</h3>
-          <select ng-if="selection.options" class="small-9 columns" ng-model="selection.subtype" ng-options="option.name as option.name for option in selection.options">
-            <option value="" >All</option>
-          </select>
-        </div>
-        <p ng-if="!subBlurb" class="small-12 columns">{{selection.blurb}}</p>
-        <p ng-if="subBlurb" class="small-12 columns">{{subBlurb}}</p>
-        <div class="small-12 columns" ng-if="!selection.type">
-          <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
-          <div class="small-12 columns" ng-if="results.entries && results.entries.length == 0">
-            <p>No results were found. Check the spelling and try again, or use the navigation to browse through existing entries.</p>
-          </div>
+      <div class="row" ng-if="selection.type">
+        <h3 class="small-5 medium-3 large-2 columns">Browse by:</h3>
+        <select ng-if="selection.options" class="small-7 medium-3 medium-pull-6 large-2 large-pull-8 columns" ng-model="selection.subtype" ng-options="option.name as option.name for option in selection.options">
+          <option value="" >All</option>
+        </select>
+        
+      </div>
+      <p ng-if="subBlurb">{{subBlurb}}</p>
+      <div class="row" ng-if="!selection.type">
+        <h3 class="small-3 columns"><strong>Search Results:</strong></h3>
+        <div class="small-12 columns" ng-if="results.entries && results.entries.length == 0">
+          <p>No results were found. Check the spelling and try again, or use the navigation to browse through existing entries.</p>
         </div>
       </div>
     </form>
