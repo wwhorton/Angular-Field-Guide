@@ -1,7 +1,7 @@
 'use strict';
 
 (function(){
-	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'mm.foundation', 'fieldGuideServices', 'fieldGuideFilters', 'fieldGuideDirectives', 'fieldGuideControllers', 'angular.filter' ]);
+	var fieldGuide = angular.module('fieldGuide', [ 'ngRoute', 'ngAnimate', 'mm.foundation', 'fieldGuideServices', 'fieldGuideFilters', 'fieldGuideDirectives', 'fieldGuideControllers', 'angular.filter' ]);
   
   fieldGuide.run( function( $rootScope, getEntries ){
     $rootScope.entries = [

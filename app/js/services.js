@@ -146,7 +146,6 @@
           }, 'equalizer', 'reflow' );
         }, 100 );
       }
-      console.log( document.documentElement.clientWidth );
     };
   }]);
 })();
