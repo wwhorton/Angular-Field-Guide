@@ -137,13 +137,16 @@
 
   fieldGuideServices.factory( 'equalize', ['$timeout', function( $timeout ){
     return function(){
-      $timeout( function(){
-        $(document).foundation( {
-          equalizer: {
-            equalize_on_stack: true
-          }
-        }, 'equalizer', 'reflow' );
-      }, 100 );
+      if( document.documentElement.clientWidth > '1103' ){
+        $timeout( function(){
+          $(document).foundation( {
+            equalizer: {
+              equalize_on_stack: true
+            }
+          }, 'equalizer', 'reflow' );
+        }, 100 );
+      }
+      console.log( document.documentElement.clientWidth );
     };
   }]);
 })();
