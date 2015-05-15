@@ -141,7 +141,7 @@
           }
         });
         $( document ).on( 'click', function( event ){
-          if( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) {
+          if( ( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' )&&( !$( event.target ).closest( '#mobileNav' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) ){
             if( scope.nav ){ 
               scope.nav.showMenu = false;
               $( '#menuIcon' ).removeClass( 'fi-x' );

@@ -1,8 +1,7 @@
-<a class="small-12 columns" ng-if="!category.subtypes" ng-href="/type/{{category.name}}">{{category.name}}</a>
-
-<accordion ng-if="category.subtypes" close-others="oneAtATime">
+<accordion ng-if="category.subtypes" close-others="true">
   <accordion-group>
     <accordion-heading>
+    <img src="http://placehold.it/330x220" ng-src="{{category.image}}" ></img>
       {{category.name}}  <i class="fi-plus"></i><i class="fi-minus"></i>
     </accordion-heading>
     <ul class="no-bullet">

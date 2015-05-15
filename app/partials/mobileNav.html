@@ -1,0 +1,12 @@
+<accordion class="no-bullet small-12 columns" id="mobileNav" close-others="true">
+  <accordion-group heading="{{type.name}}" ng-repeat='type in types'>
+    <ul class="no-bullet small-12 columns subMenu">
+      <li class="subMenuItem">
+        <a class="small-12 columns" ng-click="nav.showMenu = !nav.showMenu" ng-href="/type/{{type.name}}">All {{type.name}}</a>
+      </li>
+      <li class="subMenuItem" ng-repeat='subtype in type.subtypes'>
+        <a class="small-12 columns" ng-click="nav.showMenu = !nav.showMenu" ng-href="/type/{{type.name}}/subtype/{{subtype.name}}">{{subtype.name}}</a>
+      </li>
+    </ul>
+  </accordion-group>
+</accordion>

@@ -83,6 +83,7 @@
     $scope.results = { 'entries': '' };
     $scope.$watch( 'entries', function(){
       $scope.results.entries = entriesByKeywordFilter( $rootScope.entries, $routeParams.query );
+      equalize();
     });
   }]);
   
