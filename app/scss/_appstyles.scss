@@ -363,9 +363,43 @@ p a:hover {
 /* Animation classes */
 /*///////////////////*/
 
+.animate-slide {
+ overflow: hidden;
+}
 
+.animate-slide.ng-enter {
+  animation: slideOut .25s linear;
+}
 
+.animate-slide.ng-leave {
+  animation: slideIn .25s linear;
+}
 
+.animate-slide.ng-add {
+  animation: slideOut .25s linear;
+}
+
+.animate-slide.ng-remove {
+  animation: slideOut .25s linear;
+}
+
+@keyframes slideOut {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 350px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    max-height: 350px;
+  }
+  to {
+    max-height: 0;
+  }
+}
 
 
 
