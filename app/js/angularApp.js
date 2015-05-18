@@ -84,7 +84,7 @@
             'image' : '',
             'blurb' : 'Invertebrates make up the most diverse and abundant species on Earth. Worms, sponges, corals, tunicates and echinoderms are just a few of the many other types of invertebrates that live in the Bay.'
             }],
-          'image' : '/images/Invertebrates.jpg',
+          'image' : 'images/Invertebrates.jpg',
           'blurb' : 'Invertebrates are animals without a backbone, including insects, mollusks, crustaceans and more. Hundreds of species of invertebrates live in the waters of Chesapeake Bay, and thousands of species of insects live throughout the watershed, from deep woods to sandy beaches to our own backyards.',
           'text' : '<h4>Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay.</h4><p>Some invertebrates, like <a href=\'/entry/Easter Oyster\'>oysters</a> and <a href=\'/entry/Blue Crab\'>blue crabs</a>, are well-known and easy to recognize. Others, like worms and <a href=\'/entry/copepod\'>copepods</a>, are some of the most abundant animals in the Bay, but humans rarely see them. These small invertebrates are an important food source for larger fish and shellfish.</p><p>Insects are also invertebrates. Thousands of species of insects live in the Chesapeake Bay region in nearly every habitat, from deep woods to sandy beaches to our own backyards. Insects are a major food source for larger animals, including fish, birds, mammals and reptiles.</p>'
         },
@@ -109,19 +109,19 @@
             'image' : '',
             'blurb' : 'While bats are the only mammals truly able to fly, others can “fly” by gliding for short distances using flaps on skin on either side of their body. Many species of bats, as well as the southern flying squirrel, can be found throughout the Chesapeake Bay region.'
             }],
-          'image' : '/images/Mammals.jpg',
+          'image' : 'images/Mammals.jpg',
           'blurb' : 'Mammals are warm-blooded vertebrates that give birth to and nurse live young, are covered with hair at some point in their lives and generally have two pairs of limbs. Many different types of mammals live in or visit the Bay region, both on land and in the water.',
           'text' : '<h4>Mammals are an extremely diverse class of animals, ranging from bats, squirrels and rabbits to <a href=\'/entry/bobcat\'>bobcats</a>, <a href=\'/entry/Bottlenose Dolphin\'>dolphins</a> and humans.</h4><p>All mammals are warm-blooded vertebrates that give birth to and nurse live young; have highly evolved skeletons; are covered with hair at some point in their lives; and generally have two pairs of limbs (although some aquatic mammals have evolved without hind limbs).</p><p>Many different types of mammals live in or visit the Chesapeake Bay region. Some live either on land or in the water, while others spend time in both environments.</p>'
         },
         { 'name' : 'Plants & Trees',
           'subtypes' : [{ 
             'name' : 'Algae',
-            'image' : '/images/Algae.jpg',
+            'image' : 'images/Algae.jpg',
             'blurb' : 'Algae are simple plants lacking roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow. Some algae species can be confused with bay grasses, because they look similar and grow in the same places.'
             },
             {
             'name' : 'Bay Grasses',
-            'image' : '/images/Bay Grass.jpg',
+            'image' : 'images/Bay Grass.jpg',
             'blurb' : 'Bay grasses—also known as submerged aquatic vegetation, or SAV—are plants that grow in the shallow waters of the Bay, providing food and habitat for fish, crabs and waterfowl. More than 16 species of bay grasses grow in the Bay and its tributaries.'
             },
             {
@@ -139,7 +139,7 @@
             'image' : '',
             'blurb' : 'Wetland plants grow in damp, moist soils, whereas aquatic plants grow directly in water. Many are technically emergent plants, meaning they grow in standing water. Although native to wetlands and marshes, these plants are common in parks, yards and other areas.'
             }],
-          'image' : '/images/Plants.jpg',
+          'image' : 'images/Plants.jpg',
           'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards. Plants help keep our air and water clean and provide habitat for countless animals.',
           'text' : '<h4> More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, ranging from tiny, single-celled algae to tall, sturdy trees. Plants grow in nearly every habitat, from upland forests to the Bay\'s shoreline to our own backyards.</h4><p>Plants can help indicate the health of the larger Bay ecosystem. For example, large algae blooms are often a sign of nutrient pollution in the water. Bay grasses—also called submerged aquatic vegetation, or SAV—are sensitive to pollution but quick to respond to improved water quality, so their abundance is also a good indicator of Bay health.</p><p>Plants are critical to the Bay ecosystem because they help trap pollution, keep our air and water clean and provide habitat for countless animals, including fish, birds and mammals.</p>'
         },
@@ -162,27 +162,27 @@
 
     $rootScope.habitats = [ 
         { 'name': 'Aquatic Reefs & Pilings',
-          'image': '/images/aquatic-reefs-pilings.jpg',
+          'image': 'images/aquatic-reefs-pilings.jpg',
           'blurb': '<h4>Aquatic reefs are complex, diverse communities made of densely packed oysters. Healthy reefs form when oyster larvae attach to adult <a href="/fieldguide/critter/eastern_oyster">oysters</a>, and layers of oysters grow upward and outward.</h4><p>Hundreds of aquatic animals find food and shelter in oyster reefs. With their many nooks and crannies, reefs provide a safe haven for small <a href="/fieldguide/categories/category/fish">fish</a> and <a href="/fieldguide/categories/category/invertebrates">invertebrates</a> to hide from predators. Larger species, including <a href="/fieldguide/critter/white_perch">white perch</a>, <a href="/fieldguide/critter/striped_bass">striped bass</a> and <a href="/fieldguide/critter/blue_crab">blue crabs</a>, visit reefs to breed and find food. </p><p>Reefs are the largest source of hard surface on the Bay\'s bottom, which is otherwise mostly covered with soft <a href="/issues/sediment">sediment</a>. Oyster larvae, sponges and <a href="/fieldguide/critter/barnacles">barnacles</a> are just a few of the many invertebrates that live attached to hard surfaces.</p><p>Piers, rocks, jetties, wrecks and pilings are similar to aquatic reefs. They provide hard surfaces for invertebrates and attract larger predators in search of food.</p>'
         },
         { 'name': 'Beaches & Tidal Flats',
-          'image': '/images/beaches-tidal-flats.jpg',
+          'image': 'images/beaches-tidal-flats.jpg',
           'blurb': '<h4>Sandy beaches and tidal mud flats line thousands of miles of Chesapeake Bay shoreline. Beaches are mostly found along the lower Bay, while muddy flats are more common in the upper Bay.</h4><p>Beaches are harsh environments where wildlife are subjected to wind, waves and heat. Aquatic species that wash ashore can easily dry out and die.</p><p>Beaches and tidal flats support a wide variety of plants and animals, including <a href="/fieldguide/categories/category/birds">birds</a>, <a href="/fieldguide/categories/category/mammals">mammals</a>, <a href="/fieldguide/categories/category/insects">insects</a> and <a href="/fieldguide/categories/category/invertebrates">invertebrates</a>. Sandpipers and small crabs scurry along the water\'s edge, while <a href="/fieldguide/critter/gulls">gulls</a> and <a href="/fieldguide/critter/terns">terns</a> fly above. Underneath the sand and mud, worms, clams and crabs burrow to avoid predators. <a href="/fieldguide/critter/horseshoe_crab">Horseshoe crabs</a> are one of the most celebrated beach dwellers; they come ashore in late spring to lay their eggs in the sand.</p>'
         },
         { 'name': 'Forests & Uplands',
-          'image': '/images/forest-uplands.jpg',
+          'image': 'images/forest-uplands.jpg',
           'blurb': '<h4>Healthy forests provide food, shelter, nesting areas and safe migration paths for countless species. Decaying leaves and plants littered on the forest floor are a critical link in the <a href="/discover/bayecosystem/foodwebs">food web</a>.</h4><p>Forests don\'t just benefit animals on land; they\'re also critical to aquatic species. Forest buffers along the edges of waterways provide habitat for <a href="/fieldguide/categories/category/birds">birds</a>, <a href="/fieldguide/categories/category/mammals">mammals</a> and <a href="/fieldguide/categories/category/reptiles_amphibians">reptiles</a>. They also help keep the water cool, which is important for spawning <a href="/fieldguide/critter/brook_trout">brook trout</a> and other <a href="/fieldguide/categories/category/fish">fish</a>.</p><p>Forest-dwelling species are not limited to large forests. Many species, such as <a href="/fieldguide/critter/white_tailed_deer">white-tailed deer</a> and <a href="/fieldguide/critter/red_fox">red foxes</a>, can be found in smaller wooded areas in our cities, towns and suburbs. Some even venture into our own backyards!</p>'
         },
         { 'name': 'Marshes & Wetlands',
-          'image': '/images/marshes-wetlands.jpg',
+          'image': 'images/marshes-wetlands.jpg',
           'blurb': '<h4><a href="/issues/wetlands">Wetlands</a> are transitional areas between land and water. Marshes - a type of tidal wetland - are wet areas along the shoreline where aquatic grasses and sedges grow.</h4><p>Hundreds of species of <a href="/fieldguide/categories/category/fish">fish</a>, <a href="/fieldguide/categories/category/birds">birds</a>, <a href="/fieldguide/categories/category/mammals">mammals</a>, <a href="/fieldguide/categories/category/reptiles_amphibians">reptiles</a> and <a href="/fieldguide/categories/category/invertebrates">invertebrates</a> depend on marshes and wetlands for food. Thousands of aquatic species, including worms, <a href="/fieldguide/critter/marsh_periwinkle">periwinkles</a>, <a href="/fieldguide/categories/category/insects">insects</a>, <a href="/fieldguide/critter/atlantic_ribbed_mussel">ribbed mussels</a> and tiny crustaceans, thrive in wetlands. In turn, larger animals eat these small species.</p><p>Marshes and wetlands also provide shelter for a variety of animals. Two-thirds of the nation\'s commercial fish and shellfish depend on wetlands as nursery or spawning areas. Large flocks of waterfowl visit wetlands during their winter migrations to feed and rest. And mammals such as muskrats and beavers build their homes in wetlands.</p>'
         },
         { 'name': 'Open & Shallow Waters',
-          'image': '/images/open-shallow-waters.jpg',
+          'image': 'images/open-shallow-waters.jpg',
           'blurb': '<h4>Along the Chesapeake Bay\'s shoreline is an area of incredible biological activity: the shallows. The Bay\'s shallow waters extend from the shore to about 10 feet deep. Beyond the shoreline lie the open waters of the Chesapeake Bay: a wide, open area with channels that are more than 100 feet deep.</h4><p>Shallow waters are home to an incredible variety of animals, including worms, clams, crabs, <a href="/fieldguide/categories/category/fish">fish</a>, <a href="/fieldguide/categories/category/birds">birds</a> and <a href="/fieldguide/categories/category/reptiles_amphibians">turtles</a>. Many small fish and invertebrates seek refuge from predators in the shallows. In turn, larger fish and birds hunt for prey there.<a href="/fieldguide/categories/category/bay_grasses_sav">Bay grass beds</a> are a critically important part of the shallows, providing shelter for <a href="/fieldguide/critter/blue_crab">blue crabs</a>, young fish and <a href="/fieldguide/critter/sandbar_shark">sharks</a> to hide from predators. Several species of migratory waterfowl depend on bay grasses for food.</p><p>The Bay\'s open waters are teeming with life, including <a href="/fieldguide/categories/category/fish">fish</a>, <a href="/fieldguide/categories/category/birds">birds</a>, <a href="/fieldguide/categories/category/invertebrates">invertebrates</a> and <a href="/fieldguide/categories/category/mammals">aquatic mammals</a>. They are a haven for migratory fish such as <a href="/fieldguide/critter/bluefish">bluefish</a>, <a href="/fieldguide/critter/cobia">cobia</a> and <a href="/fieldguide/critter/mackerels">mackerels</a>. These large fish visit the Bay in summer to feast on <a href="/fieldguide/critter/atlantic_menhaden">menhaden</a>, <a href="/fieldguide/critter/bay_anchovy">anchovies</a> and other small fish and invertebrates. And, although you cannot see them, microscopic <a href="/discover/bayecosystem/plankton">plankton</a> float through open waters, forming the base of the Bay\'s <a href="/discover/bayecosystem/foodwebs">food web</a>.</p><p>In summer, both the shallows and open waters of the Bay become very warm, allowing harmful algae blooms to form. These can lead to low-oxygen "dead zones" that suffocate underwater life. In winter, animals that dwell in the Bay\'s shallow waters retreat to deeper channels, while hundreds of thousands of migratory birds stop on the Chesapeake\'s open waters to rest and feed.</p>'
         },
         { 'name': 'Streams & Rivers',
-          'image': '/images/streams-rivers.jpg',
+          'image': 'images/streams-rivers.jpg',
           'blurb': '<h4>Hundreds of thousands of streams, creeks and rivers thread through the Chesapeake Bay watershed and eventually flow to the Bay. These freshwater tributaries provide critical habitat for many plants and animals, including <a href="/fieldguide/categories/category/fish">fish</a>, <a href="/fieldguide/categories/category/insects">insects</a>, <a href="/fieldguide/categories/category/reptiles_amphibians">reptiles</a>, <a href="/fieldguide/categories/category/reptiles_amphibians">amphibians</a> and <a href="/fieldguide/categories/category/invertebrates">invertebrates</a>.</h4><p>Catfish, sunfish and <a href="/fieldguide/critter/brook_trout">brook trout</a> are just a few types of fish that live their entire lives in fresh water. Many other fish - including shad, <a href="/fieldguide/critter/atlantic_sturgeon">Atlantic sturgeon</a> and <a href="/fieldguide/critter/striped_bass">striped bass</a> - travel from the Bay and the ocean to freshwater streams and rivers to spawn.</p><p>Fish aren\'t the only animals that are found in streams and rivers. Diverse communities of tiny worms and clams live at the bottom of streams. Many bay <a href="/fieldguide/categories/category/bay_grasses_sav">grass species</a>, including <a href="/fieldguide/critter/coontail">coontail</a> and <a href="/fieldguide/critter/wild_celery">wild celery</a>, only grow in fresh water. Along the edges of streams and rivers, turtles and snakes bask in the sun and search for prey. </p>'
         }
       ];
@@ -217,31 +217,31 @@
     function($routeProvider, $locationProvider) {
       $routeProvider.
         when( '/', {
-          templateUrl: '/partials/start.html',
+          templateUrl: 'partials/start.html',
           controller: 'StartController'
         }).
         when( '/search/:query', {
-          templateUrl: '/partials/entryList.html',
+          templateUrl: 'partials/entryList.html',
           controller: 'ResultsController',
           caseInsensitiveMatch: true          
         }).
         when( '/habitats/:habitat', {
-          templateUrl: '/partials/habitat.html',
+          templateUrl: 'partials/habitat.html',
           controller: 'HabitatController',
           caseInsensitiveMatch: true
         }).
         when( '/type/:type', {
-          templateUrl: '/partials/entryList.html',
+          templateUrl: 'partials/entryList.html',
           controller: 'TypeController',
           caseInsensitiveMatch: true
         }).
         when( '/type/:type/subtype/:subtype', {
-          templateUrl: '/partials/entryList.html',
+          templateUrl: 'partials/entryList.html',
           controller: 'TypeController',
           caseInsensitiveMatch: true
         }).
         when( '/entry/:title', {
-          templateUrl: '/partials/entry.html',
+          templateUrl: 'partials/entry.html',
           controller: 'EntryController',
           caseInsensitiveMatch: true
         }).

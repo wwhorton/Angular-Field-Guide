@@ -6,10 +6,10 @@
   </ul>
   <ul class="no-bullet small-6 medium-6 large-2 large-pull-8 columns animate-slide" id="subNavMenu" ng-show="nav.showMenu && nav.type">
     <li>
-      <a ng-href="/type/{{nav.type.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = nav.type">All {{nav.type.name}}</a>
+      <a ng-href="type/{{nav.type.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = nav.type">All {{nav.type.name}}</a>
     </li>
     <li ng-repeat='subtype in nav.type.subtypes'>
-      <a ng-href="/type/{{nav.type.name}}/subtype/{{subtype.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = subtype">{{subtype.name}}</a>
+      <a ng-href="type/{{nav.type.name}}/subtype/{{subtype.name}}" ng-click="nav.showMenu = !nav.showMenu" ng-mouseover="nav.hover = subtype">{{subtype.name}}</a>
     </li>
   </ul>
 </div>
@@ -18,10 +18,10 @@
   <accordion-group heading="{{type.name}}" ng-repeat='type in types'>
     <ul class="no-bullet small-12 columns subMenu">
       <li class="subMenuItem">
-        <a class="small-12 columns" ng-click="nav.showMenu = !nav.showMenu" ng-href="/type/{{type.name}}">All {{type.name}}</a>
+        <a class="small-12 columns" ng-click="nav.showMenu = !nav.showMenu" ng-href="type/{{type.name}}">All {{type.name}}</a>
       </li>
       <li class="subMenuItem" ng-repeat='subtype in type.subtypes'>
-        <a class="small-12 columns" ng-click="nav.showMenu = !nav.showMenu" ng-href="/type/{{type.name}}/subtype/{{subtype.name}}">{{subtype.name}}</a>
+        <a class="small-12 columns" ng-click="nav.showMenu = !nav.showMenu" ng-href="type/{{type.name}}/subtype/{{subtype.name}}">{{subtype.name}}</a>
       </li>
     </ul>
   </accordion-group>

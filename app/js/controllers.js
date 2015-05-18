@@ -6,8 +6,8 @@
   
   fieldGuideControllers.controller( 'StartController', [ '$scope', '$rootScope', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $rootScope, critterOfTheMonth, renderHtml, equalize ){
     $scope.categories = {
-                          types : { selected: 'types', options: $rootScope.types, templateUrl: '/partials/browseAccordion.html' },
-                          habitats : { selected: 'habitats', options: $rootScope.habitats, templateUrl: '/partials/browseList.html' }
+                          types : { selected: 'types', options: $rootScope.types, templateUrl: 'partials/browseAccordion.html' },
+                          habitats : { selected: 'habitats', options: $rootScope.habitats, templateUrl: 'partials/browseList.html' }
     };  
     $scope.renderHtml = renderHtml;
     $scope.FG = { };
@@ -55,7 +55,7 @@
     $scope.$watchGroup( [ 'entries.length', 'selection.subtype' ], function(){
       $scope.FG = { 'entries': $rootScope.entries };
       equalize();
-      var path = ( $scope.selection.subtype ) ? '/type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : '/type/' + $scope.selection.type;
+      var path = ( $scope.selection.subtype ) ? 'type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : 'type/' + $scope.selection.type;
       $location.path( path );
       _.find( $rootScope.types, function( type ){
         if( type.name === $routeParams.type && $routeParams.subtype && $scope.selection.subtype ){
