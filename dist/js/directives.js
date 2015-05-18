@@ -131,6 +131,7 @@
       templateUrl: '/partials/headerNav.html',
       controller: 'NavController',
       link: function( scope ){
+        nav = { showMenu: false };
         $( '#menuIcon' ).click( function(){
           if( $( this ).hasClass( 'fi-list' ) ) {
             $( this ).removeClass( 'fi-list' );
