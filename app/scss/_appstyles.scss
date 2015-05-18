@@ -363,24 +363,20 @@ p a:hover {
 /* Animation classes */
 /*///////////////////*/
 
+.content {
+  transition: all .25s ease-out;
+}
+
 .animate-slide {
  overflow: hidden;
 }
 
 .animate-slide.ng-enter {
-  animation: slideOut .25s linear;
+  animation: slideOut .3s ease-in-out;
 }
 
 .animate-slide.ng-leave {
-  animation: slideIn .25s linear;
-}
-
-.animate-slide.ng-add {
-  animation: slideOut .25s linear;
-}
-
-.animate-slide.ng-remove {
-  animation: slideOut .25s linear;
+  animation: slideIn .3s ease-in-out;
 }
 
 @keyframes slideOut {
