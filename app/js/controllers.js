@@ -4,7 +4,7 @@
 
   var fieldGuideControllers = angular.module( 'fieldGuideControllers', [] );
   
-  fieldGuideControllers.controller( 'StartController', [ '$scope', '$rootScope', 'critterOfTheMonth', 'renderHtml', 'equalize', function( $scope, $rootScope, critterOfTheMonth, renderHtml, equalize ){
+  fieldGuideControllers.controller( 'StartController', [ '$scope', '$rootScope', 'critterOfTheMonth', 'renderHtml', function( $scope, $rootScope, critterOfTheMonth, renderHtml ){
     $scope.categories = {
                           types : { selected: 'types', options: $rootScope.types, templateUrl: 'partials/browseAccordion.html' },
                           habitats : { selected: 'habitats', options: $rootScope.habitats, templateUrl: 'partials/browseList.html' }
@@ -20,7 +20,6 @@
   }]);
   
   fieldGuideControllers.controller( 'HabitatController', [ '$scope', '$rootScope', '$http', '$routeParams', '$filter', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $filter, renderHtml, equalize ){
-    var matches, results;
     $scope.FG = { 'entries': $rootScope.entries };
     $scope.selection = { 'type': '' };
     $scope.types = $filter( 'filter' )( $scope.FG.entries, $routeParams.habitat );
@@ -70,6 +69,7 @@
   }]);
   
   fieldGuideControllers.controller( 'NavController', [ '$scope', '$rootScope', function( $scope, $rootScope ){
+    $scope.nav = { showMenu: false };
     $scope.types = $rootScope.types;
     $scope.habitats = $rootScope.habitats;
     $scope.navItems = _.map( $scope.types, function( type ){
