@@ -119,6 +119,7 @@
         scope.nav.hover = $rootScope.types[0];
         scope.nav.type = $rootScope.types[0];
         equalize();
+
       }
     };
   }]);
@@ -140,6 +141,16 @@
             $( this ).addClass( 'fi-list' );
           }
         });
+        scope.$watch( 'nav.showMenu', function( value ){
+          if( value === true ){
+            $( '#menuIcon' ).removeClass( 'fi-list' );
+            $( '#menuIcon' ).addClass( 'fi-x' );
+          } else {
+            $( '#menuIcon' ).removeClass( 'fi-x' );
+            $( '#menuIcon' ).addClass( 'fi-list' );
+          }
+        });
+        
         $( document ).on( 'click', function( event ){
           if( ( !$( event.target ).closest( '#navMenu' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' )&&( !$( event.target ).closest( '#mobileNav' ).length && $( event.target ).attr( 'id' ) !== 'menuIcon' ) ){
             if( scope.nav ){ 

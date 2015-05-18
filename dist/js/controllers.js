@@ -69,7 +69,6 @@
   }]);
   
   fieldGuideControllers.controller( 'NavController', [ '$scope', '$rootScope', function( $scope, $rootScope ){
-    $scope.nav = { showMenu: false };
     $scope.types = $rootScope.types;
     $scope.habitats = $rootScope.habitats;
     $scope.navItems = _.map( $scope.types, function( type ){
