@@ -23,7 +23,7 @@
       restrict: 'AE',
       replace: true,
       scope: { thisEntry: '=entry' },
-      templateUrl: '/partials/entry-block.html',
+      templateUrl: 'partials/entry-block.html',
       link: function( scope ){
         scope.thisEntry.fieldguide_description = renderHtml( scope.thisEntry.fieldguide_description );
       }
@@ -34,7 +34,7 @@
     return {
       restrict: 'AE',
       replace: false,
-      templateUrl: '/partials/mediaSlider.html',
+      templateUrl: 'partials/mediaSlider.html',
       scope: { entry: '=entry' },
       link: function( scope, element ){
         scope.$watch( 'entry.images.length', function( newVal, oldVal ){
@@ -57,14 +57,14 @@
   fieldGuideDirectives.directive( 'searchBar', [ '$location', 'getEntries', function( $location, getEntries ){
     return {
       replace: true,
-      templateUrl: '/partials/search-bar.html',
+      templateUrl: 'partials/search-bar.html',
       link: function( scope ){
         getEntries().then( function( result ){
           scope.entries = result.data;
         });
         $( '#searchIcon' ).on( 'click', function(){
           if( !$( '#searchButton' ).hasClass( 'disabled' ) ){
-            var thePath = '/search/' + scope.search.title;
+            var thePath = 'search/' + scope.search.title;
             $location.path( thePath );
           }
         scope.$apply();
@@ -98,7 +98,7 @@
     return {
       replace: true,
       restrict: 'E',
-      templateUrl: '/partials/tags.html',
+      templateUrl: 'partials/tags.html',
       scope: { tagEntry: '=entry' },
       link: function( scope, element ){
         makeButtons( scope.tagEntry );
@@ -114,7 +114,7 @@
       replace: false,
       require: '^navMenu',
       transclude: true,
-      templateUrl: '/partials/navMenuItems.html',
+      templateUrl: 'partials/navMenuItems.html',
       link: function( scope ){
         scope.nav.hover = $rootScope.types[0];
         scope.nav.type = $rootScope.types[0];
@@ -128,7 +128,7 @@
       replace: true,
       restrict: 'E',
       transclude: true,
-      templateUrl: '/partials/headerNav.html',
+      templateUrl: 'partials/headerNav.html',
       controller: 'NavController',
       link: function( scope ){
         nav = { showMenu: false };
@@ -160,7 +160,7 @@
       replace: true,
       restrict: 'E',
       transclude: true,
-      templateUrl: '/partials/previewWindow.html',
+      templateUrl: 'partials/previewWindow.html',
       require: '^navMenu'
     };
   });

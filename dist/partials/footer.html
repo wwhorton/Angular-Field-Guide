@@ -27,11 +27,11 @@
     <div class="small-12 medium-5 large-6 columns collapse-last" ng-controller="NavController">
       <h5>Navigation</h5>
       <ul class="small-12 medium-6 large-6 columns">
-        <li ng-repeat="title in types"><a ng-href="/type/{{title.name}}">{{title.name}}</a></li>
-        <li class="hide-for-medium-up" ng-repeat="title in habitats"><a ng-href="/habitats/{{title.name}}">{{title.name}}</a></li>
+        <li ng-repeat="title in types"><a ng-href="type/{{title.name}}">{{title.name}}</a></li>
+        <li class="hide-for-medium-up" ng-repeat="title in habitats"><a ng-href="habitats/{{title.name}}">{{title.name}}</a></li>
       </ul>  
       <ul class="hide-for-small-down medium-6 large-6 columns">
-        <li ng-repeat="title in habitats"><a ng-href="/habitats/{{title.name}}">{{title.name}}</a></li>
+        <li ng-repeat="title in habitats"><a ng-href="habitats/{{title.name}}">{{title.name}}</a></li>
       </ul>
     </div>
   </div>

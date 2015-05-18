@@ -169,8 +169,9 @@ audio {
   @media screen and (min-width: 1025px) {
     font-size: 50px;
     line-height: 90px;
+    margin-left: -35px;
+    margin-right: 12px;
   }
-  
   color: #666;
 }
 #menuIcon:hover {
@@ -178,7 +179,6 @@ audio {
 }
 
 #navMenuButton {
-  
   @media screen and (max-width: 320px) {
     margin-top: 98px;
     padding-left: 5px;
@@ -189,7 +189,14 @@ audio {
   @media screen and (min-width: 1025px) {
     position: relative;
     top: 100px;
+    h4 {
+      color: #666;
+      vertical-align: text-bottom;
+    }
   }
+}
+#navMenuButton:hover h4, #navMenuButton:hover #menuIcon{
+  color: #333;
 }
 .button:hover {
   border-color: #c6c6c6;
