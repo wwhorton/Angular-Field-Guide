@@ -15,27 +15,27 @@
         { 'name' : 'Birds',
           'subtypes' : [{
             'name' : 'Raptors',
-            'image' : '',
+            'image' : 'images/birds-raptors.jpg',
             'blurb' : 'Raptors are birds of prey. Their keen eyesight allows them to hunt while flying, and they use their sharp beaks and talons to capture prey. Hawks, owls, ospreys, eagles and falcons are all raptors.'
             },
             {
             'name' : 'Other',
-            'image' : '',
+            'image' : 'images/birds-other.jpg',
             'blurb' : 'As home to hundreds of bird species, the Bay region is full of opportunities birdwatchers and hunters alike. Songbirds, game birds and hummingbirds are just a few of the many other types of birds that live in the Bay region.'
             },
             {
             'name' : 'Waterfowl',
-            'image' : '',
+            'image' : 'images/birds-waterfowl.jpg',
             'blurb' : 'Ducks, geese and swans are all waterfowl. Most waterfowl visit the Chesapeake Bay region in winter as they migrate along the Atlantic Flyway, a major flight path for millions of birds. Other waterfowl live in the Bay region year-round.'
             },
             {
             'name' : 'Wading',
-            'image' : '',
+            'image' : 'images/birds-wading.jpg',
             'blurb' : 'Wading birds quietly stalk their prey in wetlands and shallow waters. Most wading birds, which include herons and egrets, nest together in large breeding colonies on the Chesapeake Bay\'s small, isolated islands.' 
             },
             {
             'name' : 'Sea & Shorebirds',
-            'image' : '',
+            'image' : 'images/birds-sea-shorebirds.jpg',
             'blurb' : 'Seabirds and shorebirds live on and along the water. They primarily eat fish and other aquatic animals. Shorebirds include gulls, terns and sandpipers. Coots, pelicans and cormorants are all seabirds.'
             }],
           'image' : 'images/Birds.jpg',
@@ -45,17 +45,17 @@
         { 'name' : 'Fish',
           'subtypes' : [{
             'name' : 'Freshwater Fish',
-            'image' : '',
+            'image' : 'images/fish-freshwater-fish.jpg',
             'blurb' : 'Freshwater fish live year-round in the freshwater streams and rivers that flow to the Chesapeake Bay. Some freshwater fish may move into brackish waters in the Bay and its tidal rivers.'
             },
             {
             'name' : 'Estuarine Fish',
-            'image' : '',
+            'image' : 'images/fish-estuarine-fish.jpg',
             'blurb' : 'Estuarine fish can survive in waters where fresh and salt water mix, like those throughout the Chesapeake Bay and its tidal rivers. Generally, estuarine fish stay close to the shore during summer and move to deeper waters in winter.'
             },
             {
             'name' : 'Migratory Fish',
-            'image' : '',
+            'image' : 'images/fish-migratory-fish.jpg',
             'blurb' : 'Migratory fish visit the Chesapeake Bay each year to feed or spawn. Marine fish live and spawn in coastal waters, anadromous fish migrate from the ocean to freshwater rivers to spawn and catadromous fish migrate from freshwater rivers to the ocean to spawn.'
             }],
           'image' : 'images/Fish.jpg',
@@ -66,47 +66,47 @@
         { 'name' : 'Insects & Invertebrates', 
           'subtypes' : [{
             'name' : 'Insects',
-            'image' : '',
+            'image' : 'images/insects-invertebrates-insects.jpg',
             'blurb' : 'Insects are found in nearly every habitat across the watershed, both on land and in the water. Some people may think insects are gross or scary, but they are an important part of the food web for fish, birds, mammals and reptiles.'
             },
             {
             'name' : 'Arthropods',
-            'image' : '',
+            'image' : 'images/insects-invertebrates-arthropod.jpg',
             'blurb' : 'Arthropods have an external skeleton—or exoskeleton—that they molt to grow. Crustaceans like crabs, shrimp and barnacles are the Bay\'s most common arthropods. Horseshoe crabs are arthropods, but not crustaceans: they are more closely related to spiders and scorpions.'
             },
             {
             'name' : 'Mollusks',
-            'image' : '',
+            'image' : 'images/insects-invertebrates-mollusks.jpg',
             'blurb' : 'Mollusks include bivalves, gastropods (snails) and cephalopods (squid). Most mollusks have at least one shell that protects and supports the animal\'s soft body. They also have a foot, which allows them to move.'
             },
             {
             'name' : 'Other Invertebrates',
-            'image' : '',
+            'image' : 'images/insects-invertebrates.jpg',
             'blurb' : 'Invertebrates make up the most diverse and abundant species on Earth. Worms, sponges, corals, tunicates and echinoderms are just a few of the many other types of invertebrates that live in the Bay.'
             }],
-          'image' : 'images/Invertebrates.jpg',
+          'image' : 'images/insects-invertebrates.jpg',
           'blurb' : 'Invertebrates are animals without a backbone, including insects, mollusks, crustaceans and more. Hundreds of species of invertebrates live in the waters of Chesapeake Bay, and thousands of species of insects live throughout the watershed, from deep woods to sandy beaches to our own backyards.',
           'text' : '<h4>Invertebrates are animals without a backbone. Hundreds of species of invertebrates live in the Chesapeake Bay.</h4><p>Some invertebrates, like <a href=\'entry/Easter Oyster\'>oysters</a> and <a href=\'entry/Blue Crab\'>blue crabs</a>, are well-known and easy to recognize. Others, like worms and <a href=\'entry/copepod\'>copepods</a>, are some of the most abundant animals in the Bay, but humans rarely see them. These small invertebrates are an important food source for larger fish and shellfish.</p><p>Insects are also invertebrates. Thousands of species of insects live in the Chesapeake Bay region in nearly every habitat, from deep woods to sandy beaches to our own backyards. Insects are a major food source for larger animals, including fish, birds, mammals and reptiles.</p>'
         },
         { 'name' : 'Mammals',
           'subtypes' : [{
             'name' : 'Aquatic',
-            'image' : '',
+            'image' : 'images/mammals-aquatic.jpg',
             'blurb' : 'Unlike many other mammals, aquatic mammals have no fur and have a thick layer of blubber. The Chesapeake Bay is home to several mammals that spend their entire lives in the water, including dolphins and the occasional wayward manatee.'
             },
             {
             'name' : 'Semi-Aquatic',
-            'image' : '',
+            'image' : 'images/mammals-semi-aquatic.jpg',
             'blurb' : 'Some mammals divide their time between land and water. Their waterproof—often oily—fur allows them to stay warm while in the water. These semi-aquatic species include beavers, muskrats and river otters.'
             },
             {
             'name' : 'Land',
-            'image' : '',
+            'image' : 'images/mammals-land.jpg',
             'blurb' : 'A variety of land mammals live in the Bay watershed, from the small meadow vole to the large American black bear. While some of these animals are able to swim, they spend the majority of their lives on land. Land mammals include deer, squirrels, rabbits and foxes.'
             },
             {
             'name' : 'Flying',
-            'image' : '',
+            'image' : 'images/mammals-flying.jpg',
             'blurb' : 'While bats are the only mammals truly able to fly, others can “fly” by gliding for short distances using flaps on skin on either side of their body. Many species of bats, as well as the southern flying squirrel, can be found throughout the Chesapeake Bay region.'
             }],
           'image' : 'images/Mammals.jpg',
@@ -116,45 +116,45 @@
         { 'name' : 'Plants & Trees',
           'subtypes' : [{ 
             'name' : 'Algae',
-            'image' : 'images/Algae.jpg',
+            'image' : 'images/plants-trees-algae.jpg',
             'blurb' : 'Algae are simple plants lacking roots, stems, leaves and a vascular system. Like all other plants, algae go through photosynthesis and need sunlight to grow. Some algae species can be confused with bay grasses, because they look similar and grow in the same places.'
             },
             {
             'name' : 'Bay Grasses',
-            'image' : 'images/Bay Grass.jpg',
+            'image' : 'images/plants-trees-bay-grasses.jpg',
             'blurb' : 'Bay grasses—also known as submerged aquatic vegetation, or SAV—are plants that grow in the shallow waters of the Bay, providing food and habitat for fish, crabs and waterfowl. More than 16 species of bay grasses grow in the Bay and its tributaries.'
             },
             {
             'name' : 'Flowers',
-            'image' : '',
+            'image' : 'images/plants-trees-flowers.jpg',
             'blurb' : 'There are hundreds of flowering plants that are native to the Chesapeake Bay region. These flowers are technically known as herbaceous plants, meaning they die off at the end of the growing season.'
             },
             {
             'name' : 'Trees & Shrubs',
-            'image' : '',
+            'image' : 'images/plants-trees-trees-shrubs.jpg',
             'blurb' : 'At least 50 types of trees grow in the Chesapeake Bay watershed. Some trees are deciduous, meaning they lose their leaves each autumn and grow new ones in spring. Other trees are evergreen and do not lose their leaves.'
             },
             {
             'name' : 'Aquatic & Wetland Plants',
-            'image' : '',
+            'image' : 'images/plants-trees.jpg',
             'blurb' : 'Wetland plants grow in damp, moist soils, whereas aquatic plants grow directly in water. Many are technically emergent plants, meaning they grow in standing water. Although native to wetlands and marshes, these plants are common in parks, yards and other areas.'
             }],
-          'image' : 'images/Plants.jpg',
+          'image' : 'images/plants-trees.jpg',
           'blurb' : 'More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, in nearly every habitat: from upland forests to the Bay\'s shoreline to our own backyards. Plants help keep our air and water clean and provide habitat for countless animals.',
           'text' : '<h4> More than 2,700 types of plants grow throughout the Chesapeake Bay watershed, ranging from tiny, single-celled algae to tall, sturdy trees. Plants grow in nearly every habitat, from upland forests to the Bay\'s shoreline to our own backyards.</h4><p>Plants can help indicate the health of the larger Bay ecosystem. For example, large algae blooms are often a sign of nutrient pollution in the water. Bay grasses—also called submerged aquatic vegetation, or SAV—are sensitive to pollution but quick to respond to improved water quality, so their abundance is also a good indicator of Bay health.</p><p>Plants are critical to the Bay ecosystem because they help trap pollution, keep our air and water clean and provide habitat for countless animals, including fish, birds and mammals.</p>'
         },
         { 'name' : 'Reptiles & Amphibians',
           'subtypes' : [{
             'name' : 'Amphibians',
-            'image' : '',
+            'image' : 'images/reptiles-amphibians-amphibians.jpg',
             'blurb' : 'Amphibians have moist, absorbent, scale-less skin. Frogs, toads, newts and salamanders are all amphibians. Amphibians are very sensitive to environmental changes, making them excellent indicators of an ecosystem\'s health.'
             },
             {
             'name' : 'Reptiles',
-            'image' : '',
+            'image' : 'images/reptiles-amphibians-reptiles.jpg',
             'blurb' : 'Reptiles have scaly skin that helps them retain water. While many reptiles spend most of their time on land, some species live in or near the water. Snakes, turtles and lizards are all reptiles.'
             }],
-          'image' : 'images/Reptiles.jpg',
+          'image' : 'images/reptiles-amphibians.jpg',
           'blurb' : 'Reptiles and amphibians, sometimes called herps, are cold-blooded vertebrates. Hundreds of species live in the Chesapeake region: from frogs and salamanders that dwell along mountainous streams to sea turtles that visit the salty waters of the Bay\'s mouth.',
           'text' : '<h4>Reptiles and amphibians are cold-blooded vertebrates. They are sometimes called herps.</h4><p>Because reptiles and amphibians are cold-blooded, they must to bask in the sun to keep warm. Reptiles spend most of their time on land, whereas amphibians live both on land and in the water.</p><p>Hundreds of reptiles and amphibians live in the Chesapeake Bay region: from the frogs and salamanders that dwell along mountainous streams to the sea turtles that visit the Bay\'s salty mouth.</p>'
         }
