@@ -8,11 +8,9 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
-
 
     // list of files / patterns to load in the browser
     files: [
@@ -24,6 +22,8 @@ module.exports = function(config) {
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/foundation/js/foundation.js',
       'app/bower_components/angular-foundation/mm-foundation.js',
+      'app/bower_components/angular-animate/angular-animate.min.js',
+      'app/bower_components/angular-filter/dist/angular-filter.min.js',
       'app/js/*.js',
       'test/unit/*.js'
     ],
@@ -43,8 +43,12 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'junit'],
 
+    junitReporter : {
+      outputDir: 'test',
+      suite: 'unit'
+    },
 
     // web server port
     port: 9876,
@@ -65,7 +69,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Firefox', 'IE', 'Safari'],
+    browsers: ['Chrome', 'Firefox', 'IE'],
 
 
     // Continuous Integration mode

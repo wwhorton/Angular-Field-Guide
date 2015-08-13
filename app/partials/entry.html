@@ -104,7 +104,7 @@
       <ul class="no-bullet">
         <li class="accent-white"  ng-if="FG.relatedEntry.title != FG.entry.title" ng-repeat="relatedEntry in FG.relatedCritters | limitTo: 3">
           <a ng-href="entry/{{relatedEntry.title}}"><img ng-src="{{relatedEntry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
-          <h3><a ng-href="/entry/{{relatedEntry.title}}">{{relatedEntry.title}}</a></h3>
+          <h3><a ng-href="entry/{{relatedEntry.title}}">{{relatedEntry.title}}</a></h3>
           <h3><em>{{relatedEntry.scientific_name}}</em></h3>
         </li>
       </ul>

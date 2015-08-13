@@ -25,15 +25,15 @@ describe( 'Filter testing', function(){
                           fieldguide_other_facts: 'Things you didn\'t know before but do now...'
                         }
                    ];
-  
   beforeEach( function(){
-    module( 'fieldGuideFilters' );
-    inject( function( _$filter_ ){
-      $filter = _$filter_;
-      
-    });
+    module( 'fieldGuide' );
   });
+  
+  beforeEach( inject( function( _$filter_ ){
+      $filter = _$filter_;  
+  }));
 
+  
   describe( 'entriesByKeyword filter', function(){
 
     var queryTitle = 'Farms', queryAppearance = 'bald', queryScience = 'Blahicus', queryFacts = 'fun', queryMultiple = 'science';

@@ -27,7 +27,6 @@
     "grunt-karma": "^0.10.1",
     "grunt-newer": "~0.8.0",
     "grunt-protractor-runner": "^2.0.0",
-    "grunt-sass": "~0.17.0",
     "grunt-usemin": "~3.0.0",
     "grunt-wiredep": "~2.0.0",
     "http-server": "^0.6.1",
@@ -36,14 +35,16 @@
     "karma-chrome-launcher": "^0.1.4",
     "karma-cli": "0.0.4",
     "karma-firefox-launcher": "^0.1.4",
+    "karma-html-reporter": "^0.2.6",
     "karma-ie-launcher": "^0.1.5",
     "karma-jasmine": "^0.3.5",
+    "karma-junit-reporter": "^0.3.3",
     "karma-safari-launcher": "^0.1.1",
-    "load-grunt-tasks": "~1.0.0",
-    "node-sass": "~1.2.3",
+    "load-grunt-tasks": "^3.2.0",
     "protractor": "~1.0.0",
     "shelljs": "^0.2.6",
     "tmp": "0.0.23",
+    "webdriver": "0.0.1",
     "webdriver-manager": "^5.0.0"
   }
 }

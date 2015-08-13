@@ -12,11 +12,11 @@ module.exports = function(grunt) {
 
 		sass: {
 			options: {
-				includePaths: ['<%= app %>/bower_components/foundation/scss']
+				loadPath: '<%= app %>/bower_components/foundation/scss'
 			},
 			dist: {
 				options: {
-					outputStyle: 'extended'
+					style: 'extended'
 				},
 				files: {
 					'<%= app %>/css/style.css': '<%= app %>/scss/app.scss'
@@ -27,8 +27,7 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        background: true,
-        singleRun: false
+        background: true
       }
     },
 		
@@ -203,5 +202,6 @@ module.exports = function(grunt) {
 	grunt.registerTask('publish', ['compile-sass', 'clean:dist', 'validate-js', 'karma', 'useminPrepare', 'copy:dist', 'concat', 'cssmin', 'uglify', 'usemin', 'newer:imagemin']);
 
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-protractor-runner');
 };
