@@ -59,7 +59,7 @@
       _.find( $rootScope.types, function( type ){
         if( type.name === $routeParams.type && $routeParams.subtype && $scope.selection.subtype ){
           $scope.subBlurb = _.find( type.subtypes, function( subtype ){
-            return subtype.name === $routeParams.subtype;
+            return subtype.label === $routeParams.subtype;
           }).blurb;
         }
       });
