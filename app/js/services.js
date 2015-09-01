@@ -3,7 +3,7 @@
   
   var fieldGuideServices = angular.module( 'fieldGuideServices', [ 'angular-md5' ] );
 
-  fieldGuideServices.factory( 'getEntries', [ '$http', function( $http ){
+  fieldGuideServices.factory( 'getEntries', [ '$http', '$rootScope', function( $http, $rootScope ){
     var promise;
     var getEntries = function(){
       if( !promise ){
@@ -11,6 +11,29 @@
       }
       return promise;
     };
+    getEntries().then( function( results ){
+      $rootScope.entries = results.data;
+      _.map( $rootScope.entries, function( entry ){
+        entry.habitats = [];
+        _.each( entry.categories, function( category ){
+          _.each( $rootScope.types, function( type ){
+            if( type.name === category.category_name ){
+              entry.type = type.name;
+            }
+            _.each( type.subtypes, function( subtype ){
+              if( subtype.label === category.category_name ){
+                entry.subtype = subtype.label;
+              }
+            });
+          });
+          _.each( $rootScope.habitats, function( habitat ){
+            if( habitat.name === category.category_name ){
+              entry.habitats.push( habitat.name);
+            }
+          });
+        });
+      });
+    });
     return getEntries;
   }]);
 
@@ -144,7 +167,7 @@
               equalize_on_stack: true
             }
           }, 'equalizer', 'reflow' );
-        }, 100 );
+        }, 0 );
       }
     };
   }]);

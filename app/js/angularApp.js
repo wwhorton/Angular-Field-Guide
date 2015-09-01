@@ -10,20 +10,13 @@
           'habitats': []
         }
     ];
-    
-    $rootScope.types = [ 
+    $rootScope.types = [
         { 'name' : 'Birds',
           'subtypes' : [{
             'name' : 'Raptors',
             'label' : 'Raptors',
             'image' : 'images/birds-raptors.jpg',
             'blurb' : 'Raptors are birds of prey. Their keen eyesight allows them to hunt while flying, and they use their sharp beaks and talons to capture prey. Hawks, owls, ospreys, eagles and falcons are all raptors.'
-            },
-            {
-            'name' : 'Other Birds',
-            'label' : 'Other',
-            'image' : 'images/birds-other.jpg',
-            'blurb' : 'As home to hundreds of bird species, the Bay region is full of opportunities birdwatchers and hunters alike. Songbirds, game birds and hummingbirds are just a few of the many other types of birds that live in the Bay region.'
             },
             {
             'name' : 'Waterfowl',
@@ -42,6 +35,12 @@
             'label' : 'Sea & Shorebirds',
             'image' : 'images/birds-sea-shorebirds.jpg',
             'blurb' : 'Seabirds and shorebirds live on and along the water. They primarily eat fish and other aquatic animals. Shorebirds include gulls, terns and sandpipers. Coots, pelicans and cormorants are all seabirds.'
+            },
+            {
+              'name' : 'Other Birds',
+              'label' : 'Other',
+              'image' : 'images/birds-other.jpg',
+              'blurb' : 'As home to hundreds of bird species, the Bay region is full of opportunities birdwatchers and hunters alike. Songbirds, game birds and hummingbirds are just a few of the many other types of birds that live in the Bay region.'
             }],
           'image' : 'images/Birds.jpg',
           'blurb' : 'Hundreds of species of birds live in the Chesapeake Bay watershed. Some live here year-round, while others migrate to the region to feed or nest. Birds are some of the region\'s most beautiful—but vulnerable—species, and all serve as important links in the Bay ecosystem. ',
@@ -209,31 +208,14 @@
           'blurb': '<h4>Hundreds of thousands of streams, creeks and rivers thread through the Chesapeake Bay watershed and eventually flow to the Bay. These freshwater tributaries provide critical habitat for many plants and animals, including <a href="type/fish">fish</a>, <a href="type/insects">insects</a>, <a href="type/reptiles_amphibians">reptiles</a>, <a href="type/reptiles_amphibians">amphibians</a> and <a href="type/invertebrates">invertebrates</a>.</h4><p>Catfish, sunfish and <a href="entry/brook_trout">brook trout</a> are just a few types of fish that live their entire lives in fresh water. Many other fish - including shad, <a href="entry/atlantic_sturgeon">Atlantic sturgeon</a> and <a href="entry/striped_bass">striped bass</a> - travel from the Bay and the ocean to freshwater streams and rivers to spawn.</p><p>Fish aren\'t the only animals that are found in streams and rivers. Diverse communities of tiny worms and clams live at the bottom of streams. Many bay <a href="type/Plants%20&%20Trees/subtype/Bay%20Grasses">grass species</a>, including <a href="entry/coontail">coontail</a> and <a href="entry/wild_celery">wild celery</a>, only grow in fresh water. Along the edges of streams and rivers, turtles and snakes bask in the sun and search for prey. </p>'
         }
       ];
-      
-    getEntries().then( function( results ){
-      $rootScope.entries = results.data;
-      _.map( $rootScope.entries, function( entry ){
-        entry.habitats = [];
-        _.each( entry.categories, function( category ){
-          _.each( $rootScope.types, function( type ){
-            if( type.name === category.category_name ){
-              entry.type = type.name;
-            }
-            _.each( type.subtypes, function( subtype ){
-              if( subtype.label === category.category_name ){
-                entry.subtype = subtype.label;
-              }
-            });
-          });
-          _.each( $rootScope.habitats, function( habitat ){
-            if( habitat.name === category.category_name ){
-              entry.habitats.push( habitat.name);
-            }
-          });
-        });
-      });
+
+    //getEntries();
+    $rootScope.$on( '$viewContentLoaded', function(){
+      console.log( "View Content Loaded" );
+      getEntries();
     });
   });
+
 
   /***Router***/
   fieldGuide.config(['$routeProvider', '$locationProvider', 

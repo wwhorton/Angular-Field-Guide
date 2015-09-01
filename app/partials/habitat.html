@@ -17,10 +17,10 @@
       </select> 
     </div>
     <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3" data-equalizer>
-      <li ng-if="selection.type" ng-repeat="entry in entries | filter:{habitats:habitat.name} | filter:{type:selection.type}:true| orderBy:'-title':true " >
+      <li ng-if="selection.type" ng-repeat="entry in FG.entries | filter:{ habitats:{$: habitat.name} }| filter:{type:selection.type}:true| orderBy:'-title':true " >
         <entry-block entry="entry"></entry-block>
       </li>
-      <li ng-if="!selection.type" ng-repeat="entry in entries | filter:{habitats:habitat.name} | orderBy:'-title':true " >
+      <li ng-if="!selection.type" ng-repeat="entry in FG.entries | filter:{ habitats:{$: habitat.name} }| orderBy:'-title':true " >
         <entry-block entry="entry"></entry-block>
       </li>
     </ul>

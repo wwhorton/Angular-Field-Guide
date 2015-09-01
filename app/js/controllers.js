@@ -27,14 +27,14 @@
     $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
       return habitat.name === $routeParams.habitat;
     });
-    $scope.$watchGroup( [ 'entries.length', 'selection.type' ], function(){
+    $scope.$watch( 'entries', function(){
       $scope.FG = { 'entries': $rootScope.entries };
       $scope.types = $filter( 'filter' )( $scope.FG.entries, $routeParams.habitat );
       $scope.habitat = _.find( $rootScope.habitats, function( habitat ){
         return habitat.name === $routeParams.habitat;
       });
       equalize();
-    });
+    }, true);
   }]);
   
   fieldGuideControllers.controller( 'TypeController', [ '$scope', '$rootScope', '$http', '$routeParams', '$location', 'renderHtml', 'equalize', function( $scope, $rootScope, $http, $routeParams, $location, renderHtml, equalize ){
@@ -51,9 +51,8 @@
                       'options' : $scope.FG.thisType.subtypes
                       };                  
     $scope.renderHtml = renderHtml;
-    $scope.$watchGroup( [ 'entries.length', 'selection.subtype' ], function(){
+    $scope.$watch( 'FG.entries', function( ){
       $scope.FG = { 'entries': $rootScope.entries };
-      equalize();
       var path = ( $scope.selection.subtype ) ? 'type/' + $scope.selection.type + '/subtype/' + $scope.selection.subtype : 'type/' + $scope.selection.type;
       $location.path( path );
       _.find( $rootScope.types, function( type ){
@@ -63,10 +62,9 @@
           }).blurb;
         }
       });
-      console.log( $scope.subBlurb );
-    });
-    
-  }]);
+      equalize();
+    }, true);
+   }]);
   
   fieldGuideControllers.controller( 'NavController', [ '$scope', '$rootScope', function( $scope, $rootScope ){
     $scope.types = $rootScope.types;
@@ -83,7 +81,7 @@
     $scope.$watch( 'entries', function(){
       $scope.results.entries = entriesByKeywordFilter( $rootScope.entries, $routeParams.query );
       equalize();
-    });
+    }, true);
   }]);
   
   fieldGuideControllers.controller( 'EntryController', [ '$scope', '$rootScope','$routeParams', '$sce', 'getEntries', 'renderHtml', 'renderSrc', 'entryByTitleFilter', 'relatedCritters', 'makeButtons', 'getFlickr', function( $scope, $rootScope, $routeParams, $sce, getEntries, renderHtml, renderSrc, entryByTitleFilter, relatedCritters, makeButtons, getFlickr ){

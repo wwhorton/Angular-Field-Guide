@@ -1,7 +1,0 @@
-<div class="row collapse gridItem panelContentBox" data-equalizer-watch>
-  <a ng-href="entry/{{thisEntry.title}}"><img ng-src="{{thisEntry.fieldguide_image}}" src="http://placehold.it/320x200" /></a>
-  <h3><a style="border-bottom: 0px;" ng-href="entry/{{thisEntry.title}}">{{thisEntry.title}}</a></h3>
-  <h3 ng-if="thisEntry.scientific_name"><em>{{thisEntry.scientific_name}}</em></h3>
-  <div ng-if="thisEntry.fieldguide_description" ng-bind-html="thisEntry.fieldguide_description" class="blockContent"></div>
-  <tags entry="thisEntry"></tags>
-</div>

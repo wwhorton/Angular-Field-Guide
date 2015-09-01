@@ -1,6 +1,9 @@
 <div>
 <form class="row collapse" name="titleSearch" id="searchBar">
-  <div class="small-10 large-11 columns">
+  <div class="small-2 large-1 columns" >
+    <a id="searchButton" class="button prefix" ng-click="search.title = NULL"><i id="cancelIcon" class='fi-x'></i></a>
+  </div>
+  <div class="small-8 large-10 columns">
     <input type="text" name="title" id="titleSearch" placeholder="search field guide" autocomplete="off" ng-model="search.title" ng-minlength="3" ng-pattern="/^[\S]/">
   </div>
   <div class="small-2 large-1 columns" >
